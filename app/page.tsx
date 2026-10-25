@@ -874,6 +874,7 @@ export default function Home() {
       <footer className="bg-[#080808] px-6 pb-8 pt-14 text-white md:px-12 lg:px-20">
         <div className="mx-auto max-w-[1280px]">
           <div className="flex flex-col justify-between gap-10 border-b border-white/10 pb-12 md:flex-row">
+
             {/* LOGO E DESCRIÇÃO */}
             <div>
               <a
