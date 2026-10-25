@@ -1,26 +1,198 @@
+
 @import "tailwindcss";
 
+/* =========================================
+   FORX DIGITAL — IDENTIDADE VISUAL
+========================================= */
+
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: #08080c;
+  --foreground: #f5f3f7;
+
+  --forx-black: #08080c;
+  --forx-dark: #0d0b13;
+  --forx-purple: #7942e8;
+  --forx-purple-light: #b994ff;
+  --forx-white: #f4f2f7;
+
+  --font-primary: Arial, Helvetica, sans-serif;
 }
+
+/* =========================================
+   TAILWIND CSS 4
+========================================= */
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+
+  --font-sans: var(--font-primary);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+/* =========================================
+   ESTILOS GLOBAIS
+========================================= */
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 90px;
 }
 
 body {
+  margin: 0;
+  padding: 0;
+  min-height: 100vh;
+
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+
+  font-family: var(--font-primary);
+
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* =========================================
+   SELEÇÃO DE TEXTO
+========================================= */
+
+::selection {
+  background: var(--forx-purple);
+  color: #ffffff;
+}
+
+/* =========================================
+   LINKS E BOTÕES
+========================================= */
+
+a {
+  text-decoration: none;
+}
+
+button,
+a {
+  -webkit-tap-highlight-color: transparent;
+}
+
+button {
+  cursor: pointer;
+}
+
+button:disabled {
+  cursor: not-allowed;
+}
+
+/* =========================================
+   ACESSIBILIDADE
+========================================= */
+
+:focus-visible {
+  outline: 2px solid var(--forx-purple-light);
+  outline-offset: 4px;
+}
+
+/* =========================================
+   IMAGENS
+========================================= */
+
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+/* =========================================
+   BARRA DE ROLAGEM
+========================================= */
+
+::-webkit-scrollbar {
+  width: 9px;
+}
+
+::-webkit-scrollbar-track {
+  background: #08080c;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #30243f;
+  border-radius: 20px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #7942e8;
+}
+
+/* =========================================
+   ANIMAÇÕES AUXILIARES
+========================================= */
+
+@keyframes forxFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes forxGlow {
+  0%,
+  100% {
+    opacity: 0.45;
+  }
+
+  50% {
+    opacity: 0.8;
+  }
+}
+
+.forx-fade-in {
+  animation: forxFadeIn 0.8s ease-out both;
+}
+
+.forx-glow {
+  animation: forxGlow 6s ease-in-out infinite;
+}
+
+/* =========================================
+   ANIMAÇÃO 3D
+========================================= */
+
+canvas {
+  display: block;
+}
+
+/* =========================================
+   RESPONSIVIDADE
+========================================= */
+
+@media (max-width: 768px) {
+  html {
+    scroll-padding-top: 75px;
+  }
+
+  ::-webkit-scrollbar {
+    width: 5px;
+  }
+}
+
+/* =========================================
+   ACESSIBILIDADE — MOVIMENTO REDUZIDO
+========================================= */
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  .forx-fade-in,
+  .forx-glow {
+    animation: none;
+  }
 }
