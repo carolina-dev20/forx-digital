@@ -2,30 +2,40 @@
 "use client";
 
 import { useState, type FormEvent } from "react";
-import { ArrowUpRight, Send } from "lucide-react";
+import { motion } from "motion/react";
+import {
+  ArrowUpRight,
+  CheckCircle2,
+  Send,
+} from "lucide-react";
+
+// WhatsApp comercial FORX Digital
+const WHATSAPP_NUMBER = "5511991996754";
 
 type FormData = {
-  name: string;
-  company: string;
-  email: string;
-  service: string;
-  description: string;
+  nome: string;
+  empresa: string;
+  whatsapp: string;
+  servico: string;
+  mensagem: string;
 };
 
 const initialForm: FormData = {
-  name: "",
-  company: "",
-  email: "",
-  service: "",
-  description: "",
+  nome: "",
+  empresa: "",
+  whatsapp: "",
+  servico: "",
+  mensagem: "",
 };
 
-// Substitua pelo WhatsApp comercial da FORX.
-// Exemplo: "5511999999999"
-const WHATSAPP_NUMBER = "";
-
-const inputClass =
-  "w-full rounded-2xl border border-white/10 bg-white/[0.06] px-5 py-4 text-sm text-white outline-none transition placeholder:text-white/35 focus:border-[#B994FF] focus:ring-1 focus:ring-[#B994FF]/40";
+const services = [
+  "Criação de site institucional",
+  "Landing page",
+  "Presença no Google / SEO",
+  "Identidade digital",
+  "Solução personalizada",
+  "Outro serviço",
+];
 
 export default function ContactForm() {
   const [form, setForm] = useState<FormData>(initialForm);
@@ -40,230 +50,268 @@ export default function ContactForm() {
       [field]: value,
     }));
 
-    if (error) setError("");
+    if (error) {
+      setError("");
+    }
   }
 
-  function handleSubmit(event: FormEvent<HTMLFormElement>) {
+  function handleSubmit(
+    event: FormEvent<HTMLFormElement>
+  ) {
     event.preventDefault();
+    setError("");
 
-    if (!WHATSAPP_NUMBER) {
+    const nome = form.nome.trim();
+    const empresa = form.empresa.trim();
+    const whatsapp = form.whatsapp.trim();
+    const servico = form.servico.trim();
+    const mensagem = form.mensagem.trim();
+
+    if (!nome || !whatsapp || !servico) {
       setError(
-        "Configure o número comercial da FORX para ativar o envio."
+        "Preencha seu nome, WhatsApp e o serviço desejado."
       );
       return;
     }
 
-    if (!/^\d{10,15}$/.test(WHATSAPP_NUMBER)) {
+    const telefoneLimpo = whatsapp.replace(/\D/g, "");
+
+    if (
+      telefoneLimpo.length < 10 ||
+      telefoneLimpo.length > 13
+    ) {
       setError(
-        "O número de WhatsApp deve conter apenas dígitos, com código do país e DDD."
+        "Informe um número de WhatsApp válido com DDD."
       );
       return;
     }
 
-    const message = [
-      "*NOVA SOLICITAÇÃO — FORX DIGITAL*",
+    const texto = [
+      "Olá, FORX Digital! 👋",
       "",
-      `*Nome:* ${form.name.trim()}`,
-      `*Empresa:* ${form.company.trim() || "Não informada"}`,
-      `*E-mail:* ${form.email.trim()}`,
-      `*Serviço:* ${form.service}`,
+      "Gostaria de solicitar um orçamento.",
       "",
-      "*Descrição do projeto:*",
-      form.description.trim(),
+      "📋 *DADOS DO PROJETO*",
       "",
-      "Gostaria de conversar sobre um orçamento.",
+      `*Nome:* ${nome}`,
+      `*Empresa:* ${empresa || "Não informada"}`,
+      `*WhatsApp:* ${whatsapp}`,
+      `*Serviço:* ${servico}`,
+      "",
+      "*Detalhes do projeto:*",
+      mensagem || "Gostaria de saber mais sobre os serviços.",
+      "",
+      "Aguardo o contato. Obrigado!",
     ].join("\n");
 
-    const url =
-      `https://wa.me/${WHATSAPP_NUMBER}` +
-      `?text=${encodeURIComponent(message)}`;
+    const url = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(
+      texto
+    )}`;
 
-    // Abre o WhatsApp. O cliente confirma o envio lá.
+    // Abre o WhatsApp para o cliente confirmar o envio
     window.location.href = url;
   }
 
-  return (
-    <form
-      onSubmit={handleSubmit}
-      className="rounded-[30px] border border-white/10 bg-[#171220] p-6 shadow-2xl md:p-10"
-    >
-      <div className="mb-9">
-        <p className="mb-3 text-xs font-semibold uppercase tracking-[0.2em] text-[#B994FF]">
-          Inicie seu projeto
-        </p>
+  const inputClass =
+    "w-full rounded-2xl border border-white/10 bg-white/[0.055] px-5 py-4 text-sm text-white outline-none transition duration-300 placeholder:text-white/30 focus:border-[#A879F5] focus:bg-white/[0.08] focus:ring-1 focus:ring-[#A879F5]/30";
 
-        <h3 className="text-2xl font-medium tracking-tight md:text-3xl">
-          Conte sua ideia para nós.
+  const labelClass =
+    "mb-2 block text-xs font-medium uppercase tracking-[0.12em] text-white/55";
+
+  return (
+    <motion.form
+      onSubmit={handleSubmit}
+      initial={{ opacity: 0, y: 24 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true }}
+      transition={{ duration: 0.7 }}
+      className="w-full space-y-6"
+    >
+      {/* CABEÇALHO DO FORMULÁRIO */}
+      <div className="mb-8">
+        <div className="mb-4 inline-flex items-center gap-2 rounded-full border border-[#A879F5]/30 bg-[#7942E8]/10 px-4 py-2">
+          <span className="h-2 w-2 animate-pulse rounded-full bg-[#A879F5]" />
+          <span className="text-xs font-medium text-[#C8AAFF]">
+            Vamos tirar sua ideia do papel
+          </span>
+        </div>
+
+        <h3 className="text-2xl font-medium tracking-[-0.04em] text-white sm:text-3xl">
+          Conte sobre seu projeto.
         </h3>
 
-        <p className="mt-3 text-sm leading-7 text-white/50">
-          Preencha os campos e envie sua solicitação
-          diretamente pelo WhatsApp.
+        <p className="mt-3 text-sm leading-7 text-white/45">
+          Preencha os dados abaixo e envie sua solicitação
+          diretamente para nosso WhatsApp.
         </p>
       </div>
 
+      {/* NOME E EMPRESA */}
       <div className="grid gap-5 sm:grid-cols-2">
         <div>
-          <label
-            htmlFor="contact-name"
-            className="mb-2 block text-xs font-medium text-white/75"
-          >
-            Nome completo *
+          <label htmlFor="forx-nome" className={labelClass}>
+            Seu nome *
           </label>
 
           <input
-            id="contact-name"
+            id="forx-nome"
             type="text"
+            name="nome"
+            autoComplete="name"
             required
             maxLength={100}
-            autoComplete="name"
-            value={form.name}
+            placeholder="Como podemos te chamar?"
+            value={form.nome}
             onChange={(event) =>
-              updateField("name", event.target.value)
+              updateField("nome", event.target.value)
             }
-            placeholder="Seu nome"
             className={inputClass}
           />
         </div>
 
         <div>
-          <label
-            htmlFor="contact-company"
-            className="mb-2 block text-xs font-medium text-white/75"
-          >
-            Empresa
+          <label htmlFor="forx-empresa" className={labelClass}>
+            Empresa ou marca
           </label>
 
           <input
-            id="contact-company"
+            id="forx-empresa"
             type="text"
+            name="empresa"
             maxLength={120}
-            autoComplete="organization"
-            value={form.company}
+            placeholder="Nome da sua empresa"
+            value={form.empresa}
             onChange={(event) =>
-              updateField("company", event.target.value)
+              updateField("empresa", event.target.value)
             }
-            placeholder="Nome da empresa"
             className={inputClass}
           />
         </div>
+      </div>
 
-        <div>
-          <label
-            htmlFor="contact-email"
-            className="mb-2 block text-xs font-medium text-white/75"
-          >
-            E-mail *
-          </label>
+      {/* WHATSAPP */}
+      <div>
+        <label htmlFor="forx-whatsapp" className={labelClass}>
+          Seu WhatsApp *
+        </label>
 
-          <input
-            id="contact-email"
-            type="email"
-            required
-            maxLength={150}
-            autoComplete="email"
-            value={form.email}
-            onChange={(event) =>
-              updateField("email", event.target.value)
-            }
-            placeholder="seuemail@empresa.com"
-            className={inputClass}
-          />
-        </div>
+        <input
+          id="forx-whatsapp"
+          type="tel"
+          name="whatsapp"
+          autoComplete="tel"
+          required
+          maxLength={20}
+          placeholder="(11) 99999-9999"
+          value={form.whatsapp}
+          onChange={(event) =>
+            updateField("whatsapp", event.target.value)
+          }
+          className={inputClass}
+        />
+      </div>
 
-        <div>
-          <label
-            htmlFor="contact-service"
-            className="mb-2 block text-xs font-medium text-white/75"
-          >
-            Serviço desejado *
-          </label>
+      {/* SERVIÇO */}
+      <div>
+        <label htmlFor="forx-servico" className={labelClass}>
+          Qual serviço você procura? *
+        </label>
 
+        <div className="relative">
           <select
-            id="contact-service"
+            id="forx-servico"
+            name="servico"
             required
-            value={form.service}
+            value={form.servico}
             onChange={(event) =>
-              updateField("service", event.target.value)
+              updateField("servico", event.target.value)
             }
-            className={`${inputClass} [&>option]:bg-[#171220]`}
+            className={`${inputClass} cursor-pointer appearance-none pr-12`}
           >
-            <option value="" disabled>
+            <option value="" disabled className="bg-[#17121F]">
               Selecione um serviço
             </option>
-            <option value="Site institucional">
-              Site institucional
-            </option>
-            <option value="Landing page">
-              Landing page
-            </option>
-            <option value="SEO local">
-              SEO local
-            </option>
-            <option value="Presença no Google">
-              Presença no Google
-            </option>
-            <option value="Outro projeto">
-              Outro projeto
-            </option>
+
+            {services.map((service) => (
+              <option
+                key={service}
+                value={service}
+                className="bg-[#17121F] text-white"
+              >
+                {service}
+              </option>
+            ))}
           </select>
-        </div>
 
-        <div className="sm:col-span-2">
-          <label
-            htmlFor="contact-description"
-            className="mb-2 block text-xs font-medium text-white/75"
-          >
-            Conte sobre seu projeto *
-          </label>
-
-          <textarea
-            id="contact-description"
-            required
-            rows={5}
-            minLength={10}
-            maxLength={2000}
-            value={form.description}
-            onChange={(event) =>
-              updateField("description", event.target.value)
-            }
-            placeholder="Conte sobre sua empresa, o que você precisa e quais são seus objetivos..."
-            className={`${inputClass} resize-y`}
+          <ArrowUpRight
+            size={18}
+            className="pointer-events-none absolute right-5 top-1/2 -translate-y-1/2 rotate-45 text-[#A879F5]"
           />
         </div>
       </div>
 
+      {/* MENSAGEM */}
+      <div>
+        <label htmlFor="forx-mensagem" className={labelClass}>
+          Fale um pouco sobre seu projeto
+        </label>
+
+        <textarea
+          id="forx-mensagem"
+          name="mensagem"
+          rows={5}
+          maxLength={2000}
+          placeholder="Conte sua ideia, objetivos e o que você gostaria de desenvolver..."
+          value={form.mensagem}
+          onChange={(event) =>
+            updateField("mensagem", event.target.value)
+          }
+          className={`${inputClass} min-h-[150px] resize-y`}
+        />
+      </div>
+
+      {/* ERRO DE VALIDAÇÃO */}
       {error && (
-        <p
+        <motion.div
           role="alert"
-          className="mt-5 rounded-xl border border-red-400/25 bg-red-400/10 px-4 py-3 text-sm text-red-200"
+          initial={{ opacity: 0, y: -8 }}
+          animate={{ opacity: 1, y: 0 }}
+          className="rounded-2xl border border-red-400/30 bg-red-500/10 px-5 py-4 text-sm leading-6 text-red-200"
         >
           {error}
-        </p>
+        </motion.div>
       )}
 
-      <button
+      {/* BOTÃO */}
+      <motion.button
         type="submit"
-        className="mt-8 flex w-full items-center justify-center gap-3 rounded-full bg-[#7942E8] px-8 py-4 text-sm font-semibold text-white transition hover:bg-[#9562F5]"
+        whileHover={{ scale: 1.015 }}
+        whileTap={{ scale: 0.985 }}
+        transition={{ duration: 0.2 }}
+        className="group relative flex w-full items-center justify-center gap-3 overflow-hidden rounded-full bg-[#7942E8] px-6 py-5 text-sm font-semibold text-white shadow-[0_0_0_2px_rgba(168,121,245,0.7)] outline-none ring-4 ring-transparent transition-all duration-300 hover:bg-[#8F57F5] hover:shadow-[0_0_25px_rgba(121,66,232,0.35)] focus-visible:ring-[#A879F5]/40 sm:text-base"
       >
-        Enviar solicitação
-        <Send size={17} />
-      </button>
+        <span className="relative z-10">
+          Enviar solicitação
+        </span>
 
-      <p className="mt-5 text-center text-xs leading-6 text-white/40">
-        Você será direcionado ao WhatsApp para
-        revisar e confirmar o envio da mensagem.
-      </p>
+        <Send
+          size={19}
+          className="relative z-10 transition-transform duration-300 group-hover:translate-x-1 group-hover:-translate-y-1"
+        />
+      </motion.button>
 
-      <div className="mt-7 flex justify-center">
-        <a
-          href="#servicos"
-          className="inline-flex items-center gap-2 text-xs text-white/50 transition hover:text-[#B994FF]"
-        >
-          Conhecer nossos serviços
-          <ArrowUpRight size={14} />
-        </a>
+      {/* INFORMAÇÃO */}
+      <div className="flex items-start justify-center gap-2">
+        <CheckCircle2
+          size={16}
+          className="mt-0.5 shrink-0 text-[#A879F5]"
+        />
+
+        <p className="max-w-md text-center text-xs leading-6 text-white/40">
+          Você será direcionado ao WhatsApp para revisar
+          e confirmar o envio da mensagem.
+        </p>
       </div>
-    </form>
+    </motion.form>
   );
 }
