@@ -106,7 +106,7 @@ export default function Portfolio() {
             {/* INFORMAÇÕES */}
             <div className="p-6 sm:p-8">
               <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-[#7942E8]">
-                SITE INSTITUCIONAL · SEO LOCAL
+               LANDING PAGE · SEO LOCAL
               </p>
 
               <div className="mt-4 flex items-center justify-between gap-4">
@@ -126,7 +126,7 @@ export default function Portfolio() {
               </div>
 
               <p className="mt-4 text-sm leading-7 text-black/55">
-                Site responsivo para um salão de beleza em Guarulhos,
+                Landing page para um salão de beleza em Guarulhos,
                 com apresentação de serviços, agendamento e
                 presença no Google.
               </p>
@@ -150,7 +150,7 @@ export default function Portfolio() {
                 </p>
 
                 <div className="flex flex-wrap gap-2">
-                  <ProjectTag>Site responsivo</ProjectTag>
+                  <ProjectTag>Landing Page</ProjectTag>
                   <ProjectTag>SEO local</ProjectTag>
                   <ProjectTag>Agendamento</ProjectTag>
                   <ProjectTag>Google</ProjectTag>

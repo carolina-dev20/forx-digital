@@ -1,4 +1,5 @@
 
+
 "use client";
 
 import { useState, type FormEvent } from "react";
@@ -10,7 +11,7 @@ import {
 } from "lucide-react";
 
 // WhatsApp comercial FORX Digital
-const WHATSAPP_NUMBER = "5511991996754";
+const WHATSAPP_NUMBER = "5511994880312";
 
 type FormData = {
   nome: string;
@@ -67,6 +68,7 @@ export default function ContactForm() {
     const servico = form.servico.trim();
     const mensagem = form.mensagem.trim();
 
+    // Validação dos campos obrigatórios
     if (!nome || !whatsapp || !servico) {
       setError(
         "Preencha seu nome, WhatsApp e o serviço desejado."
@@ -74,6 +76,7 @@ export default function ContactForm() {
       return;
     }
 
+    // Validação do número informado pelo cliente
     const telefoneLimpo = whatsapp.replace(/\D/g, "");
 
     if (
@@ -86,6 +89,7 @@ export default function ContactForm() {
       return;
     }
 
+    // Mensagem completa enviada ao WhatsApp da FORX
     const texto = [
       "Olá, FORX Digital! 👋",
       "",
@@ -99,7 +103,8 @@ export default function ContactForm() {
       `*Serviço:* ${servico}`,
       "",
       "*Detalhes do projeto:*",
-      mensagem || "Gostaria de saber mais sobre os serviços.",
+      mensagem ||
+        "Gostaria de saber mais sobre os serviços.",
       "",
       "Aguardo o contato. Obrigado!",
     ].join("\n");
@@ -108,8 +113,12 @@ export default function ContactForm() {
       texto
     )}`;
 
-    // Abre o WhatsApp para o cliente confirmar o envio
-    window.location.href = url;
+    // Abre o WhatsApp com os dados preenchidos
+    window.open(
+      url,
+      "_blank",
+      "noopener,noreferrer"
+    );
   }
 
   const inputClass =
@@ -149,7 +158,10 @@ export default function ContactForm() {
       {/* NOME E EMPRESA */}
       <div className="grid gap-5 sm:grid-cols-2">
         <div>
-          <label htmlFor="forx-nome" className={labelClass}>
+          <label
+            htmlFor="forx-nome"
+            className={labelClass}
+          >
             Seu nome *
           </label>
 
@@ -170,7 +182,10 @@ export default function ContactForm() {
         </div>
 
         <div>
-          <label htmlFor="forx-empresa" className={labelClass}>
+          <label
+            htmlFor="forx-empresa"
+            className={labelClass}
+          >
             Empresa ou marca
           </label>
 
@@ -189,9 +204,12 @@ export default function ContactForm() {
         </div>
       </div>
 
-      {/* WHATSAPP */}
+      {/* WHATSAPP DO CLIENTE */}
       <div>
-        <label htmlFor="forx-whatsapp" className={labelClass}>
+        <label
+          htmlFor="forx-whatsapp"
+          className={labelClass}
+        >
           Seu WhatsApp *
         </label>
 
@@ -211,9 +229,12 @@ export default function ContactForm() {
         />
       </div>
 
-      {/* SERVIÇO */}
+      {/* SELEÇÃO DO SERVIÇO */}
       <div>
-        <label htmlFor="forx-servico" className={labelClass}>
+        <label
+          htmlFor="forx-servico"
+          className={labelClass}
+        >
           Qual serviço você procura? *
         </label>
 
@@ -228,7 +249,11 @@ export default function ContactForm() {
             }
             className={`${inputClass} cursor-pointer appearance-none pr-12`}
           >
-            <option value="" disabled className="bg-[#17121F]">
+            <option
+              value=""
+              disabled
+              className="bg-[#17121F]"
+            >
               Selecione um serviço
             </option>
 
@@ -250,9 +275,12 @@ export default function ContactForm() {
         </div>
       </div>
 
-      {/* MENSAGEM */}
+      {/* DETALHES DO PROJETO */}
       <div>
-        <label htmlFor="forx-mensagem" className={labelClass}>
+        <label
+          htmlFor="forx-mensagem"
+          className={labelClass}
+        >
           Fale um pouco sobre seu projeto
         </label>
 
@@ -270,7 +298,7 @@ export default function ContactForm() {
         />
       </div>
 
-      {/* ERRO DE VALIDAÇÃO */}
+      {/* MENSAGEM DE ERRO */}
       {error && (
         <motion.div
           role="alert"
@@ -282,7 +310,7 @@ export default function ContactForm() {
         </motion.div>
       )}
 
-      {/* BOTÃO */}
+      {/* BOTÃO DE ENVIO */}
       <motion.button
         type="submit"
         whileHover={{ scale: 1.015 }}
@@ -300,7 +328,7 @@ export default function ContactForm() {
         />
       </motion.button>
 
-      {/* INFORMAÇÃO */}
+      {/* INFORMAÇÃO SOBRE O ENVIO */}
       <div className="flex items-start justify-center gap-2">
         <CheckCircle2
           size={16}
