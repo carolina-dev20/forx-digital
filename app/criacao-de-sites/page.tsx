@@ -21,6 +21,7 @@ import {
   Monitor,
   LayoutTemplate,
   PanelsTopLeft,
+  Target,
 } from "lucide-react";
 
 import styles from "./sites.module.css";
@@ -77,6 +78,14 @@ const siteTypes = [
       "Apresente projetos, experiências e resultados de forma organizada e visualmente marcante.",
     tag: "AUTORIDADE DIGITAL",
   },
+  {
+    icon: Target,
+    number: "04",
+    title: "Gestão de Tráfego Pago",
+    description:
+      "Campanhas no Google Ads e Meta Ads para alcançar públicos relevantes, aumentar a visibilidade e gerar oportunidades de negócio em Guarulhos e São Paulo.",
+    tag: "ANÚNCIOS E PERFORMANCE",
+  },
 ];
 
 const faqs = [
@@ -100,12 +109,18 @@ const faqs = [
     answer:
       "Sim. As possibilidades de atualização e manutenção são definidas conforme o escopo e as condições combinadas para cada projeto.",
   },
+  {
+    question:
+      "A FORX Digital oferece gestão de tráfego pago em Guarulhos e São Paulo?",
+    answer:
+      "Sim. A FORX Digital oferece estratégias de tráfego pago para empresas de Guarulhos, São Paulo e região. Trabalhamos com campanhas no Google Ads e Meta Ads, segmentação de público e acompanhamento de resultados para gerar oportunidades comerciais. O investimento em anúncios é definido conforme os objetivos e o orçamento de cada negócio.",
+  },
 ];
 
 const whatsappUrl =
   "https://wa.me/5511994880312?text=" +
   encodeURIComponent(
-    "Olá, FORX Digital! Gostaria de um orçamento para criação de site."
+    "Olá, FORX Digital! Gostaria de solicitar um orçamento para os serviços digitais."
   );
 
 export default function CriacaoDeSitesPage() {
@@ -435,7 +450,7 @@ export default function CriacaoDeSitesPage() {
         </div>
       </section>
 
-      {/* TIPOS DE SITES */}
+      {/* TIPOS DE SITES E SOLUÇÕES */}
       <section className={styles.typesSection}>
         <div className={styles.container}>
           <span className={styles.sectionLabel}>

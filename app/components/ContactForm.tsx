@@ -29,14 +29,19 @@ const initialForm: FormData = {
   mensagem: "",
 };
 
+
+
 const services = [
   "Criação de site institucional",
   "Landing page",
   "Presença no Google / SEO",
+  "Gestão de tráfego pago",
   "Identidade digital",
   "Solução personalizada",
   "Outro serviço",
 ];
+
+
 
 export default function ContactForm() {
   const [form, setForm] = useState<FormData>(initialForm);

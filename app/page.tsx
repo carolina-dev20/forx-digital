@@ -3,6 +3,7 @@
 
 import { useState } from "react";
 import dynamic from "next/dynamic";
+import Link from "next/link";
 import { AnimatePresence, motion } from "motion/react";
 
 import {
@@ -19,6 +20,7 @@ import {
   Search,
   ShieldCheck,
   Sparkles,
+  Target,
   Zap,
 } from "lucide-react";
 
@@ -29,7 +31,7 @@ import ContactForm from "./components/ContactForm";
 import WhatsAppFloat from "./components/WhatsAppFloat";
 
 // ==========================================
-// ONDAS 3D
+// EFEITO 3D
 // ==========================================
 
 const Waves3d = dynamic(
@@ -38,10 +40,12 @@ const Waves3d = dynamic(
 );
 
 // ==========================================
-// WHATSAPP COMERCIAL
+// WHATSAPP OFICIAL
 // ==========================================
 
-const WHATSAPP_NUMBER = "5511991996754";
+const WHATSAPP_NUMBER = "5511994880312";
+
+const whatsappLink = `https://wa.me/${WHATSAPP_NUMBER}`;
 
 // ==========================================
 // SERVIÇOS
@@ -52,6 +56,7 @@ const services = [
     number: "01",
     icon: MonitorSmartphone,
     title: "Criação de sites",
+    href: "/criacao-de-sites",
     description:
       "Sites profissionais, responsivos e personalizados para transformar a presença digital da sua empresa.",
     tags: [
@@ -64,8 +69,9 @@ const services = [
     number: "02",
     icon: Search,
     title: "Presença no Google",
+    href: "#contato",
     description:
-      "Estratégias de visibilidade local para ajudar clientes a encontrar sua empresa e conhecer seus serviços.",
+      "Estratégias de SEO local para ajudar empresas de Guarulhos e São Paulo a conquistar mais visibilidade nas pesquisas.",
     tags: [
       "SEO local",
       "Google Business",
@@ -76,6 +82,7 @@ const services = [
     number: "03",
     icon: Layers3,
     title: "Identidade digital",
+    href: "#contato",
     description:
       "Experiências visuais que valorizam sua marca e transmitem profissionalismo em cada detalhe.",
     tags: [
@@ -88,6 +95,7 @@ const services = [
     number: "04",
     icon: Code2,
     title: "Soluções personalizadas",
+    href: "#contato",
     description:
       "Funcionalidades que facilitam o contato com seus clientes e tornam seu site uma ferramenta de negócio.",
     tags: [
@@ -96,10 +104,23 @@ const services = [
       "Integrações",
     ],
   },
+  {
+    number: "05",
+    icon: Target,
+    title: "Gestão de Tráfego Pago",
+    href: "#contato",
+    description:
+      "Campanhas estratégicas no Google Ads e Meta Ads para alcançar públicos relevantes, atrair potenciais clientes e gerar oportunidades de negócio.",
+    tags: [
+      "Google Ads",
+      "Meta Ads",
+      "Performance",
+    ],
+  },
 ];
 
 // ==========================================
-// ETAPAS DO PROCESSO
+// ETAPAS
 // ==========================================
 
 const steps = [
@@ -161,7 +182,7 @@ const benefits = [
 ];
 
 // ==========================================
-// FAQ
+// PERGUNTAS FREQUENTES
 // ==========================================
 
 const faqs = [
@@ -190,10 +211,15 @@ const faqs = [
     answer:
       "Podemos orientar na escolha e configuração de domínio e hospedagem, conforme a necessidade de cada projeto.",
   },
+  {
+    question: "A FORX Digital oferece gestão de tráfego pago?",
+    answer:
+      "Sim. Desenvolvemos estratégias de anúncios no Google Ads e Meta Ads para empresas de Guarulhos, São Paulo e região. As campanhas são planejadas conforme os objetivos do negócio, o público-alvo e o orçamento disponível.",
+  },
 ];
 
 // ==========================================
-// TÍTULOS ANIMADOS
+// COMPONENTE DE TÍTULOS
 // ==========================================
 
 function SectionHeading({
@@ -252,10 +278,7 @@ function SectionHeading({
           initial={{ opacity: 0, y: 12 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{
-            duration: 0.6,
-            delay: 0.1,
-          }}
+          transition={{ duration: 0.6, delay: 0.1 }}
           className={`mt-5 max-w-2xl text-sm leading-7 sm:text-base ${
             light ? "text-white/50" : "text-black/50"
           }`}
@@ -312,18 +335,9 @@ function FAQItem({
       <AnimatePresence initial={false}>
         {open && (
           <motion.div
-            initial={{
-              height: 0,
-              opacity: 0,
-            }}
-            animate={{
-              height: "auto",
-              opacity: 1,
-            }}
-            exit={{
-              height: 0,
-              opacity: 0,
-            }}
+            initial={{ height: 0, opacity: 0 }}
+            animate={{ height: "auto", opacity: 1 }}
+            exit={{ height: 0, opacity: 0 }}
             transition={{ duration: 0.3 }}
             className="overflow-hidden"
           >
@@ -338,7 +352,103 @@ function FAQItem({
 }
 
 // ==========================================
-// PÁGINA PRINCIPAL FORX DIGITAL
+// COMPONENTE DOS CARDS DE SERVIÇOS
+// ==========================================
+
+function ServiceCard({
+  service,
+  index,
+}: {
+  service: (typeof services)[number];
+  index: number;
+}) {
+  const Icon = service.icon;
+
+  const isLastOddCard =
+    index === services.length - 1 &&
+    services.length % 2 !== 0;
+
+  return (
+    <motion.article
+      initial={{ opacity: 0, y: 20 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true }}
+      transition={{
+        duration: 0.6,
+        delay: index * 0.08,
+      }}
+      className={`group relative flex min-h-[290px] flex-col overflow-hidden bg-[#161616] p-7 transition-colors duration-500 hover:bg-[#1C1C1C] sm:p-9 ${
+        isLastOddCard
+          ? "md:col-span-2 md:min-h-[310px]"
+          : ""
+      }`}
+    >
+      {/* LINK SOBRE O CARD */}
+      <Link
+        href={service.href}
+        aria-label={`Conhecer ${service.title}`}
+        className="absolute inset-0 z-10 cursor-pointer focus-visible:outline focus-visible:outline-2 focus-visible:outline-[#B994FF]"
+      />
+
+      {/* CABEÇALHO: NÚMERO E ÍCONE */}
+      <div className="flex w-full items-start justify-between">
+        <span className="text-xs tracking-[0.2em] text-white/35">
+          / {service.number}
+        </span>
+
+        <Icon
+          size={25}
+          strokeWidth={1.5}
+          className="text-white/65 transition duration-500 group-hover:-rotate-6 group-hover:text-[#B994FF]"
+        />
+      </div>
+
+      {/* CONTEÚDO */}
+      <div
+        className={`mt-auto pt-10 ${
+          isLastOddCard
+            ? "mx-auto w-full max-w-[620px] md:text-center"
+            : ""
+        }`}
+      >
+        <h3 className="text-[26px] font-medium tracking-[-0.04em] text-white">
+          {service.title}
+        </h3>
+
+        <p
+          className={`mt-3 text-sm leading-7 text-white/45 ${
+            isLastOddCard
+              ? "max-w-[520px] md:mx-auto"
+              : "max-w-sm"
+          }`}
+        >
+          {service.description}
+        </p>
+
+        <div
+          className={`mt-5 flex flex-wrap gap-2 ${
+            isLastOddCard ? "md:justify-center" : ""
+          }`}
+        >
+          {service.tags.map((tag) => (
+            <span
+              key={tag}
+              className="rounded-full border border-white/10 px-3 py-1.5 text-[11px] text-white/45"
+            >
+              {tag}
+            </span>
+          ))}
+        </div>
+      </div>
+
+      {/* EFEITO ROXO NO HOVER */}
+      <div className="absolute bottom-0 left-0 h-[2px] w-0 bg-[#7942E8] transition-all duration-500 group-hover:w-full" />
+    </motion.article>
+  );
+}
+
+// ==========================================
+// PÁGINA PRINCIPAL
 // ==========================================
 
 export default function Home() {
@@ -346,8 +456,7 @@ export default function Home() {
     <main className="min-h-screen overflow-x-hidden bg-white text-[#151515]">
 
       {/* ======================================
-          MEGA MENU
-          SUBSTITUI O CABEÇALHO ANTIGO
+          MENU
       ====================================== */}
 
       <MegaMenu />
@@ -360,12 +469,10 @@ export default function Home() {
         id="inicio"
         className="relative flex min-h-[680px] items-center overflow-hidden bg-[#080808] text-white lg:min-h-[760px]"
       >
-        {/* EFEITO 3D ORIGINAL */}
         <div className="pointer-events-none absolute inset-0 z-0">
           <Waves3d />
         </div>
 
-        {/* GRADIENTE SOBRE AS ONDAS */}
         <div className="pointer-events-none absolute inset-0 bg-gradient-to-r from-black/85 via-black/55 to-black/15" />
 
         <div className="relative z-10 mx-auto w-full max-w-[1440px] px-6 pb-20 pt-24 md:px-12 lg:px-20">
@@ -378,11 +485,10 @@ export default function Home() {
             <span className="h-2 w-2 rounded-full bg-[#A879F5] shadow-[0_0_18px_rgba(168,121,245,0.9)]" />
 
             <span className="text-xs font-medium uppercase tracking-[0.22em] text-white/60">
-              Agência de experiências digitais
+              Agência digital em Guarulhos e São Paulo
             </span>
           </motion.div>
 
-          {/* TÍTULO COM ANIMAÇÃO ORIGINAL */}
           <h1 className="max-w-[1000px] text-[clamp(3.2rem,8vw,7.5rem)] font-medium leading-[0.98] tracking-[-0.075em]">
             {[
               ["Sua marca.", "text-white"],
@@ -415,17 +521,15 @@ export default function Home() {
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{
-              duration: 0.75,
-              delay: 0.7,
-            }}
+            transition={{ duration: 0.75, delay: 0.7 }}
             className="mt-9 flex flex-col items-start gap-7 sm:flex-row sm:items-end sm:justify-between"
           >
             <div>
               <p className="max-w-lg text-base leading-7 text-white/55 md:text-lg">
-                Criamos experiências digitais que unem
-                design, tecnologia e estratégia para
-                destacar negócios no mundo online.
+                Criação de sites, landing pages, SEO local e
+                tráfego pago para empresas de Guarulhos,
+                São Paulo e região. Unimos design, tecnologia
+                e estratégia para fortalecer sua presença digital.
               </p>
 
               <a
@@ -502,7 +606,7 @@ export default function Home() {
       </section>
 
       {/* ======================================
-          SERVIÇOS
+          SERVIÇOS — LAYOUT CORRIGIDO
       ====================================== */}
 
       <section
@@ -526,79 +630,20 @@ export default function Home() {
             </div>
           </div>
 
-          <div className="grid gap-px overflow-hidden rounded-[26px] border border-white/10 bg-white/10 md:grid-cols-2">
-            {services.map((service, index) => {
-              const Icon = service.icon;
-
-              return (
-                <motion.article
-                  key={service.number}
-                  initial={{
-                    opacity: 0,
-                    y: 20,
-                  }}
-                  whileInView={{
-                    opacity: 1,
-                    y: 0,
-                  }}
-                  viewport={{ once: true }}
-                  transition={{
-                    duration: 0.6,
-                    delay: index * 0.08,
-                  }}
-                  className="group relative flex min-h-[280px] flex-col justify-between bg-[#161616] p-7 transition-colors duration-500 hover:bg-[#1C1C1C] sm:p-9"
-                >
-                  <div className="flex items-start justify-between">
-                    <span className="text-xs tracking-[0.2em] text-white/35">
-                      / {service.number}
-                    </span>
-
-                    <Icon
-                      size={25}
-                      strokeWidth={1.5}
-                      className="text-white/65 transition duration-500 group-hover:-rotate-6 group-hover:text-[#B994FF]"
-                    />
-                  </div>
-
-                  <div className="mt-12">
-                    <h3 className="text-[26px] font-medium tracking-[-0.04em]">
-                      {service.title}
-                    </h3>
-
-                    <p className="mt-3 max-w-sm text-sm leading-7 text-white/45">
-                      {service.description}
-                    </p>
-
-                    <div className="mt-5 flex flex-wrap gap-2">
-                      {service.tags.map((tag) => (
-                        <span
-                          key={tag}
-                          className="rounded-full border border-white/10 px-3 py-1.5 text-[11px] text-white/45"
-                        >
-                          {tag}
-                        </span>
-                      ))}
-                    </div>
-                  </div>
-
-                  <div className="absolute bottom-0 left-0 h-[2px] w-0 bg-[#7942E8] transition-all duration-500 group-hover:w-full" />
-                </motion.article>
-              );
-            })}
+          <div className="grid grid-cols-1 gap-px overflow-hidden rounded-[26px] border border-white/10 bg-white/10 md:grid-cols-2">
+            {services.map((service, index) => (
+              <ServiceCard
+                key={service.number}
+                service={service}
+                index={index}
+              />
+            ))}
           </div>
         </div>
       </section>
 
       {/* ======================================
           PRESENÇA NO GOOGLE
-
-          MANTÉM:
-          - BARRA DIGITANDO
-          - TÍTULO ANIMADO
-          - RESULTADOS DE BUSCA
-          - MAPA
-          - CURSOR ROXO
-          - EFEITO 3D DO MOUSE
       ====================================== */}
 
       <GooglePresence />
@@ -633,14 +678,8 @@ export default function Home() {
             {steps.map((step, index) => (
               <motion.div
                 key={step.number}
-                initial={{
-                  opacity: 0,
-                  y: 25,
-                }}
-                whileInView={{
-                  opacity: 1,
-                  y: 0,
-                }}
+                initial={{ opacity: 0, y: 25 }}
+                whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{
                   duration: 0.6,
@@ -708,14 +747,8 @@ export default function Home() {
               return (
                 <motion.div
                   key={benefit.title}
-                  initial={{
-                    opacity: 0,
-                    y: 20,
-                  }}
-                  whileInView={{
-                    opacity: 1,
-                    y: 0,
-                  }}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{
                     duration: 0.6,
@@ -761,22 +794,16 @@ export default function Home() {
           />
 
           <motion.div
-            initial={{
-              opacity: 0,
-              y: 25,
-            }}
-            whileInView={{
-              opacity: 1,
-              y: 0,
-            }}
+            initial={{ opacity: 0, y: 25 }}
+            whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.75 }}
             className="flex flex-col justify-center"
           >
             <p className="text-lg leading-8 text-white/65">
               A FORX Digital nasceu para ajudar empresas
-              a se destacarem em um ambiente cada vez
-              mais conectado.
+              de Guarulhos, São Paulo e região a se destacarem
+              em um ambiente cada vez mais conectado.
             </p>
 
             <p className="mt-5 text-base leading-7 text-white/45">
@@ -800,6 +827,7 @@ export default function Home() {
                     size={14}
                     className="text-[#B994FF]"
                   />
+
                   {item}
                 </span>
               ))}
@@ -857,8 +885,20 @@ export default function Home() {
                 size={18}
                 className="text-[#B994FF]"
               />
-              Atendimento online
+
+              Atendimento online em Guarulhos, São Paulo e região
             </div>
+
+            <a
+              href={whatsappLink}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="mt-8 inline-flex items-center gap-3 rounded-full border border-white/20 px-6 py-3 text-sm font-medium text-white transition hover:border-[#A879F5] hover:bg-[#7942E8]/15"
+            >
+              Conversar pelo WhatsApp
+
+              <ArrowUpRight size={18} />
+            </a>
           </div>
 
           <div className="rounded-[26px] border border-white/10 bg-white/[0.04] p-5 sm:p-8">
@@ -874,8 +914,6 @@ export default function Home() {
       <footer className="bg-[#080808] px-6 pb-8 pt-14 text-white md:px-12 lg:px-20">
         <div className="mx-auto max-w-[1280px]">
           <div className="flex flex-col justify-between gap-10 border-b border-white/10 pb-12 md:flex-row">
-
-            {/* LOGO E DESCRIÇÃO */}
             <div>
               <a
                 href="#inicio"
@@ -893,13 +931,13 @@ export default function Home() {
               </a>
 
               <p className="mt-5 max-w-sm text-sm leading-7 text-white/45">
+                Criação de sites, landing pages, SEO local
+                e tráfego pago em Guarulhos e São Paulo.
                 Design, tecnologia e estratégia para
-                construir experiências digitais
-                que fazem sua marca evoluir.
+                fortalecer sua presença digital.
               </p>
             </div>
 
-            {/* LINKS */}
             <div className="grid grid-cols-2 gap-10 sm:gap-20">
               <div>
                 <h3 className="mb-5 text-xs font-semibold uppercase tracking-[0.2em] text-white/35">
@@ -921,6 +959,13 @@ export default function Home() {
                       {label}
                     </a>
                   ))}
+
+                  <Link
+                    href="/criacao-de-sites"
+                    className="text-sm text-white/65 transition hover:text-white"
+                  >
+                    Criação de Sites
+                  </Link>
                 </div>
               </div>
 
@@ -935,27 +980,25 @@ export default function Home() {
                     className="inline-flex items-center gap-2 text-sm text-white/65 transition hover:text-white"
                   >
                     Solicitar orçamento
+
                     <ArrowUpRight size={15} />
                   </a>
 
                   <a
-                    href="https://www.instagram.com/"
+                    href={whatsappLink}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="inline-flex items-center gap-2 text-sm text-white/65 transition hover:text-white"
                   >
-                    <span className="flex h-5 w-5 items-center justify-center rounded-md border border-white/50 text-[10px] font-bold">
-                      IG
-                    </span>
+                    WhatsApp
 
-                    Instagram
+                    <ArrowUpRight size={15} />
                   </a>
                 </div>
               </div>
             </div>
           </div>
 
-          {/* COPYRIGHT */}
           <div className="flex flex-col justify-between gap-4 pt-7 text-xs text-white/35 sm:flex-row">
             <p>
               © 2026 FORX Digital. Todos os direitos reservados.
@@ -972,7 +1015,7 @@ export default function Home() {
           WHATSAPP FLUTUANTE
       ====================================== */}
 
-      <WhatsAppFloat phone={WHATSAPP_NUMBER} />
+      <WhatsAppFloat phone="5511994880312" />
 
     </main>
   );
