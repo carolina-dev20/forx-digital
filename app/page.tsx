@@ -986,15 +986,27 @@ export default function Home() {
                   </a>
 
                   <a
-                    href={whatsappLink}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-flex items-center gap-2 text-sm text-white/65 transition hover:text-white"
-                  >
-                    WhatsApp
+  href={whatsappLink}
+  target="_blank"
+  rel="noopener noreferrer"
+  className="inline-flex items-center gap-2 text-sm text-white/65 transition hover:text-white"
+>
+  WhatsApp
 
-                    <ArrowUpRight size={15} />
-                  </a>
+  <ArrowUpRight size={15} />
+</a>
+
+<a
+  href="https://www.instagram.com/forx.digital/"
+  target="_blank"
+  rel="noopener noreferrer"
+  aria-label="Instagram da FORX Digital"
+  className="inline-flex items-center gap-2 text-sm text-white/65 transition hover:text-[#A879F5]"
+>
+  Instagram
+
+  <ArrowUpRight size={15} />
+</a>
                 </div>
               </div>
             </div>
