@@ -1,6 +1,7 @@
 
 "use client";
 
+import { GoogleAnalytics } from "@next/third-parties/google";
 import { useState } from "react";
 import dynamic from "next/dynamic";
 import Link from "next/link";
