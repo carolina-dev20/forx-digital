@@ -14,13 +14,40 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://www.forxdigital.com.br"),
+
   title: {
-    default: "FORX Digital | Sites, Landing Pages e SEO",
+    default: "FORX Digital | Criação de Sites e SEO",
     template: "%s | FORX Digital",
   },
+
   description:
-    "A FORX Digital desenvolve sites profissionais, landing pages e estratégias de SEO para empresas que querem fortalecer sua presença digital.",
+    "FORX Digital: criação de sites profissionais, landing pages e SEO para empresas que desejam fortalecer sua presença online e conquistar clientes.",
+
   applicationName: "FORX Digital",
+
+  openGraph: {
+    type: "website",
+    locale: "pt_BR",
+    url: "https://www.forxdigital.com.br/",
+    siteName: "FORX Digital",
+    title: "FORX Digital | Criação de Sites e SEO",
+    description:
+      "Criação de sites profissionais, landing pages e SEO para empresas que querem crescer no digital.",
+  },
+
+  twitter: {
+    card: "summary",
+    title: "FORX Digital | Criação de Sites e SEO",
+    description:
+      "Sites profissionais, landing pages e SEO para fortalecer a presença digital da sua empresa.",
+  },
+
+  robots: {
+    index: true,
+    follow: true,
+  },
+
   icons: {
     icon: "/icon.png",
     shortcut: "/icon.png",
