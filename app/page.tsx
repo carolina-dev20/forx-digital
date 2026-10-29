@@ -453,8 +453,42 @@ function ServiceCard({
 // ==========================================
 
 export default function Home() {
+
+const organizationSchema = {
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "@id": "https://www.forxdigital.com.br/#organization",
+  name: "FORX Digital",
+  url: "https://www.forxdigital.com.br/",
+  description:
+    "Criação de sites profissionais, landing pages, SEO local e estratégias de tráfego pago.",
+  sameAs: ["https://www.instagram.com/forx.digital/"],
+};
+
+const websiteSchema = {
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "@id": "https://www.forxdigital.com.br/#website",
+  name: "FORX Digital",
+  url: "https://www.forxdigital.com.br/",
+  publisher: {
+    "@id": "https://www.forxdigital.com.br/#organization",
+  },
+};
+
+
+
   return (
     <main className="min-h-screen overflow-x-hidden bg-white text-[#151515]">
+<script
+  type="application/ld+json"
+  dangerouslySetInnerHTML={{
+    __html: JSON.stringify([
+      organizationSchema,
+      websiteSchema,
+    ]),
+  }}
+/>
 
       {/* ======================================
           MENU
