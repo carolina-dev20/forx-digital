@@ -649,7 +649,8 @@ const websiteSchema = {
         <div className="mx-auto max-w-[1280px]">
           <div className="mb-10 flex flex-col justify-between gap-6 lg:flex-row lg:items-end">
             <SectionHeading
-              
+            
+  eyebrow="SOBRE A FORX"
               title="Soluções que transformam presença em oportunidade."
               description="Cada negócio tem uma história. Criamos soluções digitais para comunicá-la com clareza, personalidade e impacto."
               light
