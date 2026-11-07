@@ -561,8 +561,7 @@ const websiteSchema = {
             <div>
               <p className="max-w-lg text-base leading-7 text-white/55 md:text-lg">
                 Criação de sites, landing pages, SEO local e
-                tráfego pago para empresas de Guarulhos,
-                São Paulo e região. Unimos design, tecnologia
+                tráfego pago para empresas. Unimos design, tecnologia
                 e estratégia para fortalecer sua presença digital.
               </p>
 
@@ -650,7 +649,7 @@ const websiteSchema = {
         <div className="mx-auto max-w-[1280px]">
           <div className="mb-10 flex flex-col justify-between gap-6 lg:flex-row lg:items-end">
             <SectionHeading
-              eyebrow="O que fazemos"
+              
               title="Soluções que transformam presença em oportunidade."
               description="Cada negócio tem uma história. Criamos soluções digitais para comunicá-la com clareza, personalidade e impacto."
               light

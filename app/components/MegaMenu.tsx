@@ -1,4 +1,3 @@
-
 "use client";
 
 import { useEffect, useRef, useState } from "react";
@@ -25,6 +24,10 @@ type MenuSection = {
   links: MenuLink[];
 };
 
+// LINK DO WHATSAPP
+const whatsappLink =
+  "https://wa.me/5511994880312?text=Ol%C3%A1%21%20Vim%20pela%20p%C3%A1gina%20da%20FORX%20Digital%20e%20gostaria%20de%20iniciar%20um%20projeto.";
+
 const menuData: Record<MenuKey, MenuSection> = {
   servicos: {
     title: "O que podemos criar para você",
@@ -32,22 +35,22 @@ const menuData: Record<MenuKey, MenuSection> = {
     links: [
       {
         label: "Criação de sites",
-        href: "#servicos",
+        href: "/#servicos",
         description: "Sites institucionais modernos",
       },
       {
         label: "Landing pages",
-        href: "#servicos",
+        href: "/#servicos",
         description: "Páginas focadas em conversão",
       },
       {
         label: "SEO & Google",
-        href: "#presenca-google",
+        href: "/#presenca-google",
         description: "Mais visibilidade nas pesquisas",
       },
       {
         label: "Presença digital",
-        href: "#presenca-google",
+        href: "/#presenca-google",
         description: "Sua empresa mais fácil de encontrar",
       },
     ],
@@ -59,12 +62,12 @@ const menuData: Record<MenuKey, MenuSection> = {
     links: [
       {
         label: "Cleide Beauty Salão",
-        href: "#portfolio",
+        href: "/#portfolio",
         description: "Site para salão de beleza",
       },
       {
         label: "Todos os projetos",
-        href: "#portfolio",
+        href: "/#portfolio",
         description: "Explore nosso portfólio",
       },
     ],
@@ -76,22 +79,22 @@ const menuData: Record<MenuKey, MenuSection> = {
     links: [
       {
         label: "01. Briefing",
-        href: "#processo",
+        href: "/#processo",
         description: "Entendemos seu negócio",
       },
       {
         label: "02. Design",
-        href: "#processo",
+        href: "/#processo",
         description: "Criamos a experiência visual",
       },
       {
         label: "03. Desenvolvimento",
-        href: "#processo",
+        href: "/#processo",
         description: "Transformamos o projeto em site",
       },
       {
         label: "04. Lançamento",
-        href: "#processo",
+        href: "/#processo",
         description: "Colocamos sua marca no ar",
       },
     ],
@@ -103,17 +106,17 @@ const menuData: Record<MenuKey, MenuSection> = {
     links: [
       {
         label: "Nossa agência",
-        href: "#sobre",
+        href: "/#sobre",
         description: "Quem somos",
       },
       {
         label: "Nossos diferenciais",
-        href: "#diferenciais",
+        href: "/#diferenciais",
         description: "O que torna cada projeto único",
       },
       {
         label: "Fale com a FORX",
-        href: "#contato",
+        href: "/#contato",
         description: "Vamos conversar sobre sua ideia",
       },
     ],
@@ -178,7 +181,7 @@ export default function MegaMenu() {
 
         {/* LOGO */}
         <a
-          href="#inicio"
+          href="/#inicio"
           onClick={closeMenus}
           className="shrink-0 text-[24px] font-bold tracking-[-0.07em]"
         >
@@ -234,7 +237,7 @@ export default function MegaMenu() {
             </button>
           ))}
 
-          {/* PREÇOS E PLANOS - LINK INDEPENDENTE */}
+          {/* PREÇOS E PLANOS */}
           <Link
             href="/precos"
             onMouseEnter={() => setActiveMenu(null)}
@@ -246,9 +249,11 @@ export default function MegaMenu() {
           </Link>
         </nav>
 
-        {/* CTA DESKTOP */}
+        {/* CTA DESKTOP - WHATSAPP */}
         <a
-          href="#contato"
+          href={whatsappLink}
+          target="_blank"
+          rel="noopener noreferrer"
           onMouseEnter={() => setActiveMenu(null)}
           className="hidden items-center gap-2 rounded-full border border-white/20 px-5 py-3 text-sm font-medium transition-all hover:border-[#7942E8] hover:bg-[#7942E8] lg:inline-flex"
         >
@@ -413,7 +418,7 @@ export default function MegaMenu() {
                 );
               })}
 
-              {/* PREÇOS E PLANOS - LINK INDEPENDENTE MOBILE */}
+              {/* PREÇOS E PLANOS MOBILE */}
               <Link
                 href="/precos"
                 onClick={closeMenus}
@@ -426,11 +431,13 @@ export default function MegaMenu() {
                 />
               </Link>
 
-              {/* CTA MOBILE */}
+              {/* CTA MOBILE - WHATSAPP */}
               <a
-                href="#contato"
+                href={whatsappLink}
+                target="_blank"
+                rel="noopener noreferrer"
                 onClick={closeMenus}
-                className="mt-7 flex items-center justify-center gap-2 rounded-full bg-[#7942E8] px-6 py-4 text-sm font-semibold text-white"
+                className="mt-7 flex items-center justify-center gap-2 rounded-full bg-[#7942E8] px-6 py-4 text-sm font-semibold text-white transition-all hover:bg-[#6934D4]"
               >
                 Iniciar projeto
                 <ArrowUpRight size={17} />

@@ -180,7 +180,7 @@ export default function PricingSection() {
       <div className="pointer-events-none absolute inset-0 z-[1] bg-gradient-to-b from-black/30 via-black/10 to-black/70" />
 
       {/* CONTEÚDO */}
-<div className="relative z-10 mx-auto w-full max-w-[1500px] px-4 pb-20 pt-24 sm:px-8 sm:pt-28 lg:px-10 lg:pt-32">
+<div className="relative z-10 mx-auto w-full max-w-[1500px] px-4 pb-20 pt-24 sm:px-8 sm:pt-12 lg:px-14 lg:pt-16">
         {/* INTRODUÇÃO */}
         <header className="mx-auto mb-14 max-w-3xl text-center">
           <span className="inline-flex items-center gap-2 text-[11px] font-medium uppercase tracking-[0.28em] text-[#C49AFF] sm:text-xs">
