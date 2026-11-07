@@ -196,3 +196,45 @@ canvas {
     animation: none;
   }
 }
+
+
+/* FORX DIGITAL - SLOW PURPLE WAVES */
+
+.purple-wave-top {
+  animation: forxWaveTop 24s ease-in-out infinite alternate;
+  transform-origin: center;
+  will-change: transform;
+}
+
+.purple-wave-bottom {
+  animation: forxWaveBottom 30s ease-in-out infinite alternate;
+  transform-origin: center;
+  will-change: transform;
+}
+
+@keyframes forxWaveTop {
+  0% {
+    transform: translate3d(-2%, 0, 0);
+  }
+
+  100% {
+    transform: translate3d(3%, 18px, 0);
+  }
+}
+
+@keyframes forxWaveBottom {
+  0% {
+    transform: translate3d(2%, 0, 0);
+  }
+
+  100% {
+    transform: translate3d(-3%, -18px, 0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .purple-wave-top,
+  .purple-wave-bottom {
+    animation: none !important;
+  }
+}

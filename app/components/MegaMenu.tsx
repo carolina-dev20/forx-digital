@@ -2,6 +2,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import Link from "next/link";
 import { AnimatePresence, motion } from "motion/react";
 import {
   ArrowUpRight,
@@ -61,7 +62,6 @@ const menuData: Record<MenuKey, MenuSection> = {
         href: "#portfolio",
         description: "Site para salão de beleza",
       },
-      
       {
         label: "Todos os projetos",
         href: "#portfolio",
@@ -128,12 +128,9 @@ const menuItems: { key: MenuKey; label: string }[] = [
 ];
 
 export default function MegaMenu() {
-  const [activeMenu, setActiveMenu] = useState<MenuKey | null>(
-    null
-  );
+  const [activeMenu, setActiveMenu] = useState<MenuKey | null>(null);
   const [mobileOpen, setMobileOpen] = useState(false);
-  const [mobileSection, setMobileSection] =
-    useState<MenuKey | null>(null);
+  const [mobileSection, setMobileSection] = useState<MenuKey | null>(null);
 
   const headerRef = useRef<HTMLElement>(null);
 
@@ -161,10 +158,7 @@ export default function MegaMenu() {
 
     return () => {
       window.removeEventListener("keydown", handleKeyDown);
-      document.removeEventListener(
-        "mousedown",
-        handleOutsideClick
-      );
+      document.removeEventListener("mousedown", handleOutsideClick);
     };
   }, []);
 
@@ -181,6 +175,7 @@ export default function MegaMenu() {
       className="sticky top-0 z-50 w-full border-b border-white/10 bg-[#080808] text-white"
     >
       <div className="mx-auto flex h-[82px] max-w-[1400px] items-center justify-between px-6 md:px-10 lg:px-16">
+
         {/* LOGO */}
         <a
           href="#inicio"
@@ -238,6 +233,17 @@ export default function MegaMenu() {
               />
             </button>
           ))}
+
+          {/* PREÇOS E PLANOS - LINK INDEPENDENTE */}
+          <Link
+            href="/precos"
+            onMouseEnter={() => setActiveMenu(null)}
+            onFocus={() => setActiveMenu(null)}
+            onClick={closeMenus}
+            className="py-7 text-sm font-medium text-white/55 transition-colors duration-200 hover:text-white"
+          >
+            Preços e Planos
+          </Link>
         </nav>
 
         {/* CTA DESKTOP */}
@@ -278,6 +284,7 @@ export default function MegaMenu() {
             className="absolute left-0 right-0 top-full hidden border-b border-black/10 bg-white text-[#151515] shadow-[0_25px_55px_rgba(0,0,0,0.12)] lg:block"
           >
             <div className="mx-auto grid max-w-[1400px] gap-12 px-10 py-11 lg:grid-cols-[0.85fr_2fr] lg:px-16">
+
               {/* DESCRIÇÃO */}
               <div>
                 <span className="text-[11px] font-semibold uppercase tracking-[0.22em] text-[#7942E8]">
@@ -343,6 +350,7 @@ export default function MegaMenu() {
             className="max-h-[calc(100dvh-82px)] overflow-y-auto border-t border-white/10 bg-[#101010] lg:hidden"
           >
             <div className="px-6 py-6">
+
               {menuItems.map((item) => {
                 const isOpen = mobileSection === item.key;
 
@@ -355,9 +363,7 @@ export default function MegaMenu() {
                       type="button"
                       aria-expanded={isOpen}
                       onClick={() =>
-                        setMobileSection(
-                          isOpen ? null : item.key
-                        )
+                        setMobileSection(isOpen ? null : item.key)
                       }
                       className="flex w-full items-center justify-between py-5 text-left text-lg"
                     >
@@ -385,22 +391,20 @@ export default function MegaMenu() {
                           className="overflow-hidden"
                         >
                           <div className="space-y-2 pb-5">
-                            {menuData[item.key].links.map(
-                              (link) => (
-                                <a
-                                  key={link.label}
-                                  href={link.href}
-                                  onClick={closeMenus}
-                                  className="flex items-center justify-between rounded-xl bg-white/5 px-4 py-4 text-sm text-white/75"
-                                >
-                                  {link.label}
-                                  <ArrowUpRight
-                                    size={15}
-                                    className="text-[#B99AFF]"
-                                  />
-                                </a>
-                              )
-                            )}
+                            {menuData[item.key].links.map((link) => (
+                              <a
+                                key={link.label}
+                                href={link.href}
+                                onClick={closeMenus}
+                                className="flex items-center justify-between rounded-xl bg-white/5 px-4 py-4 text-sm text-white/75"
+                              >
+                                {link.label}
+                                <ArrowUpRight
+                                  size={15}
+                                  className="text-[#B99AFF]"
+                                />
+                              </a>
+                            ))}
                           </div>
                         </motion.div>
                       )}
@@ -409,6 +413,20 @@ export default function MegaMenu() {
                 );
               })}
 
+              {/* PREÇOS E PLANOS - LINK INDEPENDENTE MOBILE */}
+              <Link
+                href="/precos"
+                onClick={closeMenus}
+                className="flex items-center justify-between border-b border-white/10 py-5 text-lg text-white"
+              >
+                Preços e Planos
+                <ArrowUpRight
+                  size={18}
+                  className="text-[#B99AFF]"
+                />
+              </Link>
+
+              {/* CTA MOBILE */}
               <a
                 href="#contato"
                 onClick={closeMenus}
