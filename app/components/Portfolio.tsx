@@ -5,7 +5,6 @@ import { motion } from "motion/react";
 import {
   ArrowUpRight,
   Check,
-  MonitorSmartphone,
 } from "lucide-react";
 
 const purple = "#7942E8";
@@ -25,6 +24,7 @@ export default function Portfolio() {
       className="bg-[#F5F5F6] px-6 py-16 text-[#151515] md:px-12 md:py-20 lg:px-20"
     >
       <div className="mx-auto max-w-[1280px]">
+
         {/* CABEÇALHO */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -106,7 +106,7 @@ export default function Portfolio() {
             {/* INFORMAÇÕES */}
             <div className="p-6 sm:p-8">
               <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-[#7942E8]">
-               LANDING PAGE · SEO LOCAL
+                LANDING PAGE · SEO LOCAL
               </p>
 
               <div className="mt-4 flex items-center justify-between gap-4">
@@ -126,24 +126,25 @@ export default function Portfolio() {
               </div>
 
               <p className="mt-4 text-sm leading-7 text-black/55">
-                Landing page para um salão de beleza em Guarulhos,
-                com apresentação de serviços, agendamento e
-                presença no Google.
+                 Desenvolvimento de uma landing page estratégica para o Cleide Beauty Salão, em Guarulhos, com foco em destacar 
+                 os serviços, fortalecer
+                  a presença digital e facilitar o acesso de
+                   potenciais clientes às informações e canais de agendamento.
               </p>
 
-              {/* OBJETIVO - SEM INVENTAR RESULTADOS */}
+              {/* OBJETIVO */}
               <div className="mt-6 rounded-[18px] border border-[#E5E5EA] bg-[#F6F6F8] p-5">
                 <p className="text-[11px] font-semibold uppercase tracking-[0.15em] text-black/45">
-                  OBJETIVO DO PROJETO
+                  OBJETIVO ESTRATÉGICO
                 </p>
 
                 <p className="mt-3 text-sm font-medium leading-7 text-[#171717]">
-                  Facilitar o agendamento de serviços e
-                  fortalecer a presença digital do salão.
+                  Fortalecer a visibilidade local do salão, ampliar suas oportunidades de ser encontrado por clientes da região e 
+                  transformar o interesse pelos serviços em contatos e agendamentos pelo WhatsApp.
                 </p>
               </div>
 
-              {/* O QUE FOI FEITO */}
+              {/* O QUE FOI DESENVOLVIDO */}
               <div className="mt-7">
                 <p className="mb-4 text-[11px] font-semibold uppercase tracking-[0.15em] text-black/45">
                   O QUE FOI DESENVOLVIDO
@@ -171,7 +172,7 @@ export default function Portfolio() {
           </motion.article>
 
           {/* =====================================
-              PROJETO ELIANE QUEIROZ
+              PROJETO LARISSA BARBOSA
           ===================================== */}
           <motion.article
             initial={{ opacity: 0, y: 30 }}
@@ -181,73 +182,100 @@ export default function Portfolio() {
             whileHover={{ y: -5 }}
             className="group min-w-0 overflow-hidden rounded-[28px] border border-black/10 bg-white shadow-[0_8px_28px_rgba(0,0,0,0.035)] transition-shadow duration-300 hover:shadow-[0_20px_45px_rgba(0,0,0,0.08)]"
           >
-            {/* CAPA */}
-            <div className="relative flex aspect-[1.35] flex-col items-center justify-center gap-5 overflow-hidden bg-gradient-to-br from-[#5B4645] to-[#A78980] p-8 text-center text-[#F8EEEA]">
+            {/* CAPA DO PROJETO */}
+            <div className="relative flex aspect-[1.35] items-center justify-center overflow-hidden bg-gradient-to-br from-[#171313] via-[#332522] to-[#A78980] p-8 text-center text-white">
               <div className="absolute -right-20 -top-20 h-64 w-64 rounded-full border border-white/15 transition-transform duration-700 group-hover:scale-125" />
+
               <div className="absolute -bottom-28 -left-20 h-72 w-72 rounded-full border border-white/10 transition-transform duration-700 group-hover:scale-110" />
 
-              <MonitorSmartphone
-                size={66}
-                strokeWidth={1}
-                className="relative z-10"
-              />
+              <div className="relative z-10 flex flex-col items-center gap-5 transition-transform duration-700 group-hover:scale-105">
+                <div>
+                  <p className="text-xs font-semibold uppercase tracking-[0.25em] text-white/60">
+                    FORX DIGITAL
+                  </p>
 
-              <p className="relative z-10 text-xs font-semibold uppercase tracking-[0.2em]">
-                Projeto em desenvolvimento
-              </p>
+                  <p className="mt-3 text-2xl font-semibold tracking-tight sm:text-3xl">
+                    Larissa Barbosa  
+                  </p>
+                </div>
+              </div>
             </div>
 
             {/* INFORMAÇÕES */}
             <div className="p-6 sm:p-8">
               <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-[#7942E8]">
-                SITE PROFISSIONAL · BELEZA
+                SITE PROFISSIONAL · SEO 
               </p>
 
               <div className="mt-4 flex items-center justify-between gap-4">
                 <h3 className="text-[27px] font-semibold tracking-[-0.05em] sm:text-[32px]">
-                  Eliane Queiroz Nails
+                  Larissa Barbosa 
                 </h3>
 
-                <span className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full border border-black/10 text-black/40">
-                  <MonitorSmartphone size={20} />
-                </span>
+                <a
+                  href="https://larissa-barbosa-nextjs-mm1p.vercel.app/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label="Visitar o site Larissa Barbosa Maquiadora"
+                  className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-[#151515] text-white transition-all duration-300 hover:rotate-45 hover:bg-[#7942E8]"
+                >
+                  <ArrowUpRight size={21} />
+                </a>
               </div>
 
               <p className="mt-4 text-sm leading-7 text-black/55">
-                Projeto de presença digital para apresentar
-                serviços de nail design e cursos profissionalizantes.
+                Projeto de presença digital para profissional da beleza,
+                reunindo desenvolvimento de site institucional para
+                apresentação de serviços, otimização para mecanismos de
+                busca (SEO), presença estratégica no Google e ações de
+                tráfego para ampliar a visibilidade da marca.
               </p>
 
               {/* OBJETIVO */}
               <div className="mt-6 rounded-[18px] border border-[#E5E5EA] bg-[#F6F6F8] p-5">
                 <p className="text-[11px] font-semibold uppercase tracking-[0.15em] text-black/45">
-                  OBJETIVO DO PROJETO
+                  OBJETIVO ESTRATÉGICO
                 </p>
 
                 <p className="mt-3 text-sm font-medium leading-7 text-[#171717]">
-                  Valorizar o trabalho profissional e apresentar
-                  os serviços e cursos em uma experiência digital sofisticada.
+                  Desenvolvimento de uma estrutura digital estratégica para fortalecer a 
+                  presença da Larissa no mercado da beleza, ampliar sua visibilidade nas
+                  buscas do Google e criar novos pontos de contato com potenciais clientes.
                 </p>
               </div>
 
-              {/* O QUE ESTÁ SENDO DESENVOLVIDO */}
+              {/* ESCOPO DO PROJETO */}
               <div className="mt-7">
                 <p className="mb-4 text-[11px] font-semibold uppercase tracking-[0.15em] text-black/45">
-                  ESCOPO DO PROJETO
+                  O QUE FOI DESENVOLVIDO
                 </p>
 
                 <div className="flex flex-wrap gap-2">
-                  <ProjectTag>Site responsivo</ProjectTag>
-                  <ProjectTag>Apresentação de serviços</ProjectTag>
-                  <ProjectTag>Cursos</ProjectTag>
+                  <ProjectTag>Site institucional</ProjectTag>
+                  <ProjectTag>SEO técnico</ProjectTag>
+                  <ProjectTag>SEO local</ProjectTag>
+                  <ProjectTag>Perfil da Empresa no Google</ProjectTag>
+                  <ProjectTag>Tráfego pago</ProjectTag>
                   <ProjectTag>WhatsApp</ProjectTag>
                 </div>
               </div>
 
+              {/* STATUS */}
               <div className="mt-8 inline-flex items-center gap-2 rounded-full border border-black/10 bg-[#F6F6F8] px-4 py-2 text-xs font-medium text-black/55">
-                <span className="h-1.5 w-1.5 rounded-full bg-[#7942E8]" />
-                Em desenvolvimento
+                <Check size={14} className="text-[#7942E8]" />
+                Projeto concluído
               </div>
+
+              {/* LINK */}
+              <a
+                href="https://larissa-barbosa-nextjs-mm1p.vercel.app/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="mt-6 inline-flex items-center gap-3 text-sm font-semibold text-[#151515] transition-colors hover:text-[#7942E8]"
+              >
+                Conhecer projeto
+                <ArrowUpRight size={19} />
+              </a>
             </div>
           </motion.article>
         </div>
@@ -264,6 +292,7 @@ export default function Portfolio() {
             <p className="text-lg font-medium tracking-[-0.03em]">
               Seu projeto pode ser o próximo.
             </p>
+
             <p className="mt-1 text-sm text-black/50">
               Vamos transformar sua ideia em uma experiência digital.
             </p>
@@ -277,6 +306,7 @@ export default function Portfolio() {
             <ArrowUpRight size={18} />
           </a>
         </motion.div>
+
       </div>
     </section>
   );

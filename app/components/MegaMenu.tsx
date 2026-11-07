@@ -61,11 +61,7 @@ const menuData: Record<MenuKey, MenuSection> = {
         href: "#portfolio",
         description: "Site para salão de beleza",
       },
-      {
-        label: "Eliane Queiroz Nails",
-        href: "#portfolio",
-        description: "Experiência digital premium",
-      },
+      
       {
         label: "Todos os projetos",
         href: "#portfolio",

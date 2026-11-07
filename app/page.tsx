@@ -477,7 +477,6 @@ const websiteSchema = {
 };
 
 
-
   return (
     <main className="min-h-screen overflow-x-hidden bg-white text-[#151515]">
 <script
