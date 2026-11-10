@@ -213,7 +213,7 @@ export default function Portfolio() {
                 </h3>
 
                 <a
-                  href="https://larissa-barbosa-nextjs-mm1p.vercel.app/"
+                  href="https://www.makeuplalab.com.br/"
                   target="_blank"
                   rel="noopener noreferrer"
                   aria-label="Visitar o site Larissa Barbosa Maquiadora"
@@ -268,7 +268,7 @@ export default function Portfolio() {
 
               {/* LINK */}
               <a
-                href="https://larissa-barbosa-nextjs-mm1p.vercel.app/"
+                href="https://www.makeuplalab.com.br/"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="mt-6 inline-flex items-center gap-3 text-sm font-semibold text-[#151515] transition-colors hover:text-[#7942E8]"
