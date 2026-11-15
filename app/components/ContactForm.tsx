@@ -32,12 +32,14 @@ const initialForm: FormData = {
 
 
 const services = [
+  "Gestão e processos internos",
+  "CRM e relacionamento com clientes",
+  "Automação de processos",
+  "Desenvolvimento de software / plataforma",
   "Criação de site institucional",
   "Landing page",
+  "Marketing digital e tráfego pago",
   "Presença no Google / SEO",
-  "Gestão de tráfego pago",
-  "Identidade digital",
-  "Solução personalizada",
   "Outro serviço",
 ];
 

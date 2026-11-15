@@ -1,7 +1,6 @@
 
 "use client";
 
-import { GoogleAnalytics } from "@next/third-parties/google";
 import { useState } from "react";
 import dynamic from "next/dynamic";
 import Link from "next/link";
@@ -10,18 +9,19 @@ import { AnimatePresence, motion } from "motion/react";
 import {
   ArrowDown,
   ArrowUpRight,
+  BriefcaseBusiness,
   Check,
   ChevronDown,
   Code2,
   Globe2,
-  Layers3,
   MapPin,
   MonitorSmartphone,
   MousePointer2,
-  Search,
   ShieldCheck,
   Sparkles,
   Target,
+  Users,
+  Workflow,
   Zap,
 } from "lucide-react";
 
@@ -54,68 +54,87 @@ const whatsappLink = `https://wa.me/${WHATSAPP_NUMBER}`;
 
 const services = [
   {
+    id: "gestao-processos",
     number: "01",
+    icon: BriefcaseBusiness,
+    title: "Gestão e processos",
+    href: "/gestao/processos-internos",
+    description:
+      "Estruturação de processos internos, rotinas e indicadores para dar mais clareza, controle e eficiência à operação da sua empresa.",
+    tags: [
+      "Processos internos",
+      "Indicadores",
+      "Organização",
+    ],
+  },
+  {
+    id: "relacionamento-clientes",
+    number: "02",
+    icon: Users,
+    title: "Relacionamento com clientes",
+    href: "/gestao/crm",
+    description:
+      "Organização do atendimento e do funil comercial com CRM, para acompanhar contatos, oportunidades e não perder nenhum cliente.",
+    tags: [
+      "CRM",
+      "Funil de vendas",
+      "Atendimento",
+    ],
+  },
+  {
+    id: "automacao",
+    number: "03",
+    icon: Workflow,
+    title: "Automação",
+    href: "/gestao/automacao",
+    description:
+      "Automatizamos tarefas repetitivas, avisos e fluxos de trabalho para sua equipe ganhar tempo e focar no que gera resultado.",
+    tags: [
+      "Fluxos",
+      "Integrações",
+      "WhatsApp",
+    ],
+  },
+  {
+    id: "desenvolvimento-software",
+    number: "04",
+    icon: Code2,
+    title: "Desenvolvimento de software",
+    href: "#contato",
+    description:
+      "Plataformas digitais e sistemas sob medida, desenvolvidos para as necessidades reais do seu negócio.",
+    tags: [
+      "Plataformas",
+      "Sistemas web",
+      "Sob medida",
+    ],
+  },
+  {
+    id: "criacao-de-sites",
+    number: "05",
     icon: MonitorSmartphone,
     title: "Criação de sites",
     href: "/criacao-de-sites",
     description:
-      "Sites profissionais, responsivos e personalizados para transformar a presença digital da sua empresa.",
+      "Sites institucionais e landing pages profissionais, responsivos e preparados para o Google, que fortalecem sua presença no mercado.",
     tags: [
       "Institucionais",
       "Landing pages",
-      "Responsividade",
+      "SEO",
     ],
   },
   {
-    number: "02",
-    icon: Search,
-    title: "Presença no Google",
-    href: "#contato",
-    description:
-      "Estratégias de SEO local para ajudar empresas de Guarulhos e São Paulo a conquistar mais visibilidade nas pesquisas.",
-    tags: [
-      "SEO local",
-      "Google Business",
-      "Visibilidade",
-    ],
-  },
-  {
-    number: "03",
-    icon: Layers3,
-    title: "Identidade digital",
-    href: "#contato",
-    description:
-      "Experiências visuais que valorizam sua marca e transmitem profissionalismo em cada detalhe.",
-    tags: [
-      "Design",
-      "Experiência",
-      "Identidade",
-    ],
-  },
-  {
-    number: "04",
-    icon: Code2,
-    title: "Soluções personalizadas",
-    href: "#contato",
-    description:
-      "Funcionalidades que facilitam o contato com seus clientes e tornam seu site uma ferramenta de negócio.",
-    tags: [
-      "Formulários",
-      "WhatsApp",
-      "Integrações",
-    ],
-  },
-  {
-    number: "05",
+    id: "marketing-digital",
+    number: "06",
     icon: Target,
-    title: "Gestão de Tráfego Pago",
+    title: "Marketing digital e tráfego pago",
     href: "#contato",
     description:
-      "Campanhas estratégicas no Google Ads e Meta Ads para alcançar públicos relevantes, atrair potenciais clientes e gerar oportunidades de negócio.",
+      "Campanhas no Google Ads e Meta Ads, SEO local e estratégias de crescimento online para atrair clientes de forma consistente.",
     tags: [
       "Google Ads",
       "Meta Ads",
-      "Performance",
+      "SEO local",
     ],
   },
 ];
@@ -127,27 +146,27 @@ const services = [
 const steps = [
   {
     number: "01",
-    title: "Entendimento",
+    title: "Diagnóstico",
     description:
-      "Conhecemos seu negócio, seus objetivos e o público que você deseja alcançar.",
+      "Entendemos seu negócio, sua operação e os desafios que precisam ser resolvidos.",
   },
   {
     number: "02",
     title: "Planejamento",
     description:
-      "Definimos a estrutura, a identidade visual e as funcionalidades do projeto.",
+      "Definimos a solução ideal: processos, tecnologia e estratégias de crescimento.",
   },
   {
     number: "03",
     title: "Desenvolvimento",
     description:
-      "Construímos uma experiência moderna, responsiva e alinhada à sua marca.",
+      "Construímos sistemas, automações, sites e campanhas alinhados aos seus objetivos.",
   },
   {
     number: "04",
-    title: "Publicação",
+    title: "Implantação",
     description:
-      "Preparamos o site para entrar no ar e orientamos sobre os próximos passos.",
+      "Colocamos a solução em funcionamento e acompanhamos os resultados com você.",
   },
 ];
 
@@ -158,27 +177,27 @@ const steps = [
 const benefits = [
   {
     icon: MousePointer2,
-    title: "Experiência que envolve",
+    title: "Visão integrada",
     description:
-      "Interfaces intuitivas, animações elegantes e navegação fluida.",
+      "Gestão, tecnologia e marketing pensados juntos, e não como peças soltas.",
   },
   {
     icon: Zap,
-    title: "Performance",
+    title: "Operação mais eficiente",
     description:
-      "Atenção à velocidade, organização do código e experiência mobile.",
+      "Processos organizados e automações que reduzem retrabalho e tempo perdido.",
   },
   {
     icon: Globe2,
-    title: "Presença digital",
+    title: "Presença no mercado",
     description:
-      "Estrutura preparada para boas práticas de SEO e descoberta online.",
+      "Sites e estratégias digitais que tornam sua empresa mais fácil de encontrar.",
   },
   {
     icon: ShieldCheck,
-    title: "Profissionalismo",
+    title: "Crescimento sustentável",
     description:
-      "Um projeto pensado para transmitir confiança e valorizar seu negócio.",
+      "Soluções que acompanham a evolução do seu negócio de forma inteligente.",
   },
 ];
 
@@ -188,34 +207,44 @@ const benefits = [
 
 const faqs = [
   {
-    question: "Quanto custa criar um site?",
+    question: "A FORX Digital ajuda na gestão da minha empresa?",
     answer:
-      "O investimento depende da estrutura, das páginas e das funcionalidades necessárias. Cada proposta é preparada conforme as necessidades do negócio.",
+      "Sim. Além de sites e marketing, ajudamos a organizar processos internos, estruturar o atendimento com CRM, automatizar tarefas repetitivas e desenvolver sistemas sob medida quando o negócio precisa.",
   },
   {
-    question: "Meu site vai funcionar no celular?",
+    question: "Quanto custa um site ou sistema?",
     answer:
-      "Sim. Desenvolvemos projetos responsivos para proporcionar uma boa experiência em celulares, tablets e computadores.",
+      "Depende do que o seu negócio precisa: quantidade de páginas, funcionalidades, integrações e conteúdo. Por isso, entendemos o projeto antes e enviamos uma proposta com escopo, valor e etapas bem definidos, sem surpresas no meio do caminho.",
   },
   {
-    question: "O site pode aparecer no Google?",
+    question: "Quanto tempo leva para o projeto ficar pronto?",
     answer:
-      "Sim. Podemos preparar a estrutura técnica para indexação e boas práticas de SEO. O posicionamento nos resultados depende de diversos fatores e não pode ser garantido.",
+      "O prazo varia conforme o tamanho do projeto e a agilidade no envio de informações, como textos, fotos e aprovações. O cronograma é apresentado junto com a proposta, e você acompanha cada etapa até a entrega.",
   },
   {
-    question: "Posso integrar meu WhatsApp?",
+    question: "Existe mensalidade depois que o projeto fica pronto?",
     answer:
-      "Sim. Podemos adicionar botões de contato e formulários que facilitam o envio de mensagens para seu WhatsApp.",
+      "Alguns custos são recorrentes por natureza, como domínio e hospedagem. Manutenção, atualizações e suporte podem ser contratados conforme a sua necessidade. Tudo é explicado na proposta para você saber exatamente o que é pago uma vez e o que é contínuo.",
   },
   {
-    question: "Vocês ajudam com domínio e hospedagem?",
+    question: "O domínio e o site ficam no nome da minha empresa?",
     answer:
-      "Podemos orientar na escolha e configuração de domínio e hospedagem, conforme a necessidade de cada projeto.",
+      "Recomendamos que o domínio seja registrado em nome da sua empresa, para que você tenha controle sobre ele. Orientamos todo o processo de registro e configuração e deixamos claro, na proposta, como fica a titularidade de cada item do projeto.",
   },
   {
-    question: "A FORX Digital oferece gestão de tráfego pago?",
+    question: "Preciso entender de tecnologia para acompanhar o projeto?",
     answer:
-      "Sim. Desenvolvemos estratégias de anúncios no Google Ads e Meta Ads para empresas de Guarulhos, São Paulo e região. As campanhas são planejadas conforme os objetivos do negócio, o público-alvo e o orçamento disponível.",
+      "Não. Explicamos cada etapa em linguagem simples, cuidamos da parte técnica e pedimos sua opinião apenas no que importa para o seu negócio: conteúdo, visual e funcionamento.",
+  },
+  {
+    question: "Meu site vai aparecer no Google?",
+    answer:
+      "Preparamos o site com a estrutura técnica e as boas práticas de SEO para que ele possa ser encontrado nas pesquisas. A posição nos resultados depende de fatores como concorrência e conteúdo, por isso nenhuma empresa séria pode garantir o primeiro lugar.",
+  },
+  {
+    question: "O valor dos anúncios no Google e no Instagram está incluso na gestão de tráfego?",
+    answer:
+      "Normalmente não. A verba dos anúncios é paga diretamente ao Google e à Meta, e você define quanto quer investir. A FORX cuida do planejamento, da criação e do acompanhamento das campanhas para que esse investimento traga contatos de clientes reais.",
   },
 ];
 
@@ -371,6 +400,7 @@ function ServiceCard({
 
   return (
     <motion.article
+      id={service.id}
       initial={{ opacity: 0, y: 20 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
@@ -378,7 +408,7 @@ function ServiceCard({
         duration: 0.6,
         delay: index * 0.08,
       }}
-      className={`group relative flex min-h-[290px] flex-col overflow-hidden bg-[#161616] p-7 transition-colors duration-500 hover:bg-[#1C1C1C] sm:p-9 ${
+      className={`group relative flex min-h-[290px] scroll-mt-24 flex-col overflow-hidden bg-[#161616] p-7 transition-colors duration-500 hover:bg-[#1C1C1C] sm:p-9 ${
         isLastOddCard
           ? "md:col-span-2 md:min-h-[310px]"
           : ""
@@ -519,15 +549,15 @@ const websiteSchema = {
             <span className="h-2 w-2 rounded-full bg-[#A879F5] shadow-[0_0_18px_rgba(168,121,245,0.9)]" />
 
             <span className="text-xs font-medium uppercase tracking-[0.22em] text-white/60">
-              Agência digital em Guarulhos e São Paulo
+              Tecnologia, gestão e crescimento
             </span>
           </motion.div>
 
           <h1 className="max-w-[1000px] text-[clamp(3.2rem,8vw,7.5rem)] font-medium leading-[0.98] tracking-[-0.075em]">
             {[
-              ["Sua marca.", "text-white"],
-              ["Uma nova", "text-white/45"],
-              ["presença digital.", "text-white"],
+              ["Tecnologia.", "text-white"],
+              ["Gestão.", "text-white/45"],
+              ["Crescimento.", "text-white"],
             ].map(([line, color], index) => (
               <motion.span
                 key={line}
@@ -560,16 +590,16 @@ const websiteSchema = {
           >
             <div>
               <p className="max-w-lg text-base leading-7 text-white/55 md:text-lg">
-                Criação de sites, landing pages, SEO local e
-                tráfego pago para empresas. Unimos design, tecnologia
-                e estratégia para fortalecer sua presença digital.
+                Soluções que conectam gestão, automação,
+                desenvolvimento de software e marketing digital
+                para empresas que querem crescer de forma inteligente.
               </p>
 
               <a
                 href="#contato"
                 className="mt-7 inline-flex items-center gap-3 rounded-full bg-white px-7 py-4 text-sm font-semibold text-black transition hover:bg-[#EDE5FF]"
               >
-                Vamos criar seu projeto
+                Fale com a FORX
                 <ArrowUpRight size={19} />
               </a>
             </div>
@@ -601,7 +631,7 @@ const websiteSchema = {
             <span className="mt-2 h-px w-7 bg-[#7942E8]" />
 
             <span className="text-xs font-semibold uppercase tracking-[0.22em] text-black/45">
-              O digital começa aqui
+              Do processo ao crescimento
             </span>
           </div>
 
@@ -612,19 +642,18 @@ const websiteSchema = {
             transition={{ duration: 0.8 }}
           >
             <h2 className="text-[35px] font-medium leading-[1.13] tracking-[-0.055em] sm:text-5xl lg:text-[60px]">
-              Não basta estar online.
+              Da operação interna
 
               <span className="block text-black/35">
-                É preciso ser lembrado.
+                ao crescimento online.
               </span>
             </h2>
 
             <p className="mt-6 max-w-xl text-base leading-7 text-black/50">
-              Sua presença digital é muitas vezes o primeiro
-              contato entre sua empresa e um futuro cliente.
-              Na FORX Digital, transformamos esse contato
-              em uma experiência profissional, intuitiva
-              e memorável.
+              Atuamos desde a estruturação de processos
+              internos e do relacionamento com clientes
+              até o desenvolvimento de plataformas digitais
+              e estratégias de crescimento online.
             </p>
 
             <a
@@ -650,9 +679,9 @@ const websiteSchema = {
           <div className="mb-10 flex flex-col justify-between gap-6 lg:flex-row lg:items-end">
             <SectionHeading
             
-  eyebrow="SOBRE A FORX"
-              title="Soluções que transformam presença em oportunidade."
-              description="Cada negócio tem uma história. Criamos soluções digitais para comunicá-la com clareza, personalidade e impacto."
+  eyebrow="O que fazemos"
+              title="Soluções que conectam gestão, tecnologia e marketing."
+              description="Da organização interna à conquista de novos clientes: tudo o que sua empresa precisa para operar melhor e crescer."
               light
             />
 
@@ -704,8 +733,8 @@ const websiteSchema = {
         <div className="mx-auto max-w-[1280px]">
           <SectionHeading
             eyebrow="Nosso processo"
-            title="Da primeira ideia ao projeto publicado."
-            description="Um processo organizado, com atenção aos detalhes e foco no que faz sentido para o seu negócio."
+            title="Do desafio à solução funcionando."
+            description="Um processo claro, com foco no que realmente faz diferença para a operação e o crescimento do seu negócio."
           />
 
           <div className="mt-10 grid gap-4 md:grid-cols-2 lg:grid-cols-4">
@@ -761,8 +790,8 @@ const websiteSchema = {
           <div>
             <SectionHeading
               eyebrow="Por que a FORX?"
-              title="Cada detalhe importa."
-              description="Não criamos apenas páginas. Pensamos em como sua marca será percebida por quem chega até ela."
+              title="Tecnologia a serviço do seu negócio."
+              description="Não entregamos ferramentas isoladas. Conectamos gestão, automação, software e marketing para gerar resultado de verdade."
             />
 
             <a
@@ -823,7 +852,7 @@ const websiteSchema = {
         <div className="relative mx-auto grid max-w-[1280px] gap-10 lg:grid-cols-2 lg:gap-20">
           <SectionHeading
             eyebrow="Sobre nós"
-            title="Ideias ousadas. Execução inteligente."
+            title="Transformamos desafios em soluções tecnológicas."
             light
           />
 
@@ -835,23 +864,24 @@ const websiteSchema = {
             className="flex flex-col justify-center"
           >
             <p className="text-lg leading-8 text-white/65">
-              A FORX Digital nasceu para ajudar empresas
-              de Guarulhos, São Paulo e região a se destacarem
-              em um ambiente cada vez mais conectado.
+              A FORX Digital é uma empresa de tecnologia e
+              soluções estratégicas para negócios, especializada
+              em conectar gestão, automação, desenvolvimento de
+              software e marketing digital.
             </p>
 
             <p className="mt-5 text-base leading-7 text-white/45">
-              Combinamos design, desenvolvimento e visão
-              estratégica para construir experiências
-              digitais que valorizam marcas e aproximam
-              negócios de seus clientes.
+              Nosso propósito é transformar desafios empresariais
+              em soluções tecnológicas, ajudando empresas a otimizar
+              sua operação, fortalecer sua presença no mercado e
+              crescer de forma inteligente e sustentável.
             </p>
 
             <div className="mt-7 flex flex-wrap gap-3">
               {[
-                "Design",
                 "Tecnologia",
-                "Estratégia",
+                "Gestão",
+                "Crescimento",
               ].map((item) => (
                 <span
                   key={item}
@@ -909,8 +939,8 @@ const websiteSchema = {
           <div>
             <SectionHeading
               eyebrow="Vamos conversar"
-              title="Seu próximo projeto começa aqui."
-              description="Conte um pouco sobre sua empresa e o que você deseja criar. Vamos conversar sobre as possibilidades."
+              title="Vamos transformar seu desafio em solução."
+              description="Conte um pouco sobre sua empresa e o que você precisa melhorar. Vamos conversar sobre as possibilidades."
               light
             />
 
@@ -965,10 +995,11 @@ const websiteSchema = {
               </a>
 
               <p className="mt-5 max-w-sm text-sm leading-7 text-white/45">
-                Criação de sites, landing pages, SEO local
-                e tráfego pago em Guarulhos e São Paulo.
-                Design, tecnologia e estratégia para
-                fortalecer sua presença digital.
+                Tecnologia e soluções estratégicas que conectam
+                gestão, automação, software e marketing digital.
+                <span className="mt-3 block font-medium text-white/70">
+                  FORX Digital — Tecnologia, gestão e crescimento.
+                </span>
               </p>
             </div>
 
@@ -981,6 +1012,7 @@ const websiteSchema = {
                 <div className="flex flex-col gap-3">
                   {[
                     ["Serviços", "#servicos"],
+                    ["Gestão", "#gestao-processos"],
                     ["Projetos", "#portfolio"],
                     ["Processo", "#processo"],
                     ["Sobre", "#sobre"],

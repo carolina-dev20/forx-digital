@@ -10,7 +10,7 @@ import {
   X,
 } from "lucide-react";
 
-type MenuKey = "servicos" | "projetos" | "processo" | "sobre";
+type MenuKey = "servicos" | "gestao" | "projetos" | "processo" | "sobre";
 
 type MenuLink = {
   label: string;
@@ -28,30 +28,62 @@ type MenuSection = {
 const whatsappLink =
   "https://wa.me/5511994880312?text=Ol%C3%A1%21%20Vim%20pela%20p%C3%A1gina%20da%20FORX%20Digital%20e%20gostaria%20de%20iniciar%20um%20projeto.";
 
+// LINK DE LOGIN DA PLATAFORMA (forx-platform)
+const platformLoginLink = `${
+  process.env.NEXT_PUBLIC_PLATFORM_URL ?? "https://app.forxdigital.com.br"
+}/login`;
+
 const menuData: Record<MenuKey, MenuSection> = {
   servicos: {
-    title: "O que podemos criar para você",
-    subtitle: "Soluções digitais para transformar sua presença online.",
+    title: "O que podemos fazer pelo seu negócio",
+    subtitle: "Tecnologia e estratégia para crescer no digital.",
     links: [
       {
         label: "Criação de sites",
-        href: "/#servicos",
-        description: "Sites institucionais modernos",
+        href: "/criacao-de-sites",
+        description: "Sites institucionais e landing pages",
       },
       {
-        label: "Landing pages",
-        href: "/#servicos",
-        description: "Páginas focadas em conversão",
+        label: "Desenvolvimento de software",
+        href: "/#desenvolvimento-software",
+        description: "Plataformas e sistemas sob medida",
       },
       {
-        label: "SEO & Google",
+        label: "Marketing e tráfego pago",
+        href: "/#marketing-digital",
+        description: "Google Ads, Meta Ads e SEO local",
+      },
+      {
+        label: "Presença no Google",
         href: "/#presenca-google",
         description: "Mais visibilidade nas pesquisas",
       },
+    ],
+  },
+
+  gestao: {
+    title: "Gestão que organiza sua operação",
+    subtitle: "Processos, clientes e automações trabalhando a seu favor.",
+    links: [
       {
-        label: "Presença digital",
-        href: "/#presenca-google",
-        description: "Sua empresa mais fácil de encontrar",
+        label: "Processos internos",
+        href: "/gestao/processos-internos",
+        description: "Rotinas, indicadores e organização",
+      },
+      {
+        label: "CRM e clientes",
+        href: "/gestao/crm",
+        description: "Atendimento e funil comercial",
+      },
+      {
+        label: "Automação",
+        href: "/gestao/automacao",
+        description: "Menos tarefas manuais e retrabalho",
+      },
+      {
+        label: "Fale com a FORX",
+        href: "/#contato",
+        description: "Vamos entender o seu desafio",
       },
     ],
   },
@@ -74,40 +106,40 @@ const menuData: Record<MenuKey, MenuSection> = {
   },
 
   processo: {
-    title: "Da ideia ao lançamento",
+    title: "Do desafio à solução",
     subtitle: "Um processo claro em cada etapa.",
     links: [
       {
-        label: "01. Briefing",
+        label: "01. Diagnóstico",
         href: "/#processo",
-        description: "Entendemos seu negócio",
+        description: "Entendemos seu negócio e seus desafios",
       },
       {
-        label: "02. Design",
+        label: "02. Planejamento",
         href: "/#processo",
-        description: "Criamos a experiência visual",
+        description: "Definimos a solução ideal",
       },
       {
         label: "03. Desenvolvimento",
         href: "/#processo",
-        description: "Transformamos o projeto em site",
+        description: "Sistemas, sites e campanhas",
       },
       {
-        label: "04. Lançamento",
+        label: "04. Implantação",
         href: "/#processo",
-        description: "Colocamos sua marca no ar",
+        description: "Solução funcionando e acompanhada",
       },
     ],
   },
 
   sobre: {
     title: "Conheça a FORX Digital",
-    subtitle: "Criatividade, tecnologia e estratégia.",
+    subtitle: "Tecnologia, gestão e crescimento.",
     links: [
       {
         label: "Nossa agência",
         href: "/#sobre",
-        description: "Quem somos",
+        description: "Quem somos e nosso propósito",
       },
       {
         label: "Nossos diferenciais",
@@ -123,11 +155,12 @@ const menuData: Record<MenuKey, MenuSection> = {
   },
 };
 
-const menuItems: { key: MenuKey; label: string }[] = [
-  { key: "servicos", label: "Serviços" },
-  { key: "projetos", label: "Projetos" },
-  { key: "processo", label: "Processo" },
-  { key: "sobre", label: "Sobre" },
+const menuItems: { key: MenuKey; label: string; href: string }[] = [
+  { key: "servicos", label: "Serviços", href: "/#servicos" },
+  { key: "gestao", label: "Gestão", href: "/#gestao-processos" },
+  { key: "projetos", label: "Projetos", href: "/#portfolio" },
+  { key: "processo", label: "Processo", href: "/#processo" },
+  { key: "sobre", label: "Sobre", href: "/#sobre" },
 ];
 
 export default function MegaMenu() {
@@ -180,7 +213,7 @@ export default function MegaMenu() {
       <div className="mx-auto flex h-[82px] max-w-[1400px] items-center justify-between px-6 md:px-10 lg:px-16">
 
         {/* LOGO */}
-        <a
+        <Link
           href="/#inicio"
           onClick={closeMenus}
           className="shrink-0 text-[24px] font-bold tracking-[-0.07em]"
@@ -190,7 +223,7 @@ export default function MegaMenu() {
             Digital
           </span>
           <span className="text-[#7942E8]">.</span>
-        </a>
+        </Link>
 
         {/* NAVEGAÇÃO DESKTOP */}
         <nav
@@ -198,18 +231,14 @@ export default function MegaMenu() {
           className="hidden items-center gap-9 lg:flex"
         >
           {menuItems.map((item) => (
-            <button
+            <Link
               key={item.key}
-              type="button"
+              href={item.href}
               aria-expanded={activeMenu === item.key}
               aria-controls="forx-mega-menu"
               onMouseEnter={() => setActiveMenu(item.key)}
               onFocus={() => setActiveMenu(item.key)}
-              onClick={() =>
-                setActiveMenu((current) =>
-                  current === item.key ? null : item.key
-                )
-              }
+              onClick={closeMenus}
               className={`group relative flex items-center gap-1.5 py-7 text-sm font-medium transition-colors duration-200 ${
                 activeMenu === item.key
                   ? "text-white"
@@ -234,7 +263,7 @@ export default function MegaMenu() {
                     : "w-0 group-hover:w-full"
                 }`}
               />
-            </button>
+            </Link>
           ))}
 
           {/* PREÇOS E PLANOS */}
@@ -249,17 +278,28 @@ export default function MegaMenu() {
           </Link>
         </nav>
 
-        {/* CTA DESKTOP - WHATSAPP */}
-        <a
-          href={whatsappLink}
-          target="_blank"
-          rel="noopener noreferrer"
+        {/* AÇÕES DESKTOP - ENTRAR + WHATSAPP */}
+        <div
           onMouseEnter={() => setActiveMenu(null)}
-          className="hidden items-center gap-2 rounded-full border border-white/20 px-5 py-3 text-sm font-medium transition-all hover:border-[#7942E8] hover:bg-[#7942E8] lg:inline-flex"
+          className="hidden items-center gap-5 lg:flex"
         >
-          Iniciar projeto
-          <ArrowUpRight size={16} />
-        </a>
+          <a
+            href={platformLoginLink}
+            className="text-sm font-medium text-white/55 transition-colors duration-200 hover:text-white"
+          >
+            Entrar
+          </a>
+
+          <a
+            href={whatsappLink}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-2 rounded-full border border-white/20 px-5 py-3 text-sm font-medium transition-all hover:border-[#7942E8] hover:bg-[#7942E8]"
+          >
+            Iniciar projeto
+            <ArrowUpRight size={16} />
+          </a>
+        </div>
 
         {/* BOTÃO MOBILE */}
         <button
@@ -308,17 +348,19 @@ export default function MegaMenu() {
               {/* LINKS HORIZONTAIS */}
               <div className="grid grid-cols-2 gap-4 xl:grid-cols-4">
                 {menuData[activeMenu].links.map((link, index) => (
-                  <motion.a
+                  <motion.div
                     key={`${activeMenu}-${link.label}`}
-                    href={link.href}
-                    onClick={closeMenus}
                     initial={{ opacity: 0, y: 12 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{
                       duration: 0.3,
                       delay: index * 0.045,
                     }}
-                    className="group flex min-h-[150px] flex-col justify-between rounded-[20px] border border-black/10 bg-[#F7F7F7] p-5 transition-all duration-300 hover:-translate-y-1 hover:border-[#7942E8]/35 hover:bg-[#F1ECFF]"
+                  >
+                  <Link
+                    href={link.href}
+                    onClick={closeMenus}
+                    className="group flex h-full min-h-[150px] flex-col justify-between rounded-[20px] border border-black/10 bg-[#F7F7F7] p-5 transition-all duration-300 hover:-translate-y-1 hover:border-[#7942E8]/35 hover:bg-[#F1ECFF]"
                   >
                     <ArrowUpRight
                       size={20}
@@ -336,7 +378,8 @@ export default function MegaMenu() {
                         </p>
                       )}
                     </div>
-                  </motion.a>
+                  </Link>
+                  </motion.div>
                 ))}
               </div>
             </div>
@@ -396,8 +439,20 @@ export default function MegaMenu() {
                           className="overflow-hidden"
                         >
                           <div className="space-y-2 pb-5">
+                            <Link
+                              href={item.href}
+                              onClick={closeMenus}
+                              className="flex items-center justify-between rounded-xl border border-[#7942E8]/40 px-4 py-4 text-sm font-medium text-white"
+                            >
+                              Ver {item.label.toLowerCase()}
+                              <ArrowUpRight
+                                size={15}
+                                className="text-[#B99AFF]"
+                              />
+                            </Link>
+
                             {menuData[item.key].links.map((link) => (
-                              <a
+                              <Link
                                 key={link.label}
                                 href={link.href}
                                 onClick={closeMenus}
@@ -408,7 +463,7 @@ export default function MegaMenu() {
                                   size={15}
                                   className="text-[#B99AFF]"
                                 />
-                              </a>
+                              </Link>
                             ))}
                           </div>
                         </motion.div>
@@ -430,6 +485,19 @@ export default function MegaMenu() {
                   className="text-[#B99AFF]"
                 />
               </Link>
+
+              {/* ENTRAR MOBILE */}
+              <a
+                href={platformLoginLink}
+                onClick={closeMenus}
+                className="flex items-center justify-between border-b border-white/10 py-5 text-lg text-white"
+              >
+                Entrar
+                <ArrowUpRight
+                  size={18}
+                  className="text-[#B99AFF]"
+                />
+              </a>
 
               {/* CTA MOBILE - WHATSAPP */}
               <a

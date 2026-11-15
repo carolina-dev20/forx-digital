@@ -5,7 +5,6 @@ import { useState, type CSSProperties } from "react";
 import Link from "next/link";
 import { motion, AnimatePresence } from "motion/react";
 import {
-  ArrowLeft,
   ArrowRight,
   ArrowUpRight,
   CheckCircle2,
@@ -25,6 +24,7 @@ import {
 } from "lucide-react";
 
 import styles from "./sites.module.css";
+import MegaMenu from "../components/MegaMenu";
 
 const benefits = [
   {
@@ -92,28 +92,42 @@ const faqs = [
   {
     question: "Preciso ter um site mesmo usando Instagram?",
     answer:
-      "O Instagram é um ótimo canal de relacionamento, mas um site oferece um espaço próprio para organizar informações, apresentar serviços e facilitar o contato. Os dois podem trabalhar juntos.",
+      "O Instagram é ótimo para relacionamento, mas o alcance depende do algoritmo e o perfil não é seu de fato. O site é um espaço próprio, aparece nas pesquisas do Google e passa mais credibilidade na hora de o cliente decidir. Os dois funcionam melhor juntos.",
+  },
+  {
+    question: "Qual a diferença entre site institucional e landing page?",
+    answer:
+      "O site institucional apresenta a empresa como um todo, com várias páginas sobre serviços, história e contato. A landing page é uma página única, focada em uma oferta ou campanha, ideal para receber o tráfego de anúncios. Ajudamos você a escolher o formato certo para o seu objetivo.",
+  },
+  {
+    question: "Preciso já ter textos e fotos prontos?",
+    answer:
+      "Não. Se você já tiver materiais, aproveitamos. Se não tiver, orientamos o que é necessário e ajudamos a organizar os textos para que fiquem claros e prontos para o Google.",
+  },
+  {
+    question: "Posso pedir ajustes durante o desenvolvimento?",
+    answer:
+      "Sim. Você acompanha o projeto e aprova cada etapa. As rodadas de ajustes previstas ficam definidas na proposta, para que o resultado final fique do jeito que o seu negócio precisa.",
+  },
+  {
+    question: "Consigo atualizar o site sozinho depois?",
+    answer:
+      "Depende do tipo de projeto. Podemos entregar áreas editáveis para você alterar textos e imagens com facilidade, ou cuidar das atualizações para você com um plano de manutenção.",
+  },
+  {
+    question: "Já tenho um site antigo. Dá para refazer sem perder o que já tenho?",
+    answer:
+      "Sim. Aproveitamos o domínio atual e o conteúdo que ainda faz sentido e configuramos o redirecionamento das páginas antigas, para não perder o que o site já conquistou nas pesquisas.",
+  },
+  {
+    question: "Meu site vai ser seguro e estar de acordo com a LGPD?",
+    answer:
+      "Sim. O site é publicado com certificado de segurança (o cadeado no navegador), e os formulários e o aviso de cookies são pensados para respeitar a privacidade dos visitantes.",
   },
   {
     question: "Meu site pode aparecer no Google?",
     answer:
-      "Sim. Um site pode ser indexado pelos mecanismos de busca. A visibilidade depende de fatores como conteúdo, estrutura técnica, concorrência e otimização. Não existe garantia de primeira posição.",
-  },
-  {
-    question: "O site funciona no celular?",
-    answer:
-      "Sim. Os sites podem ser desenvolvidos com design responsivo, adaptando a experiência para diferentes tamanhos de tela.",
-  },
-  {
-    question: "Posso solicitar alterações depois?",
-    answer:
-      "Sim. As possibilidades de atualização e manutenção são definidas conforme o escopo e as condições combinadas para cada projeto.",
-  },
-  {
-    question:
-      "A FORX Digital oferece gestão de tráfego pago em Guarulhos e São Paulo?",
-    answer:
-      "Sim. A FORX Digital oferece estratégias de tráfego pago para empresas de Guarulhos, São Paulo e região. Trabalhamos com campanhas no Google Ads e Meta Ads, segmentação de público e acompanhamento de resultados para gerar oportunidades comerciais. O investimento em anúncios é definido conforme os objetivos e o orçamento de cada negócio.",
+      "Sim. O site é construído com a estrutura técnica e as boas práticas de SEO para ser encontrado. A visibilidade depende de conteúdo, concorrência e otimização contínua, por isso não existe garantia de primeira posição.",
   },
 ];
 
@@ -136,16 +150,7 @@ export default function CriacaoDeSitesPage() {
   return (
     <main className={styles.page}>
       {/* HEADER */}
-      <header className={styles.header}>
-        <Link href="/" className={styles.logo}>
-          FORX <span>Digital.</span>
-        </Link>
-
-        <Link href="/" className={styles.backLink}>
-          <ArrowLeft size={16} />
-          Voltar à FORX
-        </Link>
-      </header>
+      <MegaMenu />
 
       {/* HERO */}
       <section
@@ -451,7 +456,7 @@ export default function CriacaoDeSitesPage() {
       </section>
 
       {/* TIPOS DE SITES E SOLUÇÕES */}
-      <section className={styles.typesSection}>
+      <section id="tipos" className={styles.typesSection}>
         <div className={styles.container}>
           <span className={styles.sectionLabel}>
             04 / SOLUÇÕES

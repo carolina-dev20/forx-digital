@@ -17,12 +17,12 @@ export const metadata: Metadata = {
   metadataBase: new URL("https://www.forxdigital.com.br"),
 
   title: {
-    default: "FORX Digital | Criação de Sites e SEO",
+    default: "FORX Digital | Tecnologia, gestão e crescimento",
     template: "%s | FORX Digital",
   },
 
   description:
-    "FORX Digital: criação de sites profissionais, landing pages e SEO para empresas que desejam fortalecer sua presença online e conquistar clientes.",
+    "FORX Digital: tecnologia e soluções estratégicas que conectam gestão, automação, desenvolvimento de software e marketing digital para empresas crescerem de forma inteligente.",
 
   applicationName: "FORX Digital",
 
@@ -31,16 +31,16 @@ export const metadata: Metadata = {
     locale: "pt_BR",
     url: "https://www.forxdigital.com.br/",
     siteName: "FORX Digital",
-    title: "FORX Digital | Criação de Sites e SEO",
+    title: "FORX Digital | Tecnologia, gestão e crescimento",
     description:
-      "Criação de sites profissionais, landing pages e SEO para empresas que querem crescer no digital.",
+      "FORX Digital: tecnologia e soluções estratégicas que conectam gestão, automação, desenvolvimento de software e marketing digital para empresas crescerem de forma inteligente.",
   },
 
   twitter: {
     card: "summary",
-    title: "FORX Digital | Criação de Sites e SEO",
+    title: "FORX Digital | Tecnologia, gestão e crescimento",
     description:
-      "Sites profissionais, landing pages e SEO para fortalecer a presença digital da sua empresa.",
+      "FORX Digital: tecnologia e soluções estratégicas que conectam gestão, automação, desenvolvimento de software e marketing digital para empresas crescerem de forma inteligente.",
   },
 
   robots: {
