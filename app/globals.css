@@ -15,7 +15,7 @@
   --forx-purple-light: #b994ff;
   --forx-white: #f4f2f7;
 
-  --font-primary: Arial, Helvetica, sans-serif;
+  --font-primary: var(--font-plus-jakarta-sans), Arial, Helvetica, sans-serif;
 }
 
 /* =========================================
