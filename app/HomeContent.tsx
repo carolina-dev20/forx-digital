@@ -467,7 +467,10 @@ export default function HomeContent() {
 
           <div className={s.footBottom}>
             <p>© 2026 FORX Digital. Todos os direitos reservados.</p>
-            <p>Design & desenvolvimento digital.</p>
+            <p>
+              <Link href="/privacidade">Política de Privacidade</Link> · Design &
+              desenvolvimento digital.
+            </p>
           </div>
         </footer>
       </div>

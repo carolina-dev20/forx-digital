@@ -1458,3 +1458,107 @@
     gap: 32px;
   }
 }
+
+/* =========================================
+   TEXTO LEGAL (Política de Privacidade)
+   ========================================= */
+
+.legal {
+  max-width: 760px;
+  margin: 0 auto;
+  padding: clamp(56px, 9vh, 96px) var(--gut) clamp(72px, 12vh, 120px);
+  color: var(--ink-2);
+  font-size: 16px;
+  line-height: 1.7;
+}
+
+.legalUpdated {
+  font-size: 13px;
+  color: #6f6890;
+}
+
+.legal h2 {
+  margin-top: 48px;
+  font-size: clamp(22px, 2vw, 28px);
+  font-weight: 500;
+  letter-spacing: -0.02em;
+  color: var(--ink);
+}
+
+.legal h3 {
+  margin-top: 28px;
+  font-size: 18px;
+  font-weight: 500;
+  color: var(--ink);
+}
+
+.legal p,
+.legal ul {
+  margin-top: 12px;
+}
+
+.legal ul {
+  padding-left: 22px;
+  list-style: disc;
+}
+
+.legal li + li {
+  margin-top: 6px;
+}
+
+.legal strong {
+  font-weight: 600;
+  color: var(--ink);
+}
+
+.legal a {
+  color: var(--accent);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.legal code {
+  padding: 1px 6px;
+  border-radius: 6px;
+  background: rgba(121, 66, 232, 0.1);
+  font-size: 0.9em;
+}
+
+.legalButton {
+  display: inline-flex;
+  align-items: center;
+  height: 44px;
+  padding: 0 20px;
+  border: 0;
+  border-radius: 999px;
+  background: var(--ink);
+  color: #fff;
+  font: inherit;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.legalButton:hover {
+  background: var(--accent);
+}
+
+/* Links do rodapé simples */
+.footLinks {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px 20px;
+}
+
+.foot .footLinks a {
+  font-size: 13px;
+  font-weight: 400;
+  letter-spacing: 0;
+  color: var(--ink-2);
+}
+
+.foot .footLinks a:hover {
+  color: var(--accent);
+}

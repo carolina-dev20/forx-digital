@@ -45,7 +45,10 @@ export default function PrecosPage() {
 
       <footer className={`${s.scenes} ${s.foot}`}>
         <Link href="/">FORX Digital.</Link>
-        <span>© 2026 FORX Digital — Tecnologia, gestão e crescimento.</span>
+        <span className={s.footLinks}>
+          <span>© 2026 FORX Digital — Tecnologia, gestão e crescimento.</span>
+          <Link href="/privacidade">Política de Privacidade</Link>
+        </span>
       </footer>
     </main>
   );
