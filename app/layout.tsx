@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Plus_Jakarta_Sans } from "next/font/google";
+import { Inter_Tight, Plus_Jakarta_Sans } from "next/font/google";
 import CookieConsent from "./components/CookieConsent";
 import "./globals.css";
 
@@ -9,6 +9,14 @@ const plusJakartaSans = Plus_Jakarta_Sans({
   subsets: ["latin", "latin-ext"],
   weight: "variable",
   style: ["normal", "italic"],
+  display: "swap",
+});
+
+// Inter Tight (400/500/600), usada no topo animado das páginas de Gestão
+const interTight = Inter_Tight({
+  variable: "--font-inter-tight",
+  subsets: ["latin", "latin-ext"],
+  weight: ["400", "500", "600"],
   display: "swap",
 });
 
@@ -62,7 +70,7 @@ export default function RootLayout({
   return (
     <html
       lang="pt-BR"
-      className={`${plusJakartaSans.variable} h-full antialiased`}
+      className={`${plusJakartaSans.variable} ${interTight.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col">
         {children}

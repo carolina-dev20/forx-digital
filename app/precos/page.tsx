@@ -1,12 +1,36 @@
+import Link from "next/link";
 
 import MegaMenu from "../components/MegaMenu";
 import PricingSection from "../components/PricingSection";
+import Scenes from "../components/scenes/Scenes";
+import s from "../components/scenes/scenes.module.css";
 
 export default function PrecosPage() {
   return (
-    <main className="min-h-screen bg-[#08070D]">
+    <main className={s.main}>
       <MegaMenu />
-      <PricingSection />
+
+      {/* TOPO: branco com brilho roxo e título revelado */}
+      <Scenes
+        compact
+        eyebrow="PLANOS FORX DIGITAL"
+        heroTitle={[
+          { text: "Escolha o plano ideal" },
+          { br: true },
+          { text: "para o seu negócio.", hl: true },
+        ]}
+        description="Compare os planos de presença digital e de CRM e descubra quais soluções fazem sentido para o momento da sua empresa."
+      />
+
+      {/* TABELA DE PLANOS EM ROXO-CLARO */}
+      <div className={`${s.scenes} ${s.lightPanel}`}>
+        <PricingSection />
+      </div>
+
+      <footer className={`${s.scenes} ${s.foot}`}>
+        <Link href="/">FORX Digital.</Link>
+        <span>© 2026 FORX Digital — Tecnologia, gestão e crescimento.</span>
+      </footer>
     </main>
   );
 }

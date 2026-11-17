@@ -27,6 +27,10 @@ import {
   Star,
 } from "lucide-react";
 
+import { DotButton } from "./scenes/Scenes";
+import { BlockHead } from "./scenes/blocks";
+import sc from "./scenes/scenes.module.css";
+
 // ==========================================
 // ANIMAÇÃO DE DIGITAÇÃO
 // ==========================================
@@ -73,54 +77,10 @@ function Typewriter({
             duration: 0.85,
             repeat: Infinity,
           }}
-          className="ml-0.5 inline-block h-[1em] w-[2px] translate-y-[2px] bg-[#7942E8]"
+          className="ml-0.5 inline-block h-[1em] w-[2px] translate-y-[2px] bg-[#b994ff]"
         />
       )}
     </span>
-  );
-}
-
-// ==========================================
-// TÍTULO PALAVRA POR PALAVRA
-// ==========================================
-
-function RevealWords({
-  text,
-}: {
-  text: string;
-}) {
-  const words = text.split(" ");
-
-  return (
-    <h2 className="max-w-[1050px] text-[38px] font-medium leading-[1.1] tracking-[-0.06em] text-[#171717] sm:text-5xl lg:text-[68px]">
-      {words.map((word, index) => (
-        <span
-          key={`${word}-${index}`}
-          className="inline-block overflow-hidden align-bottom"
-        >
-          <motion.span
-            initial={{
-              opacity: 0,
-              y: "100%",
-            }}
-            whileInView={{
-              opacity: 1,
-              y: "0%",
-            }}
-            viewport={{ once: true }}
-            transition={{
-              duration: 0.65,
-              delay: index * 0.055,
-              ease: [0.22, 1, 0.36, 1],
-            }}
-            className="inline-block"
-          >
-            {word}
-          </motion.span>
-          <span>&nbsp;</span>
-        </span>
-      ))}
-    </h2>
   );
 }
 
@@ -221,14 +181,14 @@ function AnimatedSearchBar({
       }}
       viewport={{ once: true }}
       transition={{ duration: 0.7 }}
-      className="mb-9 flex w-full max-w-[570px] items-center gap-4 rounded-full border border-black/10 bg-white px-5 py-4 shadow-[0_10px_35px_rgba(0,0,0,0.04)] sm:px-6 sm:py-5"
+      className="mt-10 flex w-full max-w-[570px] items-center gap-4 rounded-full border border-white/[0.12] bg-white/[0.03] px-5 py-4 sm:px-6 sm:py-5"
     >
       <Search
         size={21}
-        className="shrink-0 text-[#7942E8]"
+        className="shrink-0 text-[#c9b6ff]"
       />
 
-      <span className="min-w-0 flex-1 truncate text-sm text-black/55 sm:text-base">
+      <span className="min-w-0 flex-1 truncate text-sm text-white/60 sm:text-base">
         <Typewriter
           text="Alguém pesquisando sobre você..."
           active={active}
@@ -236,10 +196,10 @@ function AnimatedSearchBar({
         />
       </span>
 
-      <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-[#F3F3F3]">
+      <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-white/10">
         <ArrowUpRight
           size={16}
-          className="text-black/65"
+          className="text-white/70"
         />
       </span>
     </motion.div>
@@ -478,19 +438,19 @@ function PresenceCard({
         duration: 0.7,
         delay,
       }}
-      className="flex min-h-[590px] min-w-0 flex-col overflow-hidden rounded-[30px] border border-black/10 bg-white shadow-[0_8px_35px_rgba(0,0,0,0.025)] sm:min-h-[620px]"
+      className="flex min-h-[590px] min-w-0 flex-col overflow-hidden rounded-[22px] border border-white/[0.12] bg-white/[0.02] sm:min-h-[620px]"
     >
       {/* TEXTO NO TOPO */}
       <div className="relative z-10 shrink-0 px-7 pb-6 pt-8 sm:px-10 sm:pt-10">
-        <p className="text-xs font-semibold uppercase tracking-[0.22em] text-[#7942E8]">
+        <p className="text-xs font-semibold uppercase tracking-[0.16em] text-[#c9b6ff]">
           {number} / {label}
         </p>
 
-        <h3 className="mt-6 max-w-[480px] text-[30px] font-medium leading-[1.14] tracking-[-0.055em] text-[#171717] sm:text-[36px]">
+        <h3 className="mt-6 max-w-[480px] text-[24px] font-normal leading-[1.2] tracking-[-0.03em] text-white sm:text-[28px]">
           {title}
         </h3>
 
-        <p className="mt-4 max-w-[440px] text-sm leading-7 text-[#858585] sm:text-base">
+        <p className="mt-4 max-w-[440px] text-sm leading-7 text-white/55 sm:text-base">
           {description}
         </p>
       </div>
@@ -519,45 +479,20 @@ export default function GooglePresence() {
     <section
       ref={sectionRef}
       id="presenca-google"
-      className="overflow-hidden bg-[#F3F3F3] px-6 py-16 md:px-12 md:py-20 lg:px-20"
+      className={sc.block}
     >
-      <div className="mx-auto max-w-[1280px]">
-
-        {/* BARRA COM LETRAS SENDO DIGITADAS */}
-        <AnimatedSearchBar active={isVisible} />
+      <div className="max-w-[1180px]">
 
         {/* CABEÇALHO */}
-        <div className="mb-11">
-          <motion.div
-            initial={{ opacity: 0, y: 15 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.55 }}
-            className="mb-5 flex items-center gap-3"
-          >
-            <span className="h-px w-7 bg-[#7942E8]" />
+        <BlockHead
+          label="PRESENÇA DIGITAL"
+          title={[{ text: "Quando alguém procura sua empresa, o que encontra?" }]}
+          lead="A jornada de um cliente pode começar com uma simples pesquisa. Sua empresa precisa estar preparada para ser encontrada e transmitir confiança."
+        />
 
-            <span className="text-xs font-semibold uppercase tracking-[0.22em] text-black/45">
-              PRESENÇA DIGITAL
-            </span>
-          </motion.div>
-
-          <RevealWords text="Quando alguém procura sua empresa, o que encontra?" />
-
-          <motion.p
-            initial={{ opacity: 0, y: 15 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{
-              duration: 0.65,
-              delay: 0.15,
-            }}
-            className="mt-6 max-w-2xl text-base leading-8 text-black/50"
-          >
-            A jornada de um cliente pode começar com uma
-            simples pesquisa. Sua empresa precisa estar
-            preparada para ser encontrada e transmitir confiança.
-          </motion.p>
+        {/* BARRA COM LETRAS SENDO DIGITADAS */}
+        <div className="mb-10">
+          <AnimatedSearchBar active={isVisible} />
         </div>
 
         {/* CARDS */}
@@ -588,24 +523,16 @@ export default function GooglePresence() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.65 }}
-          className="mt-10 flex flex-col justify-between gap-6 border-t border-black/10 pt-8 sm:flex-row sm:items-center"
+          className="mt-10 flex flex-col justify-between gap-6 border-t border-white/[0.12] pt-8 sm:flex-row sm:items-center"
         >
-          <p className="max-w-xl text-base leading-7 text-black/60">
+          <p className="max-w-xl text-base leading-7 text-white/60">
             Não deixe que seu próximo cliente encontre
             apenas seus concorrentes.
           </p>
 
-          <a
-            href="#contato"
-            className="group inline-flex shrink-0 items-center justify-center gap-3 rounded-full bg-[#151515] px-7 py-4 text-sm font-medium text-white transition-all duration-300 hover:shadow-[0_0_25px_rgba(121,66,232,0.25)]"
-          >
+          <DotButton href="#contato" large>
             Quero melhorar minha presença digital
-
-            <ArrowUpRight
-              size={18}
-              className="transition-transform duration-300 group-hover:-translate-y-1 group-hover:translate-x-1"
-            />
-          </a>
+          </DotButton>
         </motion.div>
       </div>
     </section>

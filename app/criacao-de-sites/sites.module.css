@@ -154,10 +154,10 @@
 
 .heroTitle {
   margin-top: 26px;
-  font-size: clamp(54px, 5.3vw, 83px);
-  line-height: 1.06;
+  font-size: clamp(40px, 5vw, 72px);
+  line-height: 1.08;
   font-weight: 650;
-  letter-spacing: -0.075em;
+  letter-spacing: -0.06em;
   color: #fff;
 }
 
@@ -306,7 +306,7 @@
 .browserContent h2 {
   max-width: 370px;
   margin-top: 15px;
-  font-size: clamp(27px, 3vw, 41px);
+  font-size: clamp(24px, 2.6vw, 34px);
   font-weight: 600;
   line-height: 1.12;
   letter-spacing: -0.06em;
@@ -376,10 +376,10 @@
 
 .sectionTitle {
   margin-top: 22px;
-  font-size: clamp(38px, 4.5vw, 66px);
-  line-height: 1.09;
+  font-size: clamp(30px, 3.2vw, 44px);
+  line-height: 1.15;
   font-weight: 600;
-  letter-spacing: -0.07em;
+  letter-spacing: -0.045em;
 }
 
 .sectionTitle span {
@@ -559,7 +559,7 @@
 
 .comparisonContent h3 {
   margin-top: 22px;
-  font-size: clamp(27px, 3vw, 40px);
+  font-size: clamp(24px, 2.4vw, 28px);
   font-weight: 600;
   letter-spacing: -0.055em;
 }
@@ -677,7 +677,7 @@
 
 .typeCard h3 {
   margin-top: 13px;
-  font-size: 28px;
+  font-size: 24px;
   line-height: 1.15;
   letter-spacing: -0.055em;
   font-weight: 600;
@@ -771,10 +771,10 @@
 
 .ctaSection h2 {
   margin-top: 24px;
-  font-size: clamp(44px, 6vw, 82px);
-  line-height: 1.07;
+  font-size: clamp(30px, 3.2vw, 44px);
+  line-height: 1.15;
   font-weight: 600;
-  letter-spacing: -0.075em;
+  letter-spacing: -0.045em;
 }
 
 .ctaSection p {
@@ -818,7 +818,7 @@
   }
 
   .heroTitle {
-    font-size: clamp(48px, 5vw, 70px);
+    font-size: clamp(40px, 5vw, 64px);
   }
 
   .benefitsGrid {
@@ -891,7 +891,7 @@
   }
 
   .heroTitle {
-    font-size: clamp(42px, 10vw, 62px);
+    font-size: 40px;
   }
 
   .heroDescription {
@@ -918,7 +918,7 @@
   }
 
   .browserContent h2 {
-    font-size: 29px;
+    font-size: 24px;
   }
 
   .floatingBadge {
@@ -938,7 +938,7 @@
   }
 
   .sectionTitle {
-    font-size: 39px;
+    font-size: 30px;
   }
 
   .sectionDescription {
@@ -974,7 +974,7 @@
   }
 
   .comparisonContent h3 {
-    font-size: 30px;
+    font-size: 24px;
   }
 
   .comparisonFeatures {
@@ -991,7 +991,7 @@
   }
 
   .ctaSection h2 {
-    font-size: 46px;
+    font-size: 30px;
   }
 
   .footer {

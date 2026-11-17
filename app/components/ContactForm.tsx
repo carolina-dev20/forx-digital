@@ -152,7 +152,7 @@ export default function ContactForm() {
           </span>
         </div>
 
-        <h3 className="text-2xl font-medium tracking-[-0.04em] text-white sm:text-3xl">
+        <h3 className="text-2xl font-medium tracking-[-0.04em] text-white sm:text-[28px]">
           Conte sobre seu projeto.
         </h3>
 

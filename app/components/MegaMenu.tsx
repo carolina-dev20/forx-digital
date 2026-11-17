@@ -336,7 +336,7 @@ export default function MegaMenu() {
                   FORX DIGITAL / EXPLORE
                 </span>
 
-                <h3 className="mt-5 max-w-[300px] text-[30px] font-medium leading-[1.15] tracking-[-0.05em]">
+                <h3 className="mt-5 max-w-[300px] text-[24px] font-medium leading-[1.2] tracking-[-0.04em]">
                   {menuData[activeMenu].title}
                 </h3>
 
