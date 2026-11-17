@@ -21,7 +21,6 @@ import {
 
 import MegaMenu from "./components/MegaMenu";
 import GooglePresence from "./components/GooglePresence";
-import Portfolio from "./components/Portfolio";
 import ContactForm from "./components/ContactForm";
 import WhatsAppFloat from "./components/WhatsAppFloat";
 import Scenes, { DotButton } from "./components/scenes/Scenes";
@@ -269,11 +268,6 @@ export default function HomeContent() {
           {/* PRESENÇA NO GOOGLE */}
           <GooglePresence />
 
-          {/* PORTFÓLIO */}
-          <div id="portfolio" className="scroll-mt-20">
-            <Portfolio />
-          </div>
-
           {/* PROCESSO */}
           <section id="processo" className={s.block}>
             <BlockHead
@@ -425,7 +419,7 @@ export default function HomeContent() {
                   {[
                     ["Serviços", "#servicos"],
                     ["Gestão", "#gestao-processos"],
-                    ["Projetos", "#portfolio"],
+                    ["Cases", "/cases"],
                     ["Processo", "#processo"],
                     ["Sobre", "#sobre"],
                   ].map(([label, href]) => (

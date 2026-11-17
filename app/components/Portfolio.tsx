@@ -20,28 +20,40 @@ function ProjectTag({ children }: { children: React.ReactNode }) {
   );
 }
 
-export default function Portfolio() {
+export default function Portfolio({
+  showHeader = true,
+  ctaHref = "#contato",
+  ctaExternal = false,
+}: {
+  /** false: sem o cabeçalho (quando a página já apresenta os cases no topo). */
+  showHeader?: boolean;
+  ctaHref?: string;
+  ctaExternal?: boolean;
+}) {
   return (
     <section
-      id="projetos"
+      id="cases"
       className={sc.block}
     >
       <div className="max-w-[1180px]">
 
         {/* CABEÇALHO */}
-        <BlockHead
-          label="PORTFÓLIO FORX"
-          title={twoLines("Projetos que", "ganham vida.")}
-          lead="Experiências digitais desenvolvidas para valorizar marcas, fortalecer sua presença online e conectar negócios aos seus clientes."
-        />
+        {showHeader && (
+          <BlockHead
+            label="PORTFÓLIO FORX"
+            title={twoLines("Projetos que", "ganham vida.")}
+            lead="Experiências digitais desenvolvidas para valorizar marcas, fortalecer sua presença online e conectar negócios aos seus clientes."
+          />
+        )}
 
         {/* PROJETOS */}
-        <div className="mt-[6vh] grid items-start gap-7 lg:grid-cols-2">
+        <div className={`${showHeader ? "mt-[6vh]" : ""} grid items-start gap-7 lg:grid-cols-2`}>
 
           {/* =====================================
               PROJETO CLEIDE BEAUTY
           ===================================== */}
           <motion.article
+            id="cleide-beauty-salao"
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
@@ -158,6 +170,7 @@ export default function Portfolio() {
               PROJETO LARISSA BARBOSA
           ===================================== */}
           <motion.article
+            id="larissa-barbosa"
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
@@ -281,7 +294,7 @@ export default function Portfolio() {
             </p>
           </div>
 
-          <DotButton href="#contato" large>
+          <DotButton href={ctaHref} large external={ctaExternal}>
             Solicitar orçamento
           </DotButton>
         </motion.div>

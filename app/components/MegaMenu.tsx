@@ -10,7 +10,7 @@ import {
   X,
 } from "lucide-react";
 
-type MenuKey = "servicos" | "gestao" | "projetos" | "processo" | "sobre";
+type MenuKey = "servicos" | "gestao" | "cases" | "processo" | "sobre";
 
 type MenuLink = {
   label: string;
@@ -88,18 +88,23 @@ const menuData: Record<MenuKey, MenuSection> = {
     ],
   },
 
-  projetos: {
+  cases: {
     title: "Projetos que ganham vida",
     subtitle: "Conheça alguns dos nossos trabalhos.",
     links: [
       {
         label: "Cleide Beauty Salão",
-        href: "/#portfolio",
+        href: "/cases#cleide-beauty-salao",
         description: "Site para salão de beleza",
       },
       {
-        label: "Todos os projetos",
-        href: "/#portfolio",
+        label: "Larissa Barbosa",
+        href: "/cases#larissa-barbosa",
+        description: "Presença digital para profissional da beleza",
+      },
+      {
+        label: "Todos os cases",
+        href: "/cases",
         description: "Explore nosso portfólio",
       },
     ],
@@ -158,7 +163,7 @@ const menuData: Record<MenuKey, MenuSection> = {
 const menuItems: { key: MenuKey; label: string; href: string }[] = [
   { key: "servicos", label: "Serviços", href: "/#servicos" },
   { key: "gestao", label: "Gestão", href: "/#gestao-processos" },
-  { key: "projetos", label: "Projetos", href: "/#portfolio" },
+  { key: "cases", label: "Cases", href: "/cases" },
   { key: "processo", label: "Processo", href: "/#processo" },
   { key: "sobre", label: "Sobre", href: "/#sobre" },
 ];
