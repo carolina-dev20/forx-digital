@@ -58,7 +58,7 @@ export const gestaoPages: Record<GestaoSlug, GestaoContent> = {
     menuDescription: "Rotinas, indicadores e organização",
     icon: BriefcaseBusiness,
     seo: {
-      title: "Gestão de Processos Internos",
+      title: "Gestão de Processos Internos para Empresas",
       description:
         "Estruturação de processos internos, rotinas e indicadores para empresas que querem mais controle, menos retrabalho e uma operação preparada para crescer.",
     },
@@ -196,7 +196,7 @@ export const gestaoPages: Record<GestaoSlug, GestaoContent> = {
     menuDescription: "Atendimento e funil comercial",
     icon: Users,
     seo: {
-      title: "CRM e Relacionamento com Clientes",
+      title: "CRM para Empresas: Funil de Vendas e Clientes",
       description:
         "Implantação de CRM e organização do funil comercial para acompanhar contatos, oportunidades e clientes, sem perder vendas por falta de retorno.",
     },
@@ -339,7 +339,7 @@ export const gestaoPages: Record<GestaoSlug, GestaoContent> = {
     menuDescription: "Menos tarefas manuais e retrabalho",
     icon: Workflow,
     seo: {
-      title: "Automação de Processos",
+      title: "Automação de Processos e Tarefas para Empresas",
       description:
         "Automação de tarefas, avisos e fluxos de trabalho para empresas que querem ganhar tempo, reduzir erros e atender clientes com mais agilidade.",
     },

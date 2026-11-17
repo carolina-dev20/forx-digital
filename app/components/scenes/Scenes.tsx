@@ -172,7 +172,9 @@ function drawBowl(
   tip: number,
   half: number,
   soft: number,
-  aspect: number
+  aspect: number,
+  /** Proporção usada só para a largura da cuia (permite alargá-la no celular). */
+  shapeAspect: number = aspect
 ) {
   // Abaixo de 0.3 (só na entrada) a mesma cuia é deslocada para cima.
   const tipS = Math.max(tip, 0.3);
@@ -183,7 +185,7 @@ function drawBowl(
   for (let k = 0; k < N_EDGE; k++) {
     const yy = -0.3 + ((tipS + 0.3) * k) / (N_EDGE - 1);
     ey[k] = yy;
-    ex[k] = half * aspect * Math.pow(Math.max(0, 1 - yy / tipS), 0.72);
+    ex[k] = half * shapeAspect * Math.pow(Math.max(0, 1 - yy / tipS), 0.72);
   }
 
   const data = img.data;
@@ -210,7 +212,7 @@ function drawBowl(
 
       let sd = Math.sqrt(d2);
       const inside =
-        py < tipS && px < half * aspect * Math.pow(Math.max(0, 1 - py / tipS), 0.72);
+        py < tipS && px < half * shapeAspect * Math.pow(Math.max(0, 1 - py / tipS), 0.72);
       if (inside) sd = -sd;
       sd -= RND;
 
@@ -339,6 +341,7 @@ export default function Scenes({
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const h1Ref = useRef<HTMLHeadingElement>(null);
   const stmtRef = useRef<HTMLParagraphElement>(null);
+  const stmtSectionRef = useRef<HTMLElement>(null);
   const splitRef = useRef<HTMLElement>(null);
   const h2Ref = useRef<HTMLHeadingElement>(null);
   const rowRef = useRef<HTMLDivElement>(null);
@@ -348,7 +351,8 @@ export default function Scenes({
   useEffect(() => {
     const canvas = canvasRef.current;
     const ctx = canvas?.getContext("2d");
-    if (!canvas || !ctx) return;
+    const wrap = wrapRef.current;
+    if (!canvas || !ctx || !wrap) return;
     const img = ctx.createImageData(BW, BH);
 
     const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
@@ -363,19 +367,36 @@ export default function Scenes({
     const start = performance.now();
     const INTRO_DELAY = 250;
     const INTRO_DUR = 1050;
+    const DRAW_EVERY = 32; // ms: ~30 quadros/s bastam para um degradê lento
+    const STMT_START = 0.69; // onde a frase começa quando o topo tem uma tela de altura
+
     let raf = 0;
+    let running = false;
+    let visible = true;
+    let dirty = true;
+    let heroDone = false;
+    let lastDraw = -Infinity;
     let rowShown = false;
     let navOn = false;
 
     const viewH = () => Math.max(1, window.innerHeight - HEADER);
 
-    function onScroll() {
-      const H = viewH();
-      const wrap = wrapRef.current;
-      if (!wrap) return;
+    /**
+     * Rolagem "normalizada": se o topo for mais alto que a tela (comum no celular),
+     * o trecho até a frase é comprimido para a mesma escala do computador.
+     */
+    function scrollQ(H: number) {
+      const q = Math.max(0, -wrap!.getBoundingClientRect().top / H);
+      const stmt = stmtSectionRef.current;
+      if (!stmt) return q;
+      const q0 = Math.max(0.01, (stmt.offsetTop - wrap!.offsetTop) / H);
+      return q < q0 ? q * (STMT_START / q0) : STMT_START + (q - q0);
+    }
 
-      // q: quanto da altura útil da tela já foi rolado dentro desta parte.
-      const q = Math.max(0, -wrap.getBoundingClientRect().top / H);
+    function update() {
+      const H = viewH();
+      const q = scrollQ(H);
+
       tgt.tip = lookup(q, KEYS.tip);
       tgt.half = lookup(q, KEYS.half);
       tgt.soft = lookup(q, KEYS.soft);
@@ -383,7 +404,7 @@ export default function Scenes({
       // Frase: sobe para o lugar e revela com a rolagem.
       if (stmtRef.current) {
         const sp = reduce ? 1 : clamp((q - 0.56) / 2.03);
-        const rise = reduce ? 1 : clamp((q - 0.69) / 0.74);
+        const rise = reduce ? 1 : clamp((q - STMT_START) / 0.74);
         stmtRef.current.style.transform = `translateY(${(0.205 * (1 - rise) ** 2 * H).toFixed(1)}px)`;
         paint(stmtP, sp, 0.16, INK, REVEAL, WHITE, STMT_HL);
 
@@ -415,12 +436,17 @@ export default function Scenes({
     }
 
     function frame(now: number) {
-      const rect = wrapRef.current?.getBoundingClientRect();
-      const visible = rect ? rect.bottom > 0 && rect.top < window.innerHeight : false;
+      if (dirty) {
+        dirty = false;
+        update();
+      }
 
       // Título do topo: revelação por tempo (1,25s).
-      const tHero = reduce ? 1 : clamp((now - start) / 1250);
-      paint(heroP, tHero, 0.35, INK, REVEAL, WHITE, HERO_HL);
+      if (!heroDone) {
+        const tHero = reduce ? 1 : clamp((now - start) / 1250);
+        paint(heroP, tHero, 0.35, INK, REVEAL, WHITE, HERO_HL);
+        heroDone = tHero >= 1;
+      }
 
       const introK = reduce ? 1 : smooth((now - start - INTRO_DELAY) / INTRO_DUR);
 
@@ -435,18 +461,49 @@ export default function Scenes({
         cur.soft += (tgt.soft - cur.soft) * 0.12;
       }
 
-      if (visible) {
+      if (now - lastDraw >= DRAW_EVERY) {
+        lastDraw = now;
         const drift = reduce ? 0 : 1;
         const tip = cur.tip + Math.sin(now * 0.00033 + 1.3) * 0.02 * drift;
         const half = cur.half + Math.sin(now * 0.0005) * 0.015 * drift;
+        // No celular (tela estreita) a cuia é alargada para não virar um "pingo" fino.
         const aspect = window.innerWidth / viewH();
-        drawBowl(ctx!, img, tip, half, cur.soft, aspect);
+        drawBowl(ctx!, img, tip, half, cur.soft, aspect, Math.max(aspect, 0.9));
       }
 
+      // Fora da tela, para de vez (volta quando reaparecer).
+      if (visible || !heroDone) {
+        raf = requestAnimationFrame(frame);
+      } else {
+        running = false;
+      }
+    }
+
+    function run() {
+      if (running) return;
+      running = true;
       raf = requestAnimationFrame(frame);
     }
 
-    onScroll();
+    function onScroll() {
+      dirty = true;
+      if (visible) run();
+    }
+
+    const io = new IntersectionObserver(
+      ([entry]) => {
+        visible = entry.isIntersecting;
+        if (visible) {
+          dirty = true;
+          run();
+        }
+      },
+      { rootMargin: "120px 0px" }
+    );
+    io.observe(wrap);
+
+    update();
+    running = true;
     raf = requestAnimationFrame((now) => {
       setReady(true);
       frame(now);
@@ -457,6 +514,7 @@ export default function Scenes({
 
     return () => {
       cancelAnimationFrame(raf);
+      io.disconnect();
       window.removeEventListener("scroll", onScroll);
       window.removeEventListener("resize", onScroll);
     };
@@ -489,8 +547,7 @@ export default function Scenes({
             {eyebrow}
           </span>
 
-          <h1 ref={h1Ref} className={s.h1}>
-            <span className="sr-only">{plain(heroTitle)}</span>
+          <h1 ref={h1Ref} className={s.h1} aria-label={plain(heroTitle)}>
             <span aria-hidden="true">
               <SplitText segments={heroTitle} />
             </span>
@@ -575,13 +632,10 @@ export default function Scenes({
 
       {/* 2) FRASE REVELADA COM A ROLAGEM */}
       {statement && (
-        <section id={statement.id} className={s.statement}>
+        <section ref={stmtSectionRef} id={statement.id} className={s.statement}>
           <div className={s.pin}>
             <p ref={stmtRef} className={s.stmt}>
-              <span className="sr-only">{plain(statement.text)}</span>
-              <span aria-hidden="true">
-                <SplitText segments={statement.text} />
-              </span>
+              <SplitText segments={statement.text} />
             </p>
           </div>
         </section>
@@ -593,8 +647,7 @@ export default function Scenes({
           <div className={s.l}>
             <div className={s.lhead}>
               <span className={s.label}>{split.label}</span>
-              <h2 ref={h2Ref} className={s.h2}>
-                <span className="sr-only">{plain(split.title)}</span>
+              <h2 ref={h2Ref} className={s.h2} aria-label={plain(split.title)}>
                 <span aria-hidden="true">
                   <SplitText segments={split.title} />
                 </span>

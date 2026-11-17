@@ -1,37 +1,56 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useState, useSyncExternalStore } from "react";
 import { GoogleAnalytics } from "@next/third-parties/google";
 
 type ConsentChoice = "accepted" | "rejected" | null;
 
 const CONSENT_KEY = "forx-cookie-consent";
 
+// A escolha fica no navegador (localStorage); estes ouvintes avisam o componente quando ela muda.
+const listeners = new Set<() => void>();
+
+function subscribe(callback: () => void) {
+  listeners.add(callback);
+  window.addEventListener("storage", callback);
+  return () => {
+    listeners.delete(callback);
+    window.removeEventListener("storage", callback);
+  };
+}
+
+function readConsent() {
+  try {
+    return localStorage.getItem(CONSENT_KEY) ?? "";
+  } catch {
+    return "";
+  }
+}
+
 export default function CookieConsent() {
-  const [consent, setConsent] = useState<ConsentChoice>(null);
-  const [ready, setReady] = useState(false);
+  // No servidor ainda não há escolha conhecida (null): nada é exibido até o navegador carregar.
+  const saved = useSyncExternalStore(subscribe, readConsent, () => null);
   const [showPreferences, setShowPreferences] = useState(false);
   const [analyticsEnabled, setAnalyticsEnabled] = useState(true);
-
-  useEffect(() => {
-    const savedConsent = localStorage.getItem(CONSENT_KEY);
-
-    if (savedConsent === "accepted" || savedConsent === "rejected") {
-      setConsent(savedConsent);
-      setAnalyticsEnabled(savedConsent === "accepted");
-    }
-
-    setReady(true);
-  }, []);
+  // Escolha feita nesta visita (vale mesmo se o armazenamento estiver bloqueado).
+  const [sessionChoice, setSessionChoice] = useState<ConsentChoice>(null);
 
   function saveConsent(choice: "accepted" | "rejected") {
-    localStorage.setItem(CONSENT_KEY, choice);
-    setConsent(choice);
+    try {
+      localStorage.setItem(CONSENT_KEY, choice);
+    } catch {
+      // Navegação privada ou armazenamento bloqueado: a escolha vale só para esta visita.
+    }
+    setSessionChoice(choice);
     setAnalyticsEnabled(choice === "accepted");
     setShowPreferences(false);
+    listeners.forEach((notify) => notify());
   }
 
-  if (!ready) return null;
+  if (saved === null) return null;
+
+  const consent: ConsentChoice =
+    saved === "accepted" || saved === "rejected" ? saved : sessionChoice;
 
   return (
     <>

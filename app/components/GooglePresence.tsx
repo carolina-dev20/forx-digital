@@ -50,8 +50,6 @@ function Typewriter({
   useEffect(() => {
     if (!active || reduceMotion) return;
 
-    setCount(0);
-
     const interval = window.setInterval(() => {
       setCount((current) => {
         if (current >= text.length) {

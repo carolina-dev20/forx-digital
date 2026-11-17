@@ -1,6 +1,7 @@
 
 "use client";
 
+import Image from "next/image";
 import { motion } from "motion/react";
 import {
   ArrowUpRight,
@@ -55,10 +56,12 @@ export default function Portfolio() {
               <div className="relative z-10 w-[82%] -translate-x-[7%] transition-transform duration-700 group-hover:scale-[1.025]">
                 <div className="overflow-hidden rounded-t-[14px] border-[5px] border-[#242329] bg-[#242329] shadow-2xl sm:border-[7px]">
                   <div className="relative aspect-[16/10] overflow-hidden bg-[#F3EBE3]">
-                    <img
+                    <Image
                       src="/projetos/cleide-desktop.png"
                       alt="Site Cleide Beauty Salão na versão computador"
-                      className="absolute inset-0 h-full w-full object-contain object-top"
+                      fill
+                      sizes="(min-width: 1024px) 480px, 80vw"
+                      className="object-contain object-top"
                     />
                   </div>
                 </div>
@@ -71,10 +74,12 @@ export default function Portfolio() {
               {/* CELULAR */}
               <div className="absolute bottom-[10%] right-[7%] z-20 w-[23%] rotate-[2deg] transition-transform duration-700 group-hover:-translate-y-2">
                 <div className="relative aspect-[9/19] overflow-hidden rounded-[17px] border-[5px] border-[#242329] bg-[#F3EBE3] shadow-[0_20px_40px_rgba(0,0,0,0.3)] sm:rounded-[25px] sm:border-[7px]">
-                  <img
+                  <Image
                     src="/projetos/cleide-mobile.png"
                     alt="Site Cleide Beauty Salão na versão celular"
-                    className="absolute inset-0 h-full w-full object-contain object-top"
+                    fill
+                    sizes="(min-width: 1024px) 140px, 25vw"
+                    className="object-contain object-top"
                   />
                   <div className="absolute left-1/2 top-1 h-[5px] w-[32%] -translate-x-1/2 rounded-full bg-[#242329]" />
                 </div>

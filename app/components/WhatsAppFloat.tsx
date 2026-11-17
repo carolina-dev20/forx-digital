@@ -11,14 +11,14 @@ type WhatsAppFloatProps = {
 };
 
 export default function WhatsAppFloat({
-  phone: _phone,
+  phone = WHATSAPP_NUMBER,
 }: WhatsAppFloatProps) {
   const reduceMotion = useReducedMotion();
 
   const message =
     "Olá! Conheci a FORX Digital pelo site e gostaria de solicitar um orçamento.";
 
-  const whatsappUrl = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(
+  const whatsappUrl = `https://wa.me/${phone}?text=${encodeURIComponent(
     message
   )}`;
 

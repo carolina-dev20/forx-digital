@@ -50,7 +50,8 @@ export function useSceneEffects(rootRef: RefObject<HTMLElement | null>) {
     );
     const glows = Array.from(root.querySelectorAll<HTMLElement>("[data-glow]"));
 
-    function onScroll() {
+    function update() {
+      ticking = false;
       const H = Math.max(1, window.innerHeight - HEADER);
 
       for (const t of titles) {
@@ -70,6 +71,15 @@ export function useSceneEffects(rootRef: RefObject<HTMLElement | null>) {
       }
     }
 
+    // Agrupa os eventos de rolagem: no máximo um cálculo por quadro.
+    let ticking = false;
+    let raf = 0;
+    function onScroll() {
+      if (ticking) return;
+      ticking = true;
+      raf = requestAnimationFrame(update);
+    }
+
     const fades = Array.from(root.querySelectorAll<HTMLElement>("[data-fade]"));
     const io = new IntersectionObserver(
       (entries) => {
@@ -81,11 +91,12 @@ export function useSceneEffects(rootRef: RefObject<HTMLElement | null>) {
     );
     fades.forEach((el) => io.observe(el));
 
-    onScroll();
+    update();
     window.addEventListener("scroll", onScroll, { passive: true });
     window.addEventListener("resize", onScroll);
 
     return () => {
+      cancelAnimationFrame(raf);
       io.disconnect();
       window.removeEventListener("scroll", onScroll);
       window.removeEventListener("resize", onScroll);
@@ -106,8 +117,7 @@ export function RevealTitle({
   as?: "h2" | "h3";
 }) {
   return (
-    <Tag className={className} data-reveal={tone}>
-      <span className="sr-only">{plain(segments)}</span>
+    <Tag className={className} data-reveal={tone} aria-label={plain(segments)}>
       <span aria-hidden="true">
         <SplitText segments={segments} />
       </span>

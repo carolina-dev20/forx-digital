@@ -1,7 +1,8 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Inter_Tight, Plus_Jakarta_Sans } from "next/font/google";
 import CookieConsent from "./components/CookieConsent";
 import "./globals.css";
+import { SITE_NAME, SITE_URL } from "./seo";
 
 // Plus Jakarta Sans (pesos 200–800, normal e itálico), hospedada pelo next/font
 const plusJakartaSans = Plus_Jakarta_Sans({
@@ -20,46 +21,64 @@ const interTight = Inter_Tight({
   display: "swap",
 });
 
+const DEFAULT_DESCRIPTION =
+  "Criação de sites, CRM, automação de processos e tráfego pago para empresas de Guarulhos e São Paulo. Tecnologia e gestão para o seu negócio crescer.";
+
 export const metadata: Metadata = {
-  metadataBase: new URL("https://www.forxdigital.com.br"),
+  metadataBase: new URL(SITE_URL),
 
   title: {
-    default: "FORX Digital | Tecnologia, gestão e crescimento",
+    default: "FORX Digital | Sites, CRM, Automação e Tráfego Pago",
     template: "%s | FORX Digital",
   },
 
-  description:
-    "FORX Digital: tecnologia e soluções estratégicas que conectam gestão, automação, desenvolvimento de software e marketing digital para empresas crescerem de forma inteligente.",
+  description: DEFAULT_DESCRIPTION,
 
-  applicationName: "FORX Digital",
+  applicationName: SITE_NAME,
+  authors: [{ name: SITE_NAME, url: SITE_URL }],
+  creator: SITE_NAME,
+  publisher: SITE_NAME,
+  category: "technology",
 
+  // Padrão das prévias; cada página define título, descrição e endereço próprios.
   openGraph: {
     type: "website",
     locale: "pt_BR",
-    url: "https://www.forxdigital.com.br/",
-    siteName: "FORX Digital",
-    title: "FORX Digital | Tecnologia, gestão e crescimento",
-    description:
-      "FORX Digital: tecnologia e soluções estratégicas que conectam gestão, automação, desenvolvimento de software e marketing digital para empresas crescerem de forma inteligente.",
+    siteName: SITE_NAME,
+    title: "FORX Digital | Sites, CRM, Automação e Tráfego Pago",
+    description: DEFAULT_DESCRIPTION,
   },
 
   twitter: {
-    card: "summary",
-    title: "FORX Digital | Tecnologia, gestão e crescimento",
-    description:
-      "FORX Digital: tecnologia e soluções estratégicas que conectam gestão, automação, desenvolvimento de software e marketing digital para empresas crescerem de forma inteligente.",
+    card: "summary_large_image",
+    title: "FORX Digital | Sites, CRM, Automação e Tráfego Pago",
+    description: DEFAULT_DESCRIPTION,
   },
 
   robots: {
     index: true,
     follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+      "max-video-preview": -1,
+    },
   },
+
+  // Evita que números do texto virem links de telefone automaticamente no iPhone.
+  formatDetection: { telephone: false },
 
   icons: {
     icon: "/icon.png",
     shortcut: "/icon.png",
     apple: "/icon.png",
   },
+};
+
+export const viewport: Viewport = {
+  themeColor: "#160c30",
 };
 
 export default function RootLayout({

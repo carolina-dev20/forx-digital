@@ -1,20 +1,38 @@
 import type { Metadata } from "next";
 import GestaoServicePage from "../GestaoServicePage";
 import { gestaoPages } from "../content";
+import {
+  breadcrumbSchema,
+  faqSchema,
+  jsonLd,
+  pageMetadata,
+  serviceSchema,
+} from "../../seo";
 
 const content = gestaoPages["automacao"];
 
-export const metadata: Metadata = {
+export const metadata: Metadata = pageMetadata({
   title: content.seo.title,
   description: content.seo.description,
-  alternates: { canonical: content.href },
-  openGraph: {
-    title: `${content.seo.title} | FORX Digital`,
-    description: content.seo.description,
-    url: content.href,
-  },
-};
+  path: content.href,
+});
 
 export default function Page() {
-  return <GestaoServicePage slug="automacao" />;
+  return (
+    <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={jsonLd([
+          serviceSchema({
+            name: content.menuLabel,
+            description: content.seo.description,
+            path: content.href,
+          }),
+          breadcrumbSchema([{ name: content.menuLabel, path: content.href }]),
+          faqSchema(content.faqs),
+        ])}
+      />
+      <GestaoServicePage slug="automacao" />
+    </>
+  );
 }
