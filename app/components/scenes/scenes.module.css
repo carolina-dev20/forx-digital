@@ -890,7 +890,7 @@
   border-color: rgba(201, 182, 255, 0.6);
 }
 
-.faqItem.open .faqIcon {
+.faqItem[data-open] .faqIcon {
   transform: rotate(45deg);
   background: var(--dot);
   border-color: var(--dot);

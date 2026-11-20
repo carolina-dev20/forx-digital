@@ -168,7 +168,11 @@ export function FaqList({ faqs }: { faqs: { question: string; answer: string }[]
         return (
           <div
             key={faq.question}
-            className={`${s.faqItem} ${isOpen ? s.open : ""} ${s.fade} ${s.show}`}
+            // className fixo: o efeito de rolagem adiciona a classe "show" direto no
+            // elemento; se o className mudasse ao abrir, o React a apagaria e o item sumiria.
+            className={`${s.faqItem} ${s.fade}`}
+            data-open={isOpen ? "" : undefined}
+            data-fade
             style={d(0.05 * Math.min(index, 4))}
           >
             <button
