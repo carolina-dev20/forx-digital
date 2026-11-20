@@ -168,8 +168,7 @@ export function FaqList({ faqs }: { faqs: { question: string; answer: string }[]
         return (
           <div
             key={faq.question}
-            className={`${s.faqItem} ${isOpen ? s.open : ""} ${s.fade}`}
-            data-fade
+            className={`${s.faqItem} ${isOpen ? s.open : ""} ${s.fade} ${s.show}`}
             style={d(0.05 * Math.min(index, 4))}
           >
             <button

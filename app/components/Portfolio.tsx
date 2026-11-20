@@ -2,14 +2,10 @@
 "use client";
 
 import Image from "next/image";
-import { motion } from "motion/react";
-import {
-  ArrowUpRight,
-  Check,
-} from "lucide-react";
+import { ArrowUpRight, Check } from "lucide-react";
 
-import { DotButton } from "./scenes/Scenes";
-import { BlockHead, twoLines } from "./scenes/blocks";
+import type { Segment } from "./scenes/Scenes";
+import { BlockHead, d } from "./scenes/blocks";
 import sc from "./scenes/scenes.module.css";
 
 function ProjectTag({ children }: { children: React.ReactNode }) {
@@ -20,15 +16,18 @@ function ProjectTag({ children }: { children: React.ReactNode }) {
   );
 }
 
+/** Cartão do case: sobe ao entrar na tela e reage ao passar o mouse (como na página de CRM). */
+const CARD =
+  "group h-full min-w-0 overflow-hidden rounded-[20px] border border-[var(--panel-line)] bg-white/[0.02] transition-[border-color,background-color,transform] duration-300 hover:-translate-y-1 hover:border-[#c9b6ff]/45 hover:bg-white/[0.04]";
+
 export default function Portfolio({
-  showHeader = true,
-  ctaHref = "#contato",
-  ctaExternal = false,
+  label,
+  title,
+  lead,
 }: {
-  /** false: sem o cabeçalho (quando a página já apresenta os cases no topo). */
-  showHeader?: boolean;
-  ctaHref?: string;
-  ctaExternal?: boolean;
+  label: string;
+  title: Segment[];
+  lead?: string;
 }) {
   return (
     <section
@@ -38,29 +37,16 @@ export default function Portfolio({
       <div className="max-w-[1180px]">
 
         {/* CABEÇALHO */}
-        {showHeader && (
-          <BlockHead
-            label="PORTFÓLIO FORX"
-            title={twoLines("Projetos que", "ganham vida.")}
-            lead="Experiências digitais desenvolvidas para valorizar marcas, fortalecer sua presença online e conectar negócios aos seus clientes."
-          />
-        )}
+        <BlockHead label={label} title={title} lead={lead} />
 
         {/* PROJETOS */}
-        <div className={`${showHeader ? "mt-[6vh]" : ""} grid items-start gap-7 lg:grid-cols-2`}>
+        <div className="mt-[6vh] grid items-start gap-4 lg:grid-cols-2">
 
           {/* =====================================
               PROJETO CLEIDE BEAUTY
           ===================================== */}
-          <motion.article
-            id="cleide-beauty-salao"
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.65 }}
-            whileHover={{ y: -5 }}
-            className="group min-w-0 overflow-hidden rounded-[22px] border border-white/[0.12] bg-white/[0.02] transition-colors duration-300 hover:border-[#c9b6ff]/45"
-          >
+          <div id="cleide-beauty-salao" className={`${sc.fade} h-full`} data-fade style={d(0)}>
+          <article className={CARD}>
             {/* MOCKUP ORIGINAL */}
             <div className="relative flex aspect-[1.35] items-center justify-center overflow-hidden bg-gradient-to-br from-[#E8D9CC] to-[#BCA79A] p-5 sm:p-9">
 
@@ -100,9 +86,12 @@ export default function Portfolio({
 
             {/* INFORMAÇÕES */}
             <div className="p-6 sm:p-8">
-              <p className="text-[11px] font-semibold uppercase tracking-[0.16em] text-[#c9b6ff]">
-                LANDING PAGE · SEO LOCAL
-              </p>
+              <div className={sc.cellTop}>
+                <span>01</span>
+                <span className="text-[11px] font-semibold uppercase tracking-[0.16em] text-[#c9b6ff]">
+                  LANDING PAGE · SEO LOCAL
+                </span>
+              </div>
 
               <div className="mt-4 flex items-center justify-between gap-4">
                 <h3 className="text-[23px] font-normal tracking-[-0.03em] text-white sm:text-[26px]">
@@ -121,21 +110,17 @@ export default function Portfolio({
               </div>
 
               <p className="mt-4 text-sm leading-7 text-white/55">
-                 Desenvolvimento de uma landing page estratégica para o Cleide Beauty Salão, em Guarulhos, com foco em destacar 
-                 os serviços, fortalecer
-                  a presença digital e facilitar o acesso de
-                   potenciais clientes às informações e canais de agendamento.
+                A landing page passou a reunir os serviços e informações do Cleide Beauty Salão em um só lugar, com acesso direto ao agendamento. A estrutura também prepara o negócio para ser encontrado por quem busca serviços de beleza em Guarulhos.
               </p>
 
               {/* OBJETIVO */}
-              <div className="mt-6 rounded-[16px] border border-white/[0.12] bg-white/[0.03] p-5">
+              <div className="mt-6 rounded-[16px] border border-[var(--panel-line)] bg-white/[0.03] p-5">
                 <p className="text-[11px] font-semibold uppercase tracking-[0.15em] text-white/45">
-                  OBJETIVO ESTRATÉGICO
+                  RESULTADOS PARA O NEGÓCIO
                 </p>
 
                 <p className="mt-3 text-sm leading-7 text-white/85">
-                  Fortalecer a visibilidade local do salão, ampliar suas oportunidades de ser encontrado por clientes da região e 
-                  transformar o interesse pelos serviços em contatos e agendamentos pelo WhatsApp.
+                  Mais clareza para apresentar os serviços, presença digital própria para apoiar a descoberta local no Google e um caminho simples entre conhecer o salão e entrar em contato pelo WhatsApp.
                 </p>
               </div>
 
@@ -164,20 +149,14 @@ export default function Portfolio({
                 <ArrowUpRight size={19} />
               </a>
             </div>
-          </motion.article>
+          </article>
+          </div>
 
           {/* =====================================
               PROJETO LARISSA BARBOSA
           ===================================== */}
-          <motion.article
-            id="larissa-barbosa"
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.65, delay: 0.1 }}
-            whileHover={{ y: -5 }}
-            className="group min-w-0 overflow-hidden rounded-[22px] border border-white/[0.12] bg-white/[0.02] transition-colors duration-300 hover:border-[#c9b6ff]/45"
-          >
+          <div id="larissa-barbosa" className={`${sc.fade} h-full`} data-fade style={d(0.08)}>
+          <article className={CARD}>
             {/* CAPA DO PROJETO */}
             <div className="relative flex aspect-[1.35] items-center justify-center overflow-hidden bg-gradient-to-br from-[#171313] via-[#332522] to-[#A78980] p-8 text-center text-white">
               <div className="absolute -right-20 -top-20 h-64 w-64 rounded-full border border-white/15 transition-transform duration-700 group-hover:scale-125" />
@@ -199,9 +178,12 @@ export default function Portfolio({
 
             {/* INFORMAÇÕES */}
             <div className="p-6 sm:p-8">
-              <p className="text-[11px] font-semibold uppercase tracking-[0.16em] text-[#c9b6ff]">
-                SITE PROFISSIONAL · SEO 
-              </p>
+              <div className={sc.cellTop}>
+                <span>02</span>
+                <span className="text-[11px] font-semibold uppercase tracking-[0.16em] text-[#c9b6ff]">
+                  SITE PROFISSIONAL · SEO
+                </span>
+              </div>
 
               <div className="mt-4 flex items-center justify-between gap-4">
                 <h3 className="text-[23px] font-normal tracking-[-0.03em] text-white sm:text-[26px]">
@@ -220,23 +202,17 @@ export default function Portfolio({
               </div>
 
               <p className="mt-4 text-sm leading-7 text-white/55">
-                Projeto de presença digital para profissional da beleza,
-                reunindo desenvolvimento de site institucional para
-                apresentação de serviços, otimização para mecanismos de
-                busca (SEO), presença estratégica no Google e ações de
-                tráfego para ampliar a visibilidade da marca.
+                O site e o trabalho de SEO organizaram a presença digital da Larissa: os serviços ganharam uma vitrine profissional, enquanto a otimização para buscas e o Perfil da Empresa no Google criaram mais caminhos para potenciais clientes encontrarem a maquiadora e iniciarem uma conversa.
               </p>
 
               {/* OBJETIVO */}
-              <div className="mt-6 rounded-[16px] border border-white/[0.12] bg-white/[0.03] p-5">
+              <div className="mt-6 rounded-[16px] border border-[var(--panel-line)] bg-white/[0.03] p-5">
                 <p className="text-[11px] font-semibold uppercase tracking-[0.15em] text-white/45">
-                  OBJETIVO ESTRATÉGICO
+                  RESULTADOS PARA O NEGÓCIO
                 </p>
 
                 <p className="mt-3 text-sm leading-7 text-white/85">
-                  Desenvolvimento de uma estrutura digital estratégica para fortalecer a 
-                  presença da Larissa no mercado da beleza, ampliar sua visibilidade nas
-                  buscas do Google e criar novos pontos de contato com potenciais clientes.
+                  Uma apresentação mais profissional dos serviços, maior presença nas buscas relacionadas à beleza e um percurso mais direto da pesquisa no Google até o contato pelo site ou WhatsApp. O tráfego pago complementou a estratégia com novas oportunidades de alcançar o público.
                 </p>
               </div>
 
@@ -273,31 +249,9 @@ export default function Portfolio({
                 <ArrowUpRight size={19} />
               </a>
             </div>
-          </motion.article>
-        </div>
-
-        {/* FECHAMENTO */}
-        <motion.div
-          initial={{ opacity: 0, y: 15 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
-          className="mt-12 flex flex-col justify-between gap-5 border-t border-white/[0.12] pt-8 sm:flex-row sm:items-center"
-        >
-          <div>
-            <p className="text-lg tracking-[-0.02em] text-white">
-              Seu projeto pode ser o próximo.
-            </p>
-
-            <p className="mt-1 text-sm text-white/55">
-              Vamos transformar sua ideia em uma experiência digital.
-            </p>
+          </article>
           </div>
-
-          <DotButton href={ctaHref} large external={ctaExternal}>
-            Solicitar orçamento
-          </DotButton>
-        </motion.div>
+        </div>
 
       </div>
     </section>
