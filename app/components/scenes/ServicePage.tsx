@@ -130,7 +130,7 @@ export default function ServicePage({
       <div ref={rootRef}>
         <div className={`${s.scenes} ${s.rest}`}>
           {/* COMPARAÇÃO */}
-          <section id="comparacao" className={s.block}>
+          <section id="comparacao" className={s.block} data-tone="light">
             <BlockHead
               label={ui.comparisonLabel ?? "03 / ANTES E DEPOIS"}
               title={
@@ -186,7 +186,7 @@ export default function ServicePage({
           </section>
 
           {/* SOLUÇÕES / ENTREGAS */}
-          <section id={ui.solutionsId} className={s.block}>
+          <section id={ui.solutionsId} className={s.block} data-tone="violet">
             <BlockHead
               label={ui.solutionsLabel ?? "04 / SOLUÇÃO"}
               title={twoLines(
@@ -218,8 +218,8 @@ export default function ServicePage({
             </div>
           </section>
 
-          {/* PERGUNTAS FREQUENTES */}
-          <section className={s.block}>
+          {/* PERGUNTAS FREQUENTES (preto quando é a última seção, antes da chamada branca) */}
+          <section className={s.block} data-tone={hasRelated ? "light" : "black"}>
             <BlockHead
               label="05 / DÚVIDAS FREQUENTES"
               title={twoLines("Perguntas que", "merecem respostas.")}
@@ -229,7 +229,7 @@ export default function ServicePage({
 
           {/* OUTRAS SOLUÇÕES */}
           {hasRelated && (
-            <section className={s.block}>
+            <section className={s.block} data-tone="black">
               <BlockHead
                 label="06 / GESTÃO FORX"
                 title={twoLines("Soluções que", "funcionam melhor juntas.")}

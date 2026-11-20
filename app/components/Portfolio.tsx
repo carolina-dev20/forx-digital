@@ -33,6 +33,7 @@ export default function Portfolio({
     <section
       id="cases"
       className={sc.block}
+      data-tone="black"
     >
       <div className="max-w-[1180px]">
 

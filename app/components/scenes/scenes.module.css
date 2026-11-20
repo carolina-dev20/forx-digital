@@ -10,7 +10,7 @@
   --ink-2: #3a2f5c;
   --accent: #7942e8;
   --dot: #b994ff;
-  --panel: #160c30;
+  --panel: #0d0b14; /* preto (com um toque de roxo) */
   --panel-line: rgba(255, 255, 255, 0.12);
   --gut: clamp(20px, 5.7vw, 82px);
   --ease: cubic-bezier(0.22, 0.7, 0.2, 1);
@@ -457,7 +457,7 @@
   font-size: 12px;
   font-weight: 600;
   letter-spacing: 0.16em;
-  color: #c9b6ff;
+  color: var(--hl, #c9b6ff);
 }
 
 .h2 {
@@ -643,7 +643,7 @@
 
 .main {
   min-height: 100vh;
-  background: #160c30;
+  background: #0d0b14;
   overflow-x: clip;
 }
 
@@ -652,10 +652,73 @@
   z-index: 2;
   background: var(--panel);
   color: #fff;
+
+  /* Cores das seções (tom preto por padrão; veja [data-tone] abaixo). */
+  --bg: var(--panel);
+  --fg: #fff;
+  --fg-2: rgba(255, 255, 255, 0.58);
+  --fg-3: rgba(255, 255, 255, 0.4);
+  --hl: #c9b6ff;
+  --card: rgba(255, 255, 255, 0.02);
+  --card-2: rgba(255, 255, 255, 0.05);
+  --on-fg: #1a1238;
 }
 
-/* Linha-guia vertical contínua (a mesma do painel escuro). */
-.rest::before {
+/* =========================================
+   RITMO DE CORES: cada seção escolhe um tom
+   - light  (branco): leitura (grades, FAQ, comparação)
+   - black  (preto):  vitrine (cases, painel de serviços, contato)
+   - violet (roxo):   destaque de marca (1–2 por página)
+   Seções vizinhas nunca repetem o tom.
+   ========================================= */
+
+.rest [data-tone] {
+  background: var(--bg);
+  color: var(--fg);
+}
+
+.rest .block[data-tone] {
+  border-top: 0;
+}
+
+.rest [data-tone="black"] {
+  --bg: var(--panel);
+}
+
+.rest [data-tone="light"] {
+  --bg: #fff;
+  --fg: #1a1238;
+  --fg-2: #5b5375;
+  --fg-3: #77708f;
+  --hl: #6a3fd6;
+  --card: #f8f6fd;
+  --card-2: #f1ecfc;
+  --on-fg: #fff;
+  --panel-line: rgba(26, 18, 56, 0.1);
+}
+
+.rest [data-tone="violet"] {
+  --bg:
+    radial-gradient(70% 60% at 88% 0%, rgba(185, 148, 255, 0.35), transparent 70%),
+    linear-gradient(160deg, #3b1a8f 0%, #5b2fd0 100%);
+  --fg: #fff;
+  --fg-2: rgba(255, 255, 255, 0.8);
+  --fg-3: rgba(255, 255, 255, 0.62);
+  --hl: #e4d9ff;
+  --card: rgba(255, 255, 255, 0.07);
+  --card-2: rgba(255, 255, 255, 0.12);
+  --panel-line: rgba(255, 255, 255, 0.2);
+}
+
+/* Botão escuro some no fundo preto/roxo: lá ele fica branco. */
+.rest [data-tone="black"] .btn,
+.rest [data-tone="violet"] .btn {
+  background: #fff;
+  color: var(--ink) !important;
+}
+
+/* Linha-guia vertical de cada seção (acompanha o tom). */
+.block::before {
   content: "";
   position: absolute;
   top: 0;
@@ -681,7 +744,7 @@
   max-width: 36em;
   font-size: clamp(15px, 1.15vw, 17px);
   line-height: 1.6;
-  color: rgba(255, 255, 255, 0.55);
+  color: var(--fg-2);
 }
 
 /* Sobe e aparece quando entra na tela (e volta ao rolar para cima). */
@@ -708,7 +771,7 @@
   padding: 5px;
   border-radius: 999px;
   border: 1px solid var(--panel-line);
-  background: rgba(255, 255, 255, 0.03);
+  background: var(--card);
 }
 
 .toggle button {
@@ -716,7 +779,7 @@
   border: 0;
   border-radius: 999px;
   background: transparent;
-  color: rgba(255, 255, 255, 0.6);
+  color: var(--fg-2);
   font: inherit;
   font-size: 14px;
   cursor: pointer;
@@ -726,12 +789,12 @@
 }
 
 .toggle button:hover {
-  color: #fff;
+  color: var(--fg);
 }
 
 .toggle button.active {
-  background: #fff;
-  color: var(--ink);
+  background: var(--fg);
+  color: var(--on-fg);
 }
 
 .compare {
@@ -742,11 +805,11 @@
   border: 1px solid var(--panel-line);
   background:
     radial-gradient(circle at 90% 10%, rgba(185, 148, 255, 0.18), transparent 50%),
-    rgba(255, 255, 255, 0.02);
+    var(--card);
 }
 
 .compare > svg {
-  color: #c9b6ff;
+  color: var(--hl);
 }
 
 .compare h3 {
@@ -761,7 +824,7 @@
   max-width: 40em;
   font-size: 15px;
   line-height: 1.65;
-  color: rgba(255, 255, 255, 0.6);
+  color: var(--fg-2);
 }
 
 .points {
@@ -779,11 +842,11 @@
   border-radius: 999px;
   border: 1px solid var(--panel-line);
   font-size: 13px;
-  color: rgba(255, 255, 255, 0.82);
+  color: var(--fg);
 }
 
 .points svg {
-  color: #c9b6ff;
+  color: var(--hl);
 }
 
 /* Grade de entregas (linhas finas) */
@@ -811,11 +874,11 @@
   align-items: center;
   justify-content: space-between;
   font-size: 13px;
-  color: rgba(255, 255, 255, 0.4);
+  color: var(--fg-3);
 }
 
 .cellTop svg {
-  color: #c9b6ff;
+  color: var(--hl);
 }
 
 .tag {
@@ -824,7 +887,7 @@
   font-size: 11px;
   font-weight: 600;
   letter-spacing: 0.16em;
-  color: #c9b6ff;
+  color: var(--hl);
 }
 
 .cell h3,
@@ -841,7 +904,7 @@
   max-width: 28em;
   font-size: clamp(14px, 1.05vw, 15px);
   line-height: 1.55;
-  color: rgba(255, 255, 255, 0.55);
+  color: var(--fg-2);
 }
 
 /* Perguntas frequentes */
@@ -864,7 +927,7 @@
   padding: 24px 0;
   border: 0;
   background: none;
-  color: #fff;
+  color: var(--fg);
   font: inherit;
   font-size: clamp(16px, 1.3vw, 19px);
   text-align: left;
@@ -906,7 +969,7 @@
   padding: 0 48px 26px 0;
   font-size: 15px;
   line-height: 1.65;
-  color: rgba(255, 255, 255, 0.6);
+  color: var(--fg-2);
 }
 
 /* Outras soluções */
@@ -926,7 +989,7 @@
   padding: 28px;
   border-radius: 20px;
   border: 1px solid var(--panel-line);
-  background: rgba(255, 255, 255, 0.02);
+  background: var(--card);
   transition:
     border-color 0.3s var(--ease),
     background 0.3s var(--ease),
@@ -936,7 +999,7 @@
 .relCard:hover {
   transform: translateY(-4px);
   border-color: rgba(201, 182, 255, 0.45);
-  background: rgba(255, 255, 255, 0.04);
+  background: var(--card-2);
 }
 
 .relCard .tag {

@@ -24,6 +24,7 @@ import {
   makePainter,
   paint,
   plain,
+  type RGB,
   type Segment,
 } from "./Scenes";
 import s from "./scenes.module.css";
@@ -31,6 +32,10 @@ import s from "./scenes.module.css";
 export const d = (seconds: number) => ({ "--d": `${seconds}s` }) as CSSProperties;
 
 export const EASE = [0.22, 0.7, 0.2, 1] as const;
+
+/** Cores da revelação sobre o fundo roxo (seções data-tone="violet"). */
+const VIOLET_ACCENT: RGB = [228, 217, 255];
+const VIOLET_GHOST: RGB = [150, 118, 236];
 
 /**
  * Efeitos de rolagem dentro de um contêiner:
@@ -45,8 +50,13 @@ export function useSceneEffects(rootRef: RefObject<HTMLElement | null>) {
 
     const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
+    // O tom da seção ([data-tone]) define as cores da revelação; sem ele, vale data-reveal.
     const titles = Array.from(root.querySelectorAll<HTMLElement>("[data-reveal]")).map(
-      (el) => ({ el, tone: el.dataset.reveal, painter: makePainter(el) })
+      (el) => {
+        const section = el.closest<HTMLElement>("[data-tone]")?.dataset.tone;
+        const tone = section === "light" || section === "violet" ? section : el.dataset.reveal;
+        return { el, tone, painter: makePainter(el) };
+      }
     );
     const glows = Array.from(root.querySelectorAll<HTMLElement>("[data-glow]"));
 
@@ -59,6 +69,8 @@ export function useSceneEffects(rootRef: RefObject<HTMLElement | null>) {
         const p = reduce ? 1 : clamp((0.9 - top) / 0.5);
         if (t.tone === "light") {
           paint(t.painter, p, 0.35, INK, REVEAL, WHITE, HERO_HL);
+        } else if (t.tone === "violet") {
+          paint(t.painter, p, 0.35, WHITE, VIOLET_ACCENT, VIOLET_GHOST, VIOLET_ACCENT);
         } else {
           paint(t.painter, p, 0.35, WHITE, PANEL_ACCENT, PANEL_GHOST, PANEL_ACCENT);
         }

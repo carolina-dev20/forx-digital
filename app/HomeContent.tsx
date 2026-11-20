@@ -269,7 +269,7 @@ export default function HomeContent() {
           <GooglePresence />
 
           {/* PROCESSO */}
-          <section id="processo" className={s.block}>
+          <section id="processo" className={s.block} data-tone="violet">
             <BlockHead
               label="NOSSO PROCESSO"
               title={[{ text: "Do desafio à solução funcionando." }]}
@@ -295,7 +295,7 @@ export default function HomeContent() {
           </section>
 
           {/* DIFERENCIAIS */}
-          <section id="diferenciais" className={s.block}>
+          <section id="diferenciais" className={s.block} data-tone="light">
             <BlockHead
               label="POR QUE A FORX?"
               title={[{ text: "Tecnologia a serviço do seu negócio." }]}
@@ -331,7 +331,7 @@ export default function HomeContent() {
           </section>
 
           {/* SOBRE A FORX */}
-          <section id="sobre" className={s.block}>
+          <section id="sobre" className={s.block} data-tone="violet">
             <BlockHead
               label="SOBRE NÓS"
               title={[{ text: "Transformamos desafios em soluções tecnológicas." }]}
@@ -356,7 +356,7 @@ export default function HomeContent() {
           </section>
 
           {/* PERGUNTAS FREQUENTES */}
-          <section className={s.block}>
+          <section className={s.block} data-tone="light">
             <BlockHead
               label="PERGUNTAS FREQUENTES"
               title={[{ text: "Ainda tem dúvidas?" }]}
@@ -366,7 +366,7 @@ export default function HomeContent() {
           </section>
 
           {/* CONTATO */}
-          <section id="contato" className={`${s.block} scroll-mt-20`}>
+          <section id="contato" className={`${s.block} scroll-mt-20`} data-tone="black">
             <div className="grid gap-12 lg:grid-cols-[0.9fr_1.1fr] lg:gap-16">
               <div>
                 <BlockHead

@@ -108,7 +108,7 @@ export default function CasesContent() {
           />
 
           {/* O QUE ENTREGAMOS */}
-          <section className={s.block}>
+          <section className={s.block} data-tone="light">
             <BlockHead
               label="02 / O QUE ENTREGAMOS"
               title={twoLines("Cada detalhe", "pensado para o cliente.")}
@@ -138,7 +138,7 @@ export default function CasesContent() {
           </section>
 
           {/* OUTRAS SOLUÇÕES */}
-          <section className={s.block}>
+          <section className={s.block} data-tone="violet">
             <BlockHead
               label="03 / SOLUÇÕES FORX"
               title={twoLines("Seu negócio pode", "ser o próximo case.")}

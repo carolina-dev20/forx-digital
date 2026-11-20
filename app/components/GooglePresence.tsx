@@ -179,14 +179,14 @@ function AnimatedSearchBar({
       }}
       viewport={{ once: true }}
       transition={{ duration: 0.7 }}
-      className="mt-10 flex w-full max-w-[570px] items-center gap-4 rounded-full border border-white/[0.12] bg-white/[0.03] px-5 py-4 sm:px-6 sm:py-5"
+      className="mt-10 flex w-full max-w-[570px] items-center gap-4 rounded-full border border-[var(--panel-line)] bg-[var(--card)] px-5 py-4 sm:px-6 sm:py-5"
     >
       <Search
         size={21}
-        className="shrink-0 text-[#c9b6ff]"
+        className="shrink-0 text-[var(--hl)]"
       />
 
-      <span className="min-w-0 flex-1 truncate text-sm text-white/60 sm:text-base">
+      <span className="min-w-0 flex-1 truncate text-sm text-[var(--fg-2)] sm:text-base">
         <Typewriter
           text="Alguém pesquisando sobre você..."
           active={active}
@@ -194,10 +194,10 @@ function AnimatedSearchBar({
         />
       </span>
 
-      <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-white/10">
+      <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-[var(--card-2)]">
         <ArrowUpRight
           size={16}
-          className="text-white/70"
+          className="text-[var(--fg-2)]"
         />
       </span>
     </motion.div>
@@ -436,19 +436,19 @@ function PresenceCard({
         duration: 0.7,
         delay,
       }}
-      className="flex min-h-[590px] min-w-0 flex-col overflow-hidden rounded-[22px] border border-white/[0.12] bg-white/[0.02] sm:min-h-[620px]"
+      className="flex min-h-[590px] min-w-0 flex-col overflow-hidden rounded-[22px] border border-[var(--panel-line)] bg-[var(--card)] sm:min-h-[620px]"
     >
       {/* TEXTO NO TOPO */}
       <div className="relative z-10 shrink-0 px-7 pb-6 pt-8 sm:px-10 sm:pt-10">
-        <p className="text-xs font-semibold uppercase tracking-[0.16em] text-[#c9b6ff]">
+        <p className="text-xs font-semibold uppercase tracking-[0.16em] text-[var(--hl)]">
           {number} / {label}
         </p>
 
-        <h3 className="mt-6 max-w-[480px] text-[24px] font-normal leading-[1.2] tracking-[-0.03em] text-white sm:text-[28px]">
+        <h3 className="mt-6 max-w-[480px] text-[24px] font-normal leading-[1.2] tracking-[-0.03em] text-[var(--fg)] sm:text-[28px]">
           {title}
         </h3>
 
-        <p className="mt-4 max-w-[440px] text-sm leading-7 text-white/55 sm:text-base">
+        <p className="mt-4 max-w-[440px] text-sm leading-7 text-[var(--fg-2)] sm:text-base">
           {description}
         </p>
       </div>
@@ -478,6 +478,7 @@ export default function GooglePresence() {
       ref={sectionRef}
       id="presenca-google"
       className={sc.block}
+      data-tone="light"
     >
       <div className="max-w-[1180px]">
 
@@ -521,9 +522,9 @@ export default function GooglePresence() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.65 }}
-          className="mt-10 flex flex-col justify-between gap-6 border-t border-white/[0.12] pt-8 sm:flex-row sm:items-center"
+          className="mt-10 flex flex-col justify-between gap-6 border-t border-[var(--panel-line)] pt-8 sm:flex-row sm:items-center"
         >
-          <p className="max-w-xl text-base leading-7 text-white/60">
+          <p className="max-w-xl text-base leading-7 text-[var(--fg-2)]">
             Não deixe que seu próximo cliente encontre
             apenas seus concorrentes.
           </p>
