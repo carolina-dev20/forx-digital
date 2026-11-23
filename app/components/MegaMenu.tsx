@@ -337,7 +337,7 @@ export default function MegaMenu() {
 
               {/* DESCRIÇÃO */}
               <div>
-                <span className="text-[11px] font-semibold uppercase tracking-[0.22em] text-[#7942E8]">
+                <span className="text-[11px] font-semibold uppercase tracking-[0.22em] text-[#3b0764]">
                   FORX DIGITAL / EXPLORE
                 </span>
 
@@ -365,11 +365,11 @@ export default function MegaMenu() {
                   <Link
                     href={link.href}
                     onClick={closeMenus}
-                    className="group flex h-full min-h-[150px] flex-col justify-between rounded-[20px] border border-black/10 bg-[#F7F7F7] p-5 transition-all duration-300 hover:-translate-y-1 hover:border-[#7942E8]/35 hover:bg-[#F1ECFF]"
+                    className="group flex h-full min-h-[150px] flex-col justify-between rounded-[20px] border border-black/10 bg-[#F7F7F7] p-5 transition-all duration-300 hover:-translate-y-1 hover:border-[#3b0764]/35 hover:bg-[#3b0764]/[0.06]"
                   >
                     <ArrowUpRight
                       size={20}
-                      className="ml-auto text-black/35 transition-colors group-hover:text-[#7942E8]"
+                      className="ml-auto text-black/35 transition-colors group-hover:text-[#3b0764]"
                     />
 
                     <div>

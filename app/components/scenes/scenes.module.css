@@ -8,7 +8,7 @@
 .scenes {
   --ink: #1a1238;
   --ink-2: #3a2f5c;
-  --accent: #7942e8;
+  --accent: #3b0764; /* purple-950 */
   --dot: #b994ff;
   --panel: #0d0b14; /* preto (com um toque de roxo) */
   --panel-line: rgba(255, 255, 255, 0.12);
@@ -199,7 +199,7 @@
   font-size: 12px;
   font-weight: 600;
   letter-spacing: 0.16em;
-  color: #6a55b8;
+  color: #3b0764;
 }
 
 .h1 {
@@ -255,7 +255,7 @@
   overflow: hidden;
   border-radius: 20px;
   background: rgba(255, 255, 255, 0.82);
-  border: 1px solid rgba(121, 66, 232, 0.14);
+  border: 1px solid rgba(59, 7, 100, 0.14);
   box-shadow:
     0 1px 0 rgba(26, 18, 56, 0.04),
     0 30px 70px -30px rgba(76, 40, 160, 0.45);
@@ -339,7 +339,7 @@
 
 .mockCards i:nth-child(2) {
   background: #ebe2ff;
-  border-color: rgba(121, 66, 232, 0.2);
+  border-color: rgba(59, 7, 100, 0.2);
 }
 
 .badge {
@@ -352,7 +352,7 @@
   padding: 14px 18px;
   border-radius: 14px;
   background: #fff;
-  border: 1px solid rgba(121, 66, 232, 0.18);
+  border: 1px solid rgba(59, 7, 100, 0.18);
   box-shadow: 0 18px 40px -18px rgba(76, 40, 160, 0.45);
   font-size: 13px;
   font-weight: 500;
@@ -516,11 +516,10 @@
 .art {
   position: absolute;
   inset: 0;
-  transform-origin: 50% 60%;
+  transform-origin: 50% 50%;
   background:
-    radial-gradient(60% 45% at 50% 55%, rgba(185, 148, 255, 0.55), transparent 70%),
-    radial-gradient(90% 70% at 70% 100%, rgba(121, 66, 232, 0.6), transparent 70%),
-    linear-gradient(180deg, #24124f 0%, #3b1a8f 55%, #5b2fd0 100%);
+    radial-gradient(60% 45% at 50% 50%, rgba(185, 148, 255, 0.22), transparent 70%),
+    linear-gradient(180deg, #24043d 0%, #3b0764 100%); /* purple-950 */
 }
 
 .art::before {
@@ -538,7 +537,7 @@
 .ring {
   position: absolute;
   left: 50%;
-  top: 55%;
+  top: 50%;
   border-radius: 50%;
   border: 1px solid rgba(255, 255, 255, 0.18);
   transform: translate(-50%, -50%);
@@ -547,7 +546,7 @@
 .core {
   position: absolute;
   left: 50%;
-  top: 55%;
+  top: 50%;
   width: 112px;
   height: 112px;
   border-radius: 32px;
@@ -690,7 +689,7 @@
   --fg: #1a1238;
   --fg-2: #5b5375;
   --fg-3: #77708f;
-  --hl: #6a3fd6;
+  --hl: #3b0764; /* purple-950 */
   --card: #f8f6fd;
   --card-2: #f1ecfc;
   --on-fg: #fff;
@@ -699,8 +698,8 @@
 
 .rest [data-tone="violet"] {
   --bg:
-    radial-gradient(70% 60% at 88% 0%, rgba(185, 148, 255, 0.35), transparent 70%),
-    linear-gradient(160deg, #3b1a8f 0%, #5b2fd0 100%);
+    radial-gradient(70% 60% at 88% 0%, rgba(185, 148, 255, 0.16), transparent 70%),
+    #3b0764; /* purple-950 */
   --fg: #fff;
   --fg-2: rgba(255, 255, 255, 0.8);
   --fg-3: rgba(255, 255, 255, 0.62);
@@ -960,6 +959,13 @@
   color: var(--ink);
 }
 
+/* Em seção clara, o ícone aberto fica em purple-950. */
+.rest [data-tone="light"] .faqItem[data-open] .faqIcon {
+  background: #3b0764;
+  border-color: #3b0764;
+  color: #fff;
+}
+
 .faqAnswer {
   overflow: hidden;
 }
@@ -1065,8 +1071,8 @@
   pointer-events: none;
   background: radial-gradient(
     ellipse calc(30% + 70% * var(--g, 0)) calc(35% + 85% * var(--g, 0)) at 50% 0%,
-    #b096ff 0%,
-    #e2daff 45%,
+    rgba(59, 7, 100, 0.55) 0%,
+    rgba(59, 7, 100, 0.12) 45%,
     rgba(255, 255, 255, 0) 82%
   );
 }
@@ -1078,7 +1084,7 @@
 }
 
 .cta .label {
-  color: #5b3fb4;
+  color: #3b0764;
 }
 
 .ctaTitle {
@@ -1182,7 +1188,7 @@
   z-index: 2;
   color: var(--ink);
   background: linear-gradient(180deg, #ede6ff 0%, #f5f1ff 45%, #faf8ff 100%);
-  border-top: 1px solid rgba(121, 66, 232, 0.12);
+  border-top: 1px solid rgba(59, 7, 100, 0.12);
 }
 
 /* Topo sem painel ilustrado: tudo centralizado. */
@@ -1330,7 +1336,7 @@
   font-size: 11px;
   font-weight: 600;
   letter-spacing: 0.16em;
-  color: #6a55b8;
+  color: #3b0764;
 }
 
 .footCols ul {
@@ -1583,7 +1589,7 @@
 .legal code {
   padding: 1px 6px;
   border-radius: 6px;
-  background: rgba(121, 66, 232, 0.1);
+  background: rgba(59, 7, 100, 0.1);
   font-size: 0.9em;
 }
 

@@ -146,7 +146,7 @@ function VideoTestimonial({ src, poster, name }: { src: string; poster?: string;
       {poster && (
         <Image src={poster} alt="" fill sizes="220px" className="object-cover opacity-70" />
       )}
-      <span className="relative flex h-14 w-14 items-center justify-center rounded-full bg-[#b994ff] text-[#1a1238] transition-transform group-hover/video:scale-110">
+      <span className="relative flex h-14 w-14 items-center justify-center rounded-full bg-[#3b0764] text-white transition-transform group-hover/video:scale-110">
         <Play size={22} fill="currentColor" aria-hidden="true" />
       </span>
     </button>

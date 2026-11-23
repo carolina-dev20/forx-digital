@@ -75,7 +75,7 @@ function Typewriter({
             duration: 0.85,
             repeat: Infinity,
           }}
-          className="ml-0.5 inline-block h-[1em] w-[2px] translate-y-[2px] bg-[#b994ff]"
+          className="ml-0.5 inline-block h-[1em] w-[2px] translate-y-[2px] bg-[#3b0764]"
         />
       )}
     </span>
@@ -225,7 +225,7 @@ function SearchScene() {
         className="relative flex h-full w-full items-end justify-center"
       >
         {/* BRILHO ROXO */}
-        <div className="pointer-events-none absolute bottom-0 left-1/2 h-44 w-64 -translate-x-1/2 rounded-full bg-[#7942E8]/10 blur-[65px]" />
+        <div className="pointer-events-none absolute bottom-0 left-1/2 h-44 w-64 -translate-x-1/2 rounded-full bg-[#3b0764]/10 blur-[65px]" />
 
         {/* JANELA DE PESQUISA */}
         <motion.div
@@ -239,7 +239,7 @@ function SearchScene() {
           <div className="flex h-[52px] items-center gap-3 rounded-full border border-[#E5E5E5] bg-white px-4">
             <Search
               size={19}
-              className="shrink-0 text-[#7942E8]"
+              className="shrink-0 text-[#3b0764]"
             />
 
             <span className="truncate text-xs text-[#777777] sm:text-sm">
@@ -314,11 +314,11 @@ function SearchScene() {
             repeat: Infinity,
             ease: "easeInOut",
           }}
-          className="pointer-events-none absolute bottom-[55px] right-[24%] z-20 flex h-14 w-14 items-center justify-center rounded-[16px] border border-[#7942E8]/20 bg-white shadow-[0_10px_30px_rgba(121,66,232,0.2)]"
+          className="pointer-events-none absolute bottom-[55px] right-[24%] z-20 flex h-14 w-14 items-center justify-center rounded-[16px] border border-[#3b0764]/20 bg-white shadow-[0_10px_30px_rgba(59,7,100,0.2)]"
         >
           <MousePointer2
             size={27}
-            className="text-[#7942E8]"
+            className="text-[#3b0764]"
           />
         </motion.div>
       </div>
@@ -365,13 +365,13 @@ function MapScene() {
             repeat: Infinity,
             ease: "easeInOut",
           }}
-          className="absolute left-1/2 top-[45%] flex h-[112px] w-[112px] -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full border border-[#7942E8]/20 bg-[#7942E8]/10"
+          className="absolute left-1/2 top-[45%] flex h-[112px] w-[112px] -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full border border-[#3b0764]/20 bg-[#3b0764]/10"
         >
           <div className="flex h-[78px] w-[78px] items-center justify-center rounded-full bg-white shadow-[0_12px_30px_rgba(0,0,0,0.12)]">
             <MapPin
               size={38}
               strokeWidth={2}
-              className="text-[#7942E8]"
+              className="text-[#3b0764]"
             />
           </div>
         </motion.div>
@@ -392,15 +392,15 @@ function MapScene() {
               <Star
                 key={index}
                 size={15}
-                fill="#7942E8"
-                stroke="#7942E8"
+                fill="#3b0764"
+                stroke="#3b0764"
               />
             ))}
           </div>
 
           <Check
             size={17}
-            className="ml-1 text-[#7942E8]"
+            className="ml-1 text-[#3b0764]"
           />
         </motion.div>
       </div>

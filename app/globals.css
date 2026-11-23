@@ -11,7 +11,7 @@
 
   --forx-black: #08080c;
   --forx-dark: #0d0b13;
-  --forx-purple: #7942e8;
+  --forx-purple: #3b0764; /* purple-950 */
   --forx-purple-light: #b994ff;
   --forx-white: #f4f2f7;
 
@@ -122,7 +122,7 @@ img {
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #7942e8;
+  background: #3b0764;
 }
 
 /* =========================================

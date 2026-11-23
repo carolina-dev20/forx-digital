@@ -12,7 +12,6 @@ import {
   MonitorSmartphone,
   MousePointer2,
   ShieldCheck,
-  Sparkles,
   Target,
   Users,
   Workflow,
@@ -23,12 +22,12 @@ import MegaMenu from "./components/MegaMenu";
 import GooglePresence from "./components/GooglePresence";
 import ContactForm from "./components/ContactForm";
 import WhatsAppFloat from "./components/WhatsAppFloat";
+import ServicesShowcase from "./components/ServicesShowcase";
 import Scenes, { DotButton } from "./components/scenes/Scenes";
 import {
   BlockHead,
   FaqList,
   d,
-  twoLines,
   useSceneEffects,
 } from "./components/scenes/blocks";
 import s from "./components/scenes/scenes.module.css";
@@ -49,6 +48,7 @@ const whatsappLink = `https://wa.me/${WHATSAPP_NUMBER}`;
 const services = [
   {
     id: "gestao-processos",
+    tab: "Gestão",
     number: "01",
     icon: BriefcaseBusiness,
     title: "Gestão e processos",
@@ -63,6 +63,7 @@ const services = [
   },
   {
     id: "relacionamento-clientes",
+    tab: "CRM",
     number: "02",
     icon: Users,
     title: "Relacionamento com clientes",
@@ -77,6 +78,7 @@ const services = [
   },
   {
     id: "automacao",
+    tab: "Automação",
     number: "03",
     icon: Workflow,
     title: "Automação",
@@ -91,6 +93,7 @@ const services = [
   },
   {
     id: "desenvolvimento-software",
+    tab: "Software",
     number: "04",
     icon: Code2,
     title: "Desenvolvimento de software",
@@ -105,6 +108,7 @@ const services = [
   },
   {
     id: "criacao-de-sites",
+    tab: "Sites",
     number: "05",
     icon: MonitorSmartphone,
     title: "Criação de sites",
@@ -119,6 +123,7 @@ const services = [
   },
   {
     id: "marketing-digital",
+    tab: "Marketing",
     number: "06",
     icon: Target,
     title: "Marketing digital e tráfego pago",
@@ -244,22 +249,15 @@ export default function HomeContent() {
               },
             ],
           }}
-          split={{
-            id: "servicos",
-            label: "O QUE FAZEMOS",
-            title: twoLines("Soluções que conectam", "gestão, tecnologia e marketing."),
-            items: services.map((service) => ({
-              id: service.id,
-              icon: service.icon,
-              title: service.title,
-              description: service.description,
-              href: service.href,
-              tags: service.tags,
-            })),
-            icon: Sparkles,
-            artLabel: "360",
-          }}
           navCta={{ label: "Fale com a FORX", href: "#contato" }}
+        />
+
+        {/* O QUE FAZEMOS: abas com um card por serviço */}
+        <ServicesShowcase
+          id="servicos"
+          label="O que fazemos"
+          title={["Soluções que conectam", "gestão, tecnologia e marketing."]}
+          services={services}
         />
       </div>
 

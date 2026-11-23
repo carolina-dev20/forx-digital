@@ -270,7 +270,7 @@ function ComparisonCell({ value }: { value: string }) {
       {included && (
         <Check
           size={16}
-          className="shrink-0 text-[#7942E8]"
+          className="shrink-0 text-[#3b0764]"
         />
       )}
 
@@ -352,7 +352,7 @@ export default function PricingSection() {
         <div
           role="tablist"
           aria-label="Tipo de plano"
-          className="mx-auto mb-7 flex w-fit max-w-full gap-1 rounded-full border border-[#7942E8]/15 bg-white/70 p-1 shadow-[0_8px_24px_-12px_rgba(76,40,160,0.25)]"
+          className="mx-auto mb-7 flex w-fit max-w-full gap-1 rounded-full border border-[#3b0764]/15 bg-white/70 p-1 shadow-[0_8px_24px_-12px_rgba(59,7,100,0.25)]"
         >
           {catalogs.map((item) => {
             const active = item.key === activeKey;
@@ -375,7 +375,7 @@ export default function PricingSection() {
                 }}
                 className={`inline-flex items-center gap-2 rounded-full px-4 py-2.5 text-xs font-medium transition-all duration-300 sm:px-6 sm:text-sm ${
                   active
-                    ? "bg-[#7942E8] text-white shadow-[0_6px_18px_rgba(121,66,232,0.35)]"
+                    ? "bg-[#3b0764] text-white shadow-[0_6px_18px_rgba(59,7,100,0.35)]"
                     : "text-[#1a1238]/60 hover:text-[#1a1238]"
                 }`}
               >
@@ -390,7 +390,7 @@ export default function PricingSection() {
         <div
           id="pricing-table"
           role="tabpanel"
-          className="w-full overflow-hidden rounded-[20px] border border-[#7942E8]/15 bg-white shadow-[0_30px_70px_-35px_rgba(76,40,160,0.45)]"
+          className="w-full overflow-hidden rounded-[20px] border border-[#3b0764]/15 bg-white shadow-[0_30px_70px_-35px_rgba(59,7,100,0.45)]"
         >
           {/* ROLAGEM SOMENTE QUANDO NECESSÁRIA */}
           <div className="w-full overflow-x-auto">
@@ -399,7 +399,7 @@ export default function PricingSection() {
               <div className={gridCols}>
                 {/* COLUNA DE SERVIÇOS */}
                 <div className="flex flex-col justify-end border-b border-[#1a1238]/[0.08] p-4 sm:p-5">
-                  <span className="text-[10px] uppercase tracking-[0.2em] text-[#6a55b8]">
+                  <span className="text-[10px] uppercase tracking-[0.2em] text-[#3b0764]">
                     {catalog.tab}
                   </span>
 
@@ -413,13 +413,13 @@ export default function PricingSection() {
                   <div
                     key={plan.name}
                     className={`flex min-w-0 flex-col border-b border-l border-[#1a1238]/[0.08] p-4 sm:p-5 ${
-                      plan.featured ? "bg-[#7942E8]/[0.07]" : ""
+                      plan.featured ? "bg-[#3b0764]/[0.07]" : ""
                     }`}
                   >
                     {/* SELO SEM CORTE */}
                     <div className="mb-3 flex min-h-6 items-center justify-center">
                       {plan.featured && (
-                        <span className="inline-flex items-center gap-1.5 rounded-full bg-[#7942E8] px-3.5 py-1 text-[10px] font-semibold tracking-wide text-white shadow-[0_6px_18px_rgba(121,66,232,0.3)]">
+                        <span className="inline-flex items-center gap-1.5 rounded-full bg-[#3b0764] px-3.5 py-1 text-[10px] font-semibold tracking-wide text-white shadow-[0_6px_18px_rgba(59,7,100,0.3)]">
                           <Sparkles size={12} />
                           {catalog.key === "crm" ? "RECOMENDADO" : "MAIS ESCOLHIDO"}
                         </span>
@@ -442,8 +442,8 @@ export default function PricingSection() {
                       rel="noopener noreferrer"
                       className={`mt-5 flex min-h-10 w-full items-center justify-center gap-1.5 rounded-full px-2 text-xs font-medium transition-all duration-300 sm:gap-2 sm:px-4 sm:text-[13px] ${
                         plan.featured
-                          ? "bg-[#7942E8] text-white hover:bg-[#6a35d6] hover:shadow-[0_8px_22px_rgba(121,66,232,0.35)]"
-                          : "border border-[#1a1238]/15 text-[#1a1238] hover:border-[#7942E8] hover:bg-[#7942E8]/[0.06]"
+                          ? "bg-[#3b0764] text-white hover:bg-[#59168b] hover:shadow-[0_8px_22px_rgba(59,7,100,0.35)]"
+                          : "border border-[#1a1238]/15 text-[#1a1238] hover:border-[#3b0764] hover:bg-[#3b0764]/[0.06]"
                       }`}
                     >
                       {plan.price ? "Começar agora" : "Solicitar proposta"}
@@ -459,7 +459,7 @@ export default function PricingSection() {
                   key={row.label}
                   className={`${gridCols} ${
                     index % 2 === 0
-                      ? "bg-[#f7f4ff]"
+                      ? "bg-[#3b0764]/[0.04]"
                       : "bg-white"
                   }`}
                 >
@@ -475,7 +475,7 @@ export default function PricingSection() {
                     <div
                       key={`${row.label}-${i}`}
                       className={`min-w-0 border-b border-l border-[#1a1238]/[0.06] ${
-                        i === featuredIndex ? "bg-[#7942E8]/[0.05]" : ""
+                        i === featuredIndex ? "bg-[#3b0764]/[0.05]" : ""
                       }`}
                     >
                       <ComparisonCell value={value} />
@@ -496,7 +496,7 @@ export default function PricingSection() {
                   <div
                     key={`footer-${plan.name}`}
                     className={`min-w-0 border-l border-[#1a1238]/[0.08] p-3 sm:p-4 ${
-                      plan.featured ? "bg-[#7942E8]/[0.07]" : ""
+                      plan.featured ? "bg-[#3b0764]/[0.07]" : ""
                     }`}
                   >
                     <a
@@ -505,8 +505,8 @@ export default function PricingSection() {
                       rel="noopener noreferrer"
                       className={`flex min-h-10 w-full items-center justify-center gap-1 rounded-full px-2 text-center text-xs font-medium transition-all sm:gap-2 sm:px-3 sm:text-[13px] ${
                         plan.featured
-                          ? "bg-[#7942E8] text-white hover:bg-[#6a35d6]"
-                          : "border border-[#1a1238]/15 text-[#1a1238] hover:border-[#7942E8] hover:bg-[#7942E8]/[0.06]"
+                          ? "bg-[#3b0764] text-white hover:bg-[#59168b]"
+                          : "border border-[#1a1238]/15 text-[#1a1238] hover:border-[#3b0764] hover:bg-[#3b0764]/[0.06]"
                       }`}
                     >
                       Falar sobre o plano
@@ -520,10 +520,10 @@ export default function PricingSection() {
         </div>
 
         {/* AVISO DO PLANO */}
-        <div className="mx-auto mt-6 flex max-w-4xl items-start gap-3 rounded-xl border border-[#7942E8]/15 bg-white/70 px-5 py-4">
+        <div className="mx-auto mt-6 flex max-w-4xl items-start gap-3 rounded-xl border border-[#3b0764]/15 bg-white/70 px-5 py-4">
           <Info
             size={18}
-            className="mt-0.5 shrink-0 text-[#7942E8]"
+            className="mt-0.5 shrink-0 text-[#3b0764]"
           />
 
           <p className="text-xs leading-6 text-[#5c5478] sm:text-sm">
@@ -544,7 +544,7 @@ export default function PricingSection() {
             href={getWhatsAppLink("atendimento")}
             target="_blank"
             rel="noopener noreferrer"
-            className="mt-5 inline-flex items-center gap-3 rounded-full bg-gradient-to-r from-[#7942E8] to-[#963FF0] px-7 py-3.5 text-sm font-semibold text-white transition-all hover:-translate-y-0.5 hover:shadow-[0_0_30px_rgba(121,66,232,0.3)]"
+            className="mt-5 inline-flex items-center gap-3 rounded-full bg-[#3b0764] px-7 py-3.5 text-sm font-semibold text-white transition-all hover:-translate-y-0.5 hover:shadow-[0_0_30px_rgba(59,7,100,0.3)]"
           >
             Converse com a FORX
             <ArrowUpRight size={17} />

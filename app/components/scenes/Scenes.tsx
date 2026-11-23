@@ -23,8 +23,8 @@ export const WHITE: RGB = [255, 255, 255];
 const BOWL_RIM: RGB = [226, 218, 255]; // lavanda clara
 const BOWL_CORE: RGB = [176, 150, 255]; // lilás / roxo
 export const INK: RGB = [26, 18, 56]; // texto principal
-export const HERO_HL: RGB = [121, 66, 232]; // roxo da marca
-const STMT_HL: RGB = [59, 26, 143]; // roxo profundo (lê bem sobre o lilás)
+export const HERO_HL: RGB = [59, 7, 100]; // purple-950
+const STMT_HL: RGB = [59, 7, 100]; // purple-950
 export const REVEAL: RGB = [139, 92, 246]; // cor intermediária da revelação
 export const PANEL_GHOST: RGB = [110, 95, 150];
 export const PANEL_ACCENT: RGB = [201, 182, 255];
@@ -317,6 +317,8 @@ export type ScenesProps = {
     icon: LucideIcon;
     /** Texto no centro da arte, no lugar do ícone (ex.: "360"). */
     artLabel?: string;
+    /** Sem o quadrado do centro: só os anéis girando. */
+    noCore?: boolean;
   };
   /** Botão flutuante que aparece durante a frase. */
   navCta?: { label: string; href: string; external?: boolean };
@@ -695,6 +697,7 @@ export default function Scenes({
               <span className={`${s.ring} ${s.orbitA}`} style={{ width: 220, height: 220 }} />
               <span className={`${s.ring} ${s.orbitB}`} style={{ width: 360, height: 360 }} />
               <span className={`${s.ring} ${s.orbitC}`} style={{ width: 520, height: 520 }} />
+              {!split.noCore && (
               <span className={s.core}>
                 {split.artLabel ? (
                   <span className={s.coreLabel}>{split.artLabel}</span>
@@ -702,6 +705,7 @@ export default function Scenes({
                   <ArtIcon size={46} color="#fff" strokeWidth={1.4} />
                 )}
               </span>
+              )}
             </div>
           </div>
         </section>
