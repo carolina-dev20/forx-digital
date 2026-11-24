@@ -406,8 +406,6 @@ export default function HomeContent() {
                     ["Serviços", "#servicos"],
                     ["Gestão", "#gestao-processos"],
                     ["Cases", "/cases"],
-                    ["Processo", "#processo"],
-                    ["Sobre", "#sobre"],
                   ].map(([label, href]) => (
                     <li key={href}>
                       <a href={href}>{label}</a>

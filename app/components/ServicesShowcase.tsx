@@ -2,7 +2,7 @@
 
 import { Fragment, useEffect, useRef, useState, type CSSProperties } from "react";
 import Link from "next/link";
-import { ArrowRight, Check, Sparkles, type LucideIcon } from "lucide-react";
+import { ArrowRight, Check, type LucideIcon } from "lucide-react";
 
 import c from "./ServicesShowcase.module.css";
 import s from "./scenes/scenes.module.css";
@@ -109,29 +109,26 @@ export default function ServicesShowcase({
     <section
       ref={sectionRef}
       id={id}
-      className="relative z-[2] scroll-mt-20 bg-white text-black"
+      className={`${c.section} relative z-[2] scroll-mt-20 bg-white text-black`}
     >
       {/* Âncoras do menu para cada serviço */}
       {services.map((s) => (
         <span key={s.id} id={s.id} className="block h-0 scroll-mt-24" aria-hidden="true" />
       ))}
 
-      <div className="mx-auto max-w-7xl px-6 pb-28 pt-24 text-center">
-        {/* SELO */}
-        <div data-fade
-          className={`${s.fade} mb-8 inline-flex items-center gap-2`} style={delay(1)}>
-          <span className="flex h-6 w-6 items-center justify-center rounded border border-gray-300">
-            <Sparkles size={13} className="fill-black" aria-hidden="true" />
-          </span>
-          <span className="text-sm font-medium text-black">{label}</span>
-        </div>
+      {/* Mesmo espaçamento, rótulo e tamanho de título das outras seções. */}
+      <div className="mx-auto max-w-7xl px-6 py-[clamp(72px,12vh,128px)] text-center">
+        {/* RÓTULO */}
+        <span
+          data-fade
+          className={`${s.fade} block text-xs font-semibold uppercase tracking-[0.16em] text-[#3b0764]`}
+          style={delay(1)}
+        >
+          {label}
+        </span>
 
         {/* TÍTULO */}
-        <h2
-          data-fade
-          className={`${s.fade} mb-12 text-4xl font-normal leading-[1.1] tracking-tight sm:text-5xl md:text-6xl lg:text-[72px]`}
-          style={delay(2)}
-        >
+        <h2 data-fade className={`${s.fade} ${s.h2} mx-auto mb-10 max-w-[22em]`} style={delay(2)}>
           {title[0]}
           <br />
           <span className={c.gradient}>{title[1]}</span>

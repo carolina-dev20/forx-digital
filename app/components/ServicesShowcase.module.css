@@ -1,6 +1,12 @@
 /* Seção "O que fazemos" (home): branca, centralizada, abas + painel com card.
    A entrada usa o efeito padrão do site (.fade de scenes.module.css). */
 
+/* Mesma fonte do topo (Inter Tight), também fora do bloco .scenes. */
+.section {
+  font-family: var(--font-inter-tight), system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
 /* Segunda linha do título: degradê preto → cinza. */
 .gradient {
   background: linear-gradient(90deg, #000 0%, #6b7280 55%, #9ca3af 100%);
