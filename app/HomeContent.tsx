@@ -5,17 +5,12 @@ import Link from "next/link";
 
 import {
   BriefcaseBusiness,
-  Check,
   Code2,
-  Globe2,
   MapPin,
   MonitorSmartphone,
-  MousePointer2,
-  ShieldCheck,
   Target,
   Users,
   Workflow,
-  Zap,
 } from "lucide-react";
 
 import MegaMenu from "./components/MegaMenu";
@@ -172,37 +167,6 @@ const steps = [
 ];
 
 // ==========================================
-// DIFERENCIAIS
-// ==========================================
-
-const benefits = [
-  {
-    icon: MousePointer2,
-    title: "Visão integrada",
-    description:
-      "Gestão, tecnologia e marketing pensados juntos, e não como peças soltas.",
-  },
-  {
-    icon: Zap,
-    title: "Operação mais eficiente",
-    description:
-      "Processos organizados e automações que reduzem retrabalho e tempo perdido.",
-  },
-  {
-    icon: Globe2,
-    title: "Presença no mercado",
-    description:
-      "Sites e estratégias digitais que tornam sua empresa mais fácil de encontrar.",
-  },
-  {
-    icon: ShieldCheck,
-    title: "Crescimento sustentável",
-    description:
-      "Soluções que acompanham a evolução do seu negócio de forma inteligente.",
-  },
-];
-
-// ==========================================
 // PERGUNTAS FREQUENTES
 // ==========================================
 
@@ -281,67 +245,6 @@ export default function HomeContent() {
                   <h3>{step.title}</h3>
                   <p>{step.description}</p>
                 </div>
-              ))}
-            </div>
-          </section>
-
-          {/* DIFERENCIAIS */}
-          <section id="diferenciais" className={s.block} data-tone="light">
-            <BlockHead
-              label="POR QUE A FORX?"
-              title={[{ text: "Tecnologia a serviço do seu negócio." }]}
-              lead="Não entregamos ferramentas isoladas. Conectamos gestão, automação, software e marketing para gerar resultado de verdade."
-            />
-
-            <div className={s.grid}>
-              {benefits.map((benefit, index) => {
-                const Icon = benefit.icon;
-                return (
-                  <div
-                    key={benefit.title}
-                    className={`${s.cell} ${s.fade}`}
-                    data-fade
-                    style={d(0.08 * (index % 2))}
-                  >
-                    <div className={s.cellTop}>
-                      <span>{String(index + 1).padStart(2, "0")}</span>
-                      <Icon size={22} aria-hidden="true" />
-                    </div>
-                    <h3>{benefit.title}</h3>
-                    <p>{benefit.description}</p>
-                  </div>
-                );
-              })}
-            </div>
-
-            <div className={`${s.fade} mt-12`} data-fade>
-              <DotButton href="#contato" large>
-                Fale sobre seu projeto
-              </DotButton>
-            </div>
-          </section>
-
-          {/* SOBRE A FORX */}
-          <section id="sobre" className={s.block} data-tone="violet">
-            <BlockHead
-              label="SOBRE NÓS"
-              title={[{ text: "Transformamos desafios em soluções tecnológicas." }]}
-              lead="A FORX Digital é uma empresa de tecnologia e soluções estratégicas para negócios, especializada em conectar gestão, automação, desenvolvimento de software e marketing digital."
-            />
-
-            <p className={`${s.lead} ${s.fade}`} data-fade style={d(0.15)}>
-              Nosso propósito é transformar desafios empresariais em soluções
-              tecnológicas, ajudando empresas a otimizar sua operação,
-              fortalecer sua presença no mercado e crescer de forma inteligente
-              e sustentável.
-            </p>
-
-            <div className={`${s.points} ${s.fade}`} data-fade style={d(0.2)}>
-              {["Tecnologia", "Gestão", "Crescimento"].map((item) => (
-                <span key={item}>
-                  <Check size={15} />
-                  {item}
-                </span>
               ))}
             </div>
           </section>
