@@ -61,10 +61,6 @@ const plans: Plan[] = [
 
 const rows: ComparisonRow[] = [
   {
-    label: "Implantação (setup)",
-    values: ["R$ 497", "R$ 697", "R$ 997", "Isenta", "Sob proposta"],
-  },
-  {
     label: "Site",
     values: [
       "Landing page (1 página)",
