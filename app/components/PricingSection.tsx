@@ -190,7 +190,7 @@ function PlanButton({ plan, label }: { plan: Plan; label: string }) {
       rel="noopener noreferrer"
       className={`flex min-h-10 w-full items-center justify-center gap-1.5 rounded-full px-2 text-center text-xs font-medium transition-all duration-300 sm:px-3 sm:text-[13px] ${
         plan.featured
-          ? "bg-[#3b0764] text-white hover:bg-[#59168b] hover:shadow-[0_8px_22px_rgba(59,7,100,0.35)]"
+          ? "bg-[#59168b] text-white hover:bg-[#6e11b0] hover:shadow-[0_8px_22px_rgba(89,22,139,0.35)]"
           : "border border-[#1a1238]/15 text-[#1a1238] hover:border-[#3b0764] hover:bg-[#3b0764]/[0.06]"
       }`}
     >
@@ -362,7 +362,7 @@ export default function PricingSection() {
             href={getWhatsAppLink("atendimento")}
             target="_blank"
             rel="noopener noreferrer"
-            className="mt-5 inline-flex items-center gap-3 rounded-full bg-[#3b0764] px-7 py-3.5 text-sm font-semibold text-white transition-all hover:-translate-y-0.5 hover:shadow-[0_0_30px_rgba(59,7,100,0.3)]"
+            className="mt-5 inline-flex items-center gap-3 rounded-full bg-[#59168b] px-7 py-3.5 text-sm font-semibold text-white transition-all hover:-translate-y-0.5 hover:bg-[#6e11b0] hover:shadow-[0_0_30px_rgba(89,22,139,0.3)]"
           >
             Converse com a FORX
             <ArrowUpRight size={17} />
