@@ -187,23 +187,22 @@ export default function HomeContent() {
       {/* TOPO + FRASE + PAINEL (animados com a rolagem) */}
       <div id="inicio">
         <Scenes
-          eyebrow="TECNOLOGIA, GESTÃO E CRESCIMENTO"
           heroTitle={[
-            { text: "Tecnologia." },
+            { text: "Mais clientes." },
             { br: true },
-            { text: " Gestão.", hl: true },
+            { text: " Agenda cheia.", hl: true },
             { br: true },
-            { text: " Crescimento." },
+            { text: " Zero bagunça." },
           ]}
-          description="Soluções que conectam gestão, automação, desenvolvimento de software e marketing digital para empresas que querem crescer de forma inteligente."
+          description="Site, Google, anúncios e agenda online com lembretes no WhatsApp, tudo num plano mensal só. Você atende, a FORX traz os clientes e organiza o resto."
           primary={{
-            label: "Entre em contato",
+            label: "Quero mais clientes",
             href: `${whatsappLink}?text=${encodeURIComponent(
-              "Olá! Conheci a FORX Digital pelo site e gostaria de solicitar um orçamento."
+              "Olá! Conheci a FORX Digital pelo site e quero mais clientes para o meu negócio."
             )}`,
             external: true,
           }}
-          secondary={{ label: "Explorar", href: "#servicos", icon: "down" }}
+          secondary={{ label: "Ver planos a partir de R$ 195/mês", href: "/precos" }}
         />
 
       </div>

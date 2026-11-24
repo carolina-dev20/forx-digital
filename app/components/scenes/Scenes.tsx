@@ -294,7 +294,8 @@ export type SceneItem = {
 };
 
 export type ScenesProps = {
-  eyebrow: string;
+  /** Linha pequena acima do título (opcional). */
+  eyebrow?: string;
   /** Título principal, já dividido (use { hl: true } no trecho em destaque). */
   heroTitle: Segment[];
   description: string;
@@ -545,9 +546,11 @@ export default function Scenes({
         className={`${s.hero} ${compact ? s.compact : ""} ${mock ? "" : s.solo}`}
       >
         <div>
-          <span className={`${s.eyebrow} ${s.fu}`} style={d(0.1)}>
-            {eyebrow}
-          </span>
+          {eyebrow && (
+            <span className={`${s.eyebrow} ${s.fu}`} style={d(0.1)}>
+              {eyebrow}
+            </span>
+          )}
 
           <h1 ref={h1Ref} className={s.h1} aria-label={plain(heroTitle)}>
             <span aria-hidden="true">
