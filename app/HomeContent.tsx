@@ -237,21 +237,12 @@ export default function HomeContent() {
             )}`,
             external: true,
           }}
-          secondary={{ label: "Explorar", href: "#introducao", icon: "down" }}
-          statement={{
-            id: "introducao",
-            text: [
-              { text: "Da operação interna " },
-              { text: "ao crescimento online.", hl: true },
-              { br: true },
-              {
-                text: " Atuamos desde a estruturação de processos internos e do relacionamento com clientes até o desenvolvimento de plataformas digitais e estratégias de crescimento online.",
-              },
-            ],
-          }}
-          navCta={{ label: "Fale com a FORX", href: "#contato" }}
+          secondary={{ label: "Explorar", href: "#servicos", icon: "down" }}
         />
 
+      </div>
+
+      <div ref={rootRef}>
         {/* O QUE FAZEMOS: abas com um card por serviço */}
         <ServicesShowcase
           id="servicos"
@@ -259,9 +250,6 @@ export default function HomeContent() {
           title={["Soluções que conectam", "gestão, tecnologia e marketing."]}
           services={services}
         />
-      </div>
-
-      <div ref={rootRef}>
         <div className={`${s.scenes} ${s.rest}`}>
           {/* PRESENÇA NO GOOGLE */}
           <GooglePresence />

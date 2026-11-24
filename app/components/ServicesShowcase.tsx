@@ -5,6 +5,7 @@ import Link from "next/link";
 import { ArrowRight, Check, Sparkles, type LucideIcon } from "lucide-react";
 
 import c from "./ServicesShowcase.module.css";
+import s from "./scenes/scenes.module.css";
 
 export type ShowcaseService = {
   /** Âncora usada pelo menu (ex.: "desenvolvimento-software"). */
@@ -55,7 +56,7 @@ export default function ServicesShowcase({
   const [tick, setTick] = useState(0);
   const [paused, setPaused] = useState(false);
 
-  // Entrada em cascata na primeira vez que a seção aparece.
+  // Liga a troca automática de abas quando a seção aparece pela primeira vez.
   useEffect(() => {
     const el = sectionRef.current;
     if (!el) return;
@@ -108,7 +109,7 @@ export default function ServicesShowcase({
     <section
       ref={sectionRef}
       id={id}
-      className={`relative z-[2] scroll-mt-20 bg-white text-black ${on ? c.on : ""}`}
+      className="relative z-[2] scroll-mt-20 bg-white text-black"
     >
       {/* Âncoras do menu para cada serviço */}
       {services.map((s) => (
@@ -117,7 +118,8 @@ export default function ServicesShowcase({
 
       <div className="mx-auto max-w-7xl px-6 pb-28 pt-24 text-center">
         {/* SELO */}
-        <div className={`${c.item} mb-8 inline-flex items-center gap-2`} style={delay(1)}>
+        <div data-fade
+          className={`${s.fade} mb-8 inline-flex items-center gap-2`} style={delay(1)}>
           <span className="flex h-6 w-6 items-center justify-center rounded border border-gray-300">
             <Sparkles size={13} className="fill-black" aria-hidden="true" />
           </span>
@@ -126,7 +128,8 @@ export default function ServicesShowcase({
 
         {/* TÍTULO */}
         <h2
-          className={`${c.item} mb-12 text-4xl font-normal leading-[1.1] tracking-tight sm:text-5xl md:text-6xl lg:text-[72px]`}
+          data-fade
+          className={`${s.fade} mb-12 text-4xl font-normal leading-[1.1] tracking-tight sm:text-5xl md:text-6xl lg:text-[72px]`}
           style={delay(2)}
         >
           {title[0]}
@@ -135,7 +138,8 @@ export default function ServicesShowcase({
         </h2>
 
         {/* ABAS: grade 2 colunas no celular, linha com divisórias no computador */}
-        <div className={`${c.item} flex justify-center`} style={delay(3)}>
+        <div data-fade
+          className={`${s.fade} flex justify-center`} style={delay(3)}>
           <div
             role="tablist"
             aria-label="Serviços FORX"
@@ -168,7 +172,8 @@ export default function ServicesShowcase({
         </div>
 
         {/* PAINEL */}
-        <div className={`${c.item} mt-8`} style={delay(4)}>
+        <div data-fade
+          className={`${s.fade} mt-8`} style={delay(4)}>
           <div
             id="servico-painel"
             role="tabpanel"

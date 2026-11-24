@@ -10,7 +10,7 @@ import {
   X,
 } from "lucide-react";
 
-type MenuKey = "servicos" | "gestao" | "cases" | "processo" | "sobre";
+type MenuKey = "servicos" | "gestao" | "cases";
 
 type MenuLink = {
   label: string;
@@ -109,63 +109,12 @@ const menuData: Record<MenuKey, MenuSection> = {
       },
     ],
   },
-
-  processo: {
-    title: "Do desafio à solução",
-    subtitle: "Um processo claro em cada etapa.",
-    links: [
-      {
-        label: "01. Diagnóstico",
-        href: "/#processo",
-        description: "Entendemos seu negócio e seus desafios",
-      },
-      {
-        label: "02. Planejamento",
-        href: "/#processo",
-        description: "Definimos a solução ideal",
-      },
-      {
-        label: "03. Desenvolvimento",
-        href: "/#processo",
-        description: "Sistemas, sites e campanhas",
-      },
-      {
-        label: "04. Implantação",
-        href: "/#processo",
-        description: "Solução funcionando e acompanhada",
-      },
-    ],
-  },
-
-  sobre: {
-    title: "Conheça a FORX Digital",
-    subtitle: "Tecnologia, gestão e crescimento.",
-    links: [
-      {
-        label: "Nossa agência",
-        href: "/#sobre",
-        description: "Quem somos e nosso propósito",
-      },
-      {
-        label: "Nossos diferenciais",
-        href: "/#diferenciais",
-        description: "O que torna cada projeto único",
-      },
-      {
-        label: "Fale com a FORX",
-        href: "/#contato",
-        description: "Vamos conversar sobre sua ideia",
-      },
-    ],
-  },
 };
 
 const menuItems: { key: MenuKey; label: string; href: string }[] = [
   { key: "servicos", label: "Serviços", href: "/#servicos" },
   { key: "gestao", label: "Gestão", href: "/#gestao-processos" },
   { key: "cases", label: "Cases", href: "/cases" },
-  { key: "processo", label: "Processo", href: "/#processo" },
-  { key: "sobre", label: "Sobre", href: "/#sobre" },
 ];
 
 export default function MegaMenu() {

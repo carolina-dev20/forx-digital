@@ -2,6 +2,7 @@
 
 import {
   useEffect,
+  useRef,
   useState,
   type CSSProperties,
   type ReactNode,
@@ -145,6 +146,26 @@ export const twoLines = (before: string, after: string): Segment[] => [
 ];
 
 /** Cabeçalho de seção do painel escuro: rótulo + título revelado + texto opcional. */
+/**
+ * Liga os efeitos de rolagem do site (blocos que sobem e aparecem, títulos revelados)
+ * em qualquer página, inclusive as que são componentes de servidor.
+ */
+export function SceneEffectsRoot({
+  children,
+  className,
+}: {
+  children: ReactNode;
+  className?: string;
+}) {
+  const ref = useRef<HTMLDivElement>(null);
+  useSceneEffects(ref);
+  return (
+    <div ref={ref} className={className}>
+      {children}
+    </div>
+  );
+}
+
 export function BlockHead({
   label,
   title,

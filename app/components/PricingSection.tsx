@@ -11,6 +11,9 @@ import {
   Users,
 } from "lucide-react";
 
+import { d } from "./scenes/blocks";
+import sc from "./scenes/scenes.module.css";
+
 
 const WHATSAPP_NUMBER = "5511994880312";
 
@@ -352,7 +355,8 @@ export default function PricingSection() {
         <div
           role="tablist"
           aria-label="Tipo de plano"
-          className="mx-auto mb-7 flex w-fit max-w-full gap-1 rounded-full border border-[#3b0764]/15 bg-white/70 p-1 shadow-[0_8px_24px_-12px_rgba(59,7,100,0.25)]"
+          data-fade
+          className={`${sc.fade} mx-auto mb-7 flex w-fit max-w-full gap-1 rounded-full border border-[#3b0764]/15 bg-white/70 p-1 shadow-[0_8px_24px_-12px_rgba(59,7,100,0.25)]`}
         >
           {catalogs.map((item) => {
             const active = item.key === activeKey;
@@ -390,7 +394,9 @@ export default function PricingSection() {
         <div
           id="pricing-table"
           role="tabpanel"
-          className="w-full overflow-hidden rounded-[20px] border border-[#3b0764]/15 bg-white shadow-[0_30px_70px_-35px_rgba(59,7,100,0.45)]"
+          data-fade
+          style={d(0.08)}
+          className={`${sc.fade} w-full overflow-hidden rounded-[20px] border border-[#3b0764]/15 bg-white shadow-[0_30px_70px_-35px_rgba(59,7,100,0.45)]`}
         >
           {/* ROLAGEM SOMENTE QUANDO NECESSÁRIA */}
           <div className="w-full overflow-x-auto">
@@ -520,7 +526,7 @@ export default function PricingSection() {
         </div>
 
         {/* AVISO DO PLANO */}
-        <div className="mx-auto mt-6 flex max-w-4xl items-start gap-3 rounded-xl border border-[#3b0764]/15 bg-white/70 px-5 py-4">
+        <div data-fade className={`${sc.fade} mx-auto mt-6 flex max-w-4xl items-start gap-3 rounded-xl border border-[#3b0764]/15 bg-white/70 px-5 py-4`}>
           <Info
             size={18}
             className="mt-0.5 shrink-0 text-[#3b0764]"
@@ -535,7 +541,7 @@ export default function PricingSection() {
         </div>
 
         {/* CHAMADA FINAL */}
-        <div className="mt-8 text-center">
+        <div data-fade className={`${sc.fade} mt-8 text-center`}>
           <p className="text-sm text-[#5c5478]">
             Ainda tem dúvidas sobre qual plano escolher?
           </p>

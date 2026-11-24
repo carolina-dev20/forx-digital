@@ -4,6 +4,7 @@ import Link from "next/link";
 import MegaMenu from "../components/MegaMenu";
 import PricingSection from "../components/PricingSection";
 import Scenes from "../components/scenes/Scenes";
+import { SceneEffectsRoot } from "../components/scenes/blocks";
 import s from "../components/scenes/scenes.module.css";
 import { breadcrumbSchema, jsonLd, pageMetadata } from "../seo";
 
@@ -39,9 +40,9 @@ export default function PrecosPage() {
       />
 
       {/* TABELA DE PLANOS EM ROXO-CLARO */}
-      <div className={`${s.scenes} ${s.lightPanel}`}>
+      <SceneEffectsRoot className={`${s.scenes} ${s.lightPanel}`}>
         <PricingSection />
-      </div>
+      </SceneEffectsRoot>
 
       <footer className={`${s.scenes} ${s.foot}`}>
         <Link href="/">FORX Digital.</Link>

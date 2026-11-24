@@ -3,6 +3,7 @@ import Link from "next/link";
 
 import MegaMenu from "../components/MegaMenu";
 import Scenes from "../components/scenes/Scenes";
+import { SceneEffectsRoot } from "../components/scenes/blocks";
 import s from "../components/scenes/scenes.module.css";
 import { INSTAGRAM, breadcrumbSchema, jsonLd, pageMetadata } from "../seo";
 import ManageCookiesButton from "./ManageCookiesButton";
@@ -41,8 +42,8 @@ export default function PrivacidadePage() {
         description="Como tratamos os dados de quem visita o site da FORX Digital, por que fazemos isso e como você controla as suas informações."
       />
 
-      <div className={`${s.scenes} ${s.lightPanel}`}>
-        <article className={s.legal}>
+      <SceneEffectsRoot className={`${s.scenes} ${s.lightPanel}`}>
+        <article className={`${s.legal} ${s.fade}`} data-fade>
           <p className={s.legalUpdated}>Última atualização: {UPDATED}</p>
 
           <h2>1. Quem somos</h2>
@@ -218,7 +219,7 @@ export default function PrivacidadePage() {
             .
           </p>
         </article>
-      </div>
+      </SceneEffectsRoot>
 
       <footer className={`${s.scenes} ${s.foot}`}>
         <Link href="/">FORX Digital.</Link>

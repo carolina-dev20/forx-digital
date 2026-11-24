@@ -1,23 +1,14 @@
 import type { Metadata, Viewport } from "next";
-import { Inter_Tight, Plus_Jakarta_Sans } from "next/font/google";
+import { Inter_Tight } from "next/font/google";
 import CookieConsent from "./components/CookieConsent";
 import "./globals.css";
 import { SITE_NAME, SITE_URL } from "./seo";
 
-// Plus Jakarta Sans (pesos 200–800, normal e itálico), hospedada pelo next/font
-const plusJakartaSans = Plus_Jakarta_Sans({
-  variable: "--font-plus-jakarta-sans",
-  subsets: ["latin", "latin-ext"],
-  weight: "variable",
-  style: ["normal", "italic"],
-  display: "swap",
-});
-
-// Inter Tight (400/500/600), usada no topo animado das páginas de Gestão
+// Inter Tight: fonte única do site (400/500/600/700), hospedada pelo next/font
 const interTight = Inter_Tight({
   variable: "--font-inter-tight",
   subsets: ["latin", "latin-ext"],
-  weight: ["400", "500", "600"],
+  weight: ["400", "500", "600", "700"],
   display: "swap",
 });
 
@@ -89,7 +80,7 @@ export default function RootLayout({
   return (
     <html
       lang="pt-BR"
-      className={`${plusJakartaSans.variable} ${interTight.variable} h-full antialiased`}
+      className={`${interTight.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col">
         {children}
