@@ -248,7 +248,7 @@ export default function PricingSection() {
                   >
                     <div className="mb-3 flex min-h-6 items-center justify-center">
                       {plan.featured && (
-                        <span className="inline-flex items-center gap-1.5 rounded-full bg-[#3b0764] px-3 py-1 text-[10px] font-semibold tracking-wide text-white shadow-[0_6px_18px_rgba(59,7,100,0.3)]">
+                        <span className="inline-flex items-center gap-1.5 rounded-full bg-[#59168b] px-3 py-1 text-[10px] font-semibold tracking-wide text-white shadow-[0_6px_18px_rgba(89,22,139,0.3)]">
                           <Sparkles size={12} />
                           MAIS ESCOLHIDO
                         </span>
