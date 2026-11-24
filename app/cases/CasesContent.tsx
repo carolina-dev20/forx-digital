@@ -51,7 +51,7 @@ const RELATED = [
     label: "Ver planos",
     tag: "PLANOS E PREÇOS",
     description:
-      "Compare os planos de presença digital e veja quanto custa um projeto parecido com estes.",
+      "Compare os planos e veja quanto custa um projeto parecido com estes.",
   },
 ];
 

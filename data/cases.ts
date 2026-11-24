@@ -105,7 +105,7 @@ export const cases: Case[] = [
     },
     url: "https://cleidebeautysalao.com.br/",
     // TODO: confirmar com a cliente — plano mais próximo do escopo (landing page + SEO local) na tabela de /precos
-    planoRelacionado: { nome: "Crescimento", precoAPartirDe: "500", link: "/precos" },
+    planoRelacionado: { nome: "Básico", precoAPartirDe: "195", link: "/precos" },
     status: "concluído",
   },
   {
@@ -147,7 +147,7 @@ export const cases: Case[] = [
     },
     url: "https://www.makeuplalab.com.br/",
     // TODO: confirmar com a cliente — plano mais próximo do escopo (site + SEO + tráfego pago) na tabela de /precos
-    planoRelacionado: { nome: "Performance", precoAPartirDe: "899", link: "/precos" },
+    planoRelacionado: { nome: "Growth", precoAPartirDe: "797", link: "/precos" },
     status: "concluído",
   },
 ];

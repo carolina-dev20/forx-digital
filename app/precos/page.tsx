@@ -9,9 +9,9 @@ import s from "../components/scenes/scenes.module.css";
 import { breadcrumbSchema, jsonLd, pageMetadata } from "../seo";
 
 export const metadata: Metadata = pageMetadata({
-  title: "Preços e Planos de Sites e CRM",
+  title: "Preços e Planos: Site, Sistema e Tráfego",
   description:
-    "Compare os planos da FORX Digital: sites com SEO e presença no Google a partir de R$ 200/mês e CRM com implantação para organizar o seu comercial.",
+    "Compare os planos da FORX Digital: site, Sistema FORX com agendamento e tráfego pago a partir de R$ 195/mês.",
   path: "/precos",
 });
 
@@ -36,7 +36,7 @@ export default function PrecosPage() {
           { br: true },
           { text: "para o seu negócio.", hl: true },
         ]}
-        description="Compare os planos de presença digital e de CRM e descubra quais soluções fazem sentido para o momento da sua empresa."
+        description="Compare site, sistema e tráfego pago em cada plano e descubra quais soluções fazem sentido para o momento da sua empresa."
       />
 
       {/* TABELA DE PLANOS EM ROXO-CLARO */}
