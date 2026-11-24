@@ -1,3 +1,5 @@
+"use client";
+
 import Image from "next/image";
 import { BellRing, CalendarCheck, CalendarPlus } from "lucide-react";
 
@@ -19,12 +21,13 @@ const SHOTS: { src?: string; alt: string }[] = [
   { alt: "Lembrete automático enviado pelo WhatsApp" },
 ];
 
-export default function SystemCard({ index }: { index: number }) {
+/** Card do Sistema FORX. index: posição numa lista (mostra "03 ·"); sem index, só o rótulo. */
+export default function SystemCard({ index }: { index?: number }) {
   return (
-    <article id="sistema-forx" aria-labelledby="sistema-forx-title" className={`${CARD} scroll-mt-24`}>
+    <article id="como-funciona" aria-labelledby="sistema-forx-title" className={`${CARD} scroll-mt-24`}>
       <header>
         <span className="text-[11px] font-semibold uppercase tracking-[0.16em] text-[var(--hl)]">
-          {String(index + 1).padStart(2, "0")} · Produto FORX
+          {index !== undefined && `${String(index + 1).padStart(2, "0")} · `}Produto FORX
         </span>
         <h3
           id="sistema-forx-title"

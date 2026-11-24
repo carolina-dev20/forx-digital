@@ -10,7 +10,7 @@ import {
   X,
 } from "lucide-react";
 
-type MenuKey = "servicos" | "gestao" | "cases";
+type MenuKey = "servicos" | "gestao" | "cases" | "sistema";
 
 type MenuLink = {
   label: string;
@@ -109,12 +109,35 @@ const menuData: Record<MenuKey, MenuSection> = {
       },
     ],
   },
+
+  sistema: {
+    title: "Sistema FORX",
+    subtitle: "Agenda online e lembretes automáticos no WhatsApp.",
+    links: [
+      {
+        label: "Visão geral",
+        href: "/sistema-forx",
+        description: "Para negócios com horário marcado",
+      },
+      {
+        label: "Como funciona",
+        href: "/sistema-forx#como-funciona",
+        description: "Agenda pelo link, aprovação e lembrete",
+      },
+      {
+        label: "Fale com a FORX",
+        href: "/#contato",
+        description: "Peça uma demonstração do sistema",
+      },
+    ],
+  },
 };
 
 const menuItems: { key: MenuKey; label: string; href: string }[] = [
   { key: "servicos", label: "Serviços", href: "/#servicos" },
   { key: "gestao", label: "Gestão", href: "/#gestao-processos" },
   { key: "cases", label: "Cases", href: "/cases" },
+  { key: "sistema", label: "Sistema FORX", href: "/sistema-forx" },
 ];
 
 export default function MegaMenu() {

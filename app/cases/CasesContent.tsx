@@ -6,7 +6,6 @@ import { Check, Globe, Wallet } from "lucide-react";
 
 import { cases } from "@/data/cases";
 import CaseCard, { whatsappLink } from "../components/cases/CaseCard";
-import SystemCard from "../components/cases/SystemCard";
 import MegaMenu from "../components/MegaMenu";
 import WhatsAppFloat from "../components/WhatsAppFloat";
 import Scenes from "../components/scenes/Scenes";
@@ -94,9 +93,6 @@ export default function CasesContent() {
                     <CaseCard item={item} index={index} />
                   </div>
                 ))}
-                <div className={s.fade} data-fade style={d(0)}>
-                  <SystemCard index={cases.length} />
-                </div>
               </div>
             </div>
           </section>

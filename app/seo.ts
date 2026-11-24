@@ -7,7 +7,7 @@ import type { Metadata } from "next";
 export const SITE_URL = "https://www.forxdigital.com.br";
 export const SITE_NAME = "FORX Digital";
 export const PHONE = "+55 11 99488-0312";
-export const INSTAGRAM = "https://www.instagram.com/forx.digital/";
+export const INSTAGRAM = "https://www.instagram.com/forxpdigital";
 
 const ORG_ID = `${SITE_URL}/#organization`;
 const WEBSITE_ID = `${SITE_URL}/#website`;

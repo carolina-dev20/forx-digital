@@ -20,6 +20,7 @@ import {
 
 import MegaMenu from "./components/MegaMenu";
 import GooglePresence from "./components/GooglePresence";
+import HomePortfolio from "./components/HomePortfolio";
 import ContactForm from "./components/ContactForm";
 import WhatsAppFloat from "./components/WhatsAppFloat";
 import ServicesShowcase from "./components/ServicesShowcase";
@@ -32,6 +33,7 @@ import {
 } from "./components/scenes/blocks";
 import s from "./components/scenes/scenes.module.css";
 import { homeFaqs as faqs } from "./home-faqs";
+import { INSTAGRAM } from "./seo";
 
 // ==========================================
 // WHATSAPP OFICIAL
@@ -251,6 +253,9 @@ export default function HomeContent() {
           services={services}
         />
         <div className={`${s.scenes} ${s.rest}`}>
+          {/* PORTFÓLIO + QUEM CUIDA DO SEU PROJETO */}
+          <HomePortfolio />
+
           {/* PRESENÇA NO GOOGLE */}
           <GooglePresence />
 
@@ -430,7 +435,7 @@ export default function HomeContent() {
                   </li>
                   <li>
                     <a
-                      href="https://www.instagram.com/forx.digital/"
+                      href={INSTAGRAM}
                       target="_blank"
                       rel="noopener noreferrer"
                       aria-label="Instagram da FORX Digital"

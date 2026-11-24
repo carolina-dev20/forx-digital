@@ -1,11 +1,12 @@
 "use client";
 
-import { useState, type CSSProperties, type ReactNode } from "react";
+import { useState, type ReactNode } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { ArrowUpRight, Check, Clock, ImageOff, Play, Quote } from "lucide-react";
+import { ArrowUpRight, Check, Clock, Play, Quote } from "lucide-react";
 
-import type { Case, CaseImage, CaseTestimonial } from "@/data/cases";
+import type { Case, CaseTestimonial } from "@/data/cases";
+import DeviceMockup from "../DeviceMockup";
 import { DotButton } from "../scenes/Scenes";
 
 export const WHATSAPP_NUMBER = "5511994880312";
@@ -58,66 +59,7 @@ function StatusBadge({ status }: { status: Case["status"] }) {
   );
 }
 
-/** Espaço neutro quando ainda não há print: mantém a proporção, nunca quebra o layout. */
-export function ImagePlaceholder({ label }: { label: string }) {
-  return (
-    <div
-      role="img"
-      aria-label={label}
-      className="flex h-full w-full flex-col items-center justify-center gap-2 bg-[var(--card-2)] text-center text-[var(--fg-3)]"
-    >
-      <ImageOff size={22} aria-hidden="true" />
-      <span className="px-2 text-[11px] leading-4">Imagem em breve</span>
-    </div>
-  );
-}
-
-function Shot({ image, sizes }: { image: CaseImage; sizes: string }) {
-  if (!image.src) return <ImagePlaceholder label={`${image.alt} (imagem em breve)`} />;
-  return (
-    <Image src={image.src} alt={image.alt} fill sizes={sizes} className="object-cover object-top" />
-  );
-}
-
-/** Print do computador + celular lado a lado (empilhados em telas pequenas). */
-const DESKTOP_RATIO = 16 / 10;
-const MOBILE_RATIO = 9 / 19;
-
-/** Proporção real do print (largura / altura), para a moldura não cortar a imagem. */
-const ratioOf = (image: CaseImage, fallback: number) =>
-  image.width && image.height ? image.width / image.height : fallback;
-
-function Screens({ desktop, mobile }: Case["imagens"]) {
-  const dr = ratioOf(desktop, DESKTOP_RATIO);
-  const mr = ratioOf(mobile, MOBILE_RATIO);
-  // Colunas proporcionais às proporções: notebook e celular ficam com alturas parecidas
-  // (o celular um pouco mais alto, como num mockup).
-  const cols = `minmax(0,${dr.toFixed(3)}fr) minmax(0,${(mr * 1.2).toFixed(3)}fr)`;
-
-  return (
-    <div
-      className="grid items-end gap-4 rounded-[16px] bg-gradient-to-br from-[#f4effe] to-[#e4d9ff] p-4 sm:grid-cols-[var(--cols)] sm:p-6"
-      style={{ "--cols": cols } as CSSProperties}
-    >
-      <div className="overflow-hidden rounded-[10px] border-[5px] border-[#242329] bg-[#242329] shadow-2xl">
-        <div
-          className="relative overflow-hidden rounded-[4px] bg-[#16131f]"
-          style={{ aspectRatio: dr }}
-        >
-          <Shot image={desktop} sizes="(min-width: 1024px) 420px, 90vw" />
-        </div>
-      </div>
-      <div className="mx-auto w-[42%] max-w-[170px] sm:w-full">
-        <div
-          className="relative overflow-hidden rounded-[18px] border-[5px] border-[#242329] bg-[#16131f] shadow-[0_20px_40px_rgba(0,0,0,0.35)]"
-          style={{ aspectRatio: mr }}
-        >
-          <Shot image={mobile} sizes="(min-width: 640px) 140px, 40vw" />
-        </div>
-      </div>
-    </div>
-  );
-}
+export { ImagePlaceholder } from "../DeviceMockup";
 
 /** Vídeo só é carregado depois do clique (sem peso extra na página). */
 function VideoTestimonial({ src, poster, name }: { src: string; poster?: string; name: string }) {
@@ -238,7 +180,7 @@ export default function CaseCard({ item, index }: { item: Case; index: number })
       <div className="mt-7 grid gap-8 lg:grid-cols-[minmax(0,1.05fr)_minmax(0,1fr)] lg:gap-10">
         {/* 2. IMAGENS */}
         <div className="lg:sticky lg:top-24 lg:self-start">
-          <Screens desktop={item.imagens.desktop} mobile={item.imagens.mobile} />
+          <DeviceMockup desktop={item.imagens.desktop} mobile={item.imagens.mobile} />
         </div>
 
         <div className="grid gap-7">
