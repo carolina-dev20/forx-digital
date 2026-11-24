@@ -202,7 +202,13 @@ export default function HomeContent() {
             )}`,
             external: true,
           }}
-          secondary={{ label: "Ver planos a partir de R$ 195/mês", href: "/precos" }}
+          secondary={{
+            label: "Solicitar um diagnóstico gratuito",
+            href: `${whatsappLink}?text=${encodeURIComponent(
+              "Olá! Vi o site da FORX Digital e quero solicitar um diagnóstico gratuito para o meu negócio."
+            )}`,
+            external: true,
+          }}
         />
 
       </div>

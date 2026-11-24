@@ -301,7 +301,7 @@ export type ScenesProps = {
   description: string;
   primary?: { label: string; href: string; external?: boolean };
   /** icon "down": seta para baixo (rolar a página); padrão: cursor. */
-  secondary?: { label: string; href: string; icon?: "pointer" | "down" };
+  secondary?: { label: string; href: string; icon?: "pointer" | "down"; external?: boolean };
   /** Painel ilustrado à direita do topo (opcional). */
   mock?: { url: string; label: string; title: string; button: string };
   badge?: string;
@@ -574,6 +574,7 @@ export default function Scenes({
                 <a
                   href={secondary.href}
                   className={s.secondary}
+                  {...(secondary.external ? { target: "_blank", rel: "noopener noreferrer" } : {})}
                   onClick={
                     secondary.icon === "down"
                       ? (event) => {
