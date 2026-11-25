@@ -28,9 +28,9 @@ const DEFAULT_TITLE: Dict<string> = {
 };
 
 const DEFAULT_DESCRIPTION: Dict<string> = {
-  pt: "Criação de sites, CRM, automação de processos e tráfego pago para empresas de Guarulhos e São Paulo. Tecnologia e gestão para o seu negócio crescer.",
-  en: "Websites, CRM, process automation and paid ads for businesses in Guarulhos and São Paulo, Brazil. Technology and management to help your business grow.",
-  es: "Creación de sitios web, CRM, automatización de procesos y publicidad pagada para empresas de Guarulhos y São Paulo, Brasil. Tecnología y gestión para que tu negocio crezca.",
+  pt: "Criação de sites, CRM, automação de processos e tráfego pago para empresas, com atendimento 100% online. Tecnologia e gestão para o seu negócio crescer.",
+  en: "Websites, CRM, process automation and paid ads for businesses, with 100% online service. Technology and management to help your business grow.",
+  es: "Creación de sitios web, CRM, automatización de procesos y publicidad pagada para empresas, con atención 100% online. Tecnología y gestión para que tu negocio crezca.",
 };
 
 export async function generateMetadata({

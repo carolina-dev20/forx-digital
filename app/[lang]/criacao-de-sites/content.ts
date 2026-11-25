@@ -77,7 +77,7 @@ const text: Dict<CriacaoText> = {
       { title: "Site institucional", description: "Ideal para empresas e profissionais que desejam apresentar sua marca, serviços e formas de contato.", tag: "PRESENÇA PROFISSIONAL" },
       { title: "Landing page", description: "Uma página estratégica para apresentar uma oferta, campanha ou serviço específico.", tag: "FOCO EM CONVERSÃO" },
       { title: "Portfólio profissional", description: "Apresente projetos, experiências e resultados de forma organizada e visualmente marcante.", tag: "AUTORIDADE DIGITAL" },
-      { title: "Gestão de Tráfego Pago", description: "Campanhas no Google Ads e Meta Ads para alcançar públicos relevantes, aumentar a visibilidade e gerar oportunidades de negócio em Guarulhos e São Paulo.", tag: "ANÚNCIOS E PERFORMANCE" },
+      { title: "Gestão de Tráfego Pago", description: "Campanhas no Google Ads e Meta Ads para alcançar públicos relevantes, aumentar a visibilidade e gerar oportunidades de negócio.", tag: "ANÚNCIOS E PERFORMANCE" },
     ],
     faqs: [
       { question: "Preciso ter um site mesmo usando Instagram?", answer: "O Instagram é ótimo para relacionamento, mas o alcance depende do algoritmo e o perfil não é seu de fato. O site é um espaço próprio, aparece nas pesquisas do Google e passa mais credibilidade na hora de o cliente decidir. Os dois funcionam melhor juntos." },
@@ -145,7 +145,7 @@ const text: Dict<CriacaoText> = {
       { title: "Business website", description: "Ideal for companies and professionals who want to present their brand, services and contact options.", tag: "PROFESSIONAL PRESENCE" },
       { title: "Landing page", description: "A strategic page to present a specific offer, campaign or service.", tag: "CONVERSION-FOCUSED" },
       { title: "Professional portfolio", description: "Present projects, experience and results in an organized and visually striking way.", tag: "ONLINE AUTHORITY" },
-      { title: "Paid Ads Management", description: "Google Ads and Meta Ads campaigns to reach relevant audiences, increase visibility and generate business opportunities in Guarulhos and São Paulo.", tag: "ADS AND PERFORMANCE" },
+      { title: "Paid Ads Management", description: "Google Ads and Meta Ads campaigns to reach relevant audiences, increase visibility and generate business opportunities.", tag: "ADS AND PERFORMANCE" },
     ],
     faqs: [
       { question: "Do I need a website if I already use Instagram?", answer: "Instagram is great for building relationships, but reach depends on the algorithm and the profile is not really yours. A website is a space of your own, shows up in Google searches and builds more credibility when the customer is deciding. The two work best together." },
@@ -213,7 +213,7 @@ const text: Dict<CriacaoText> = {
       { title: "Sitio institucional", description: "Ideal para empresas y profesionales que quieren presentar su marca, servicios y formas de contacto.", tag: "PRESENCIA PROFESIONAL" },
       { title: "Landing page", description: "Una página estratégica para presentar una oferta, campaña o servicio específico.", tag: "ENFOQUE EN CONVERSIÓN" },
       { title: "Portafolio profesional", description: "Presenta proyectos, experiencias y resultados de forma organizada y visualmente impactante.", tag: "AUTORIDAD DIGITAL" },
-      { title: "Gestión de Publicidad Pagada", description: "Campañas en Google Ads y Meta Ads para llegar a públicos relevantes, aumentar la visibilidad y generar oportunidades de negocio en Guarulhos y São Paulo.", tag: "ANUNCIOS Y RENDIMIENTO" },
+      { title: "Gestión de Publicidad Pagada", description: "Campañas en Google Ads y Meta Ads para llegar a públicos relevantes, aumentar la visibilidad y generar oportunidades de negocio.", tag: "ANUNCIOS Y RENDIMIENTO" },
     ],
     faqs: [
       { question: "¿Necesito un sitio web si ya uso Instagram?", answer: "Instagram es excelente para relacionarse, pero el alcance depende del algoritmo y el perfil no es realmente tuyo. El sitio web es un espacio propio, aparece en las búsquedas de Google y transmite más credibilidad cuando el cliente decide. Los dos funcionan mejor juntos." },

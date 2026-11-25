@@ -16,23 +16,23 @@ const PATH = "/criacao-de-sites";
 
 const META: Dict<{ title: string; description: string; service: string; crumb: string }> = {
   pt: {
-    title: "Criação de Sites Profissionais em Guarulhos e SP",
+    title: "Criação de Sites Profissionais para Empresas",
     description:
-      "Criação de sites institucionais, landing pages e portfólios responsivos, com SEO e contato pelo WhatsApp. Atendimento em Guarulhos, São Paulo e região.",
+      "Criação de sites institucionais, landing pages e portfólios responsivos, com SEO e contato pelo WhatsApp. Atendimento 100% online.",
     service: "Criação de sites profissionais",
     crumb: "Criação de Sites",
   },
   en: {
-    title: "Professional Website Design in São Paulo, Brazil",
+    title: "Professional Website Design for Businesses",
     description:
-      "Responsive business websites, landing pages and portfolios, with SEO and WhatsApp contact. Serving Guarulhos, São Paulo and nearby.",
+      "Responsive business websites, landing pages and portfolios, with SEO and WhatsApp contact. 100% online service.",
     service: "Professional website design",
     crumb: "Website Design",
   },
   es: {
-    title: "Creación de Sitios Web Profesionales en São Paulo, Brasil",
+    title: "Creación de Sitios Web Profesionales para Empresas",
     description:
-      "Creación de sitios institucionales, landing pages y portafolios adaptables, con SEO y contacto por WhatsApp. Atención en Guarulhos, São Paulo y alrededores.",
+      "Creación de sitios institucionales, landing pages y portafolios adaptables, con SEO y contacto por WhatsApp. Atención 100% online.",
     service: "Creación de sitios web profesionales",
     crumb: "Creación de Sitios Web",
   },

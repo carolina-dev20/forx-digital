@@ -228,7 +228,7 @@ const TEXT: Dict<{
       label: "VAMOS CONVERSAR",
       title: "Vamos transformar seu desafio em solução.",
       lead: "Conte um pouco sobre sua empresa e o que você precisa melhorar. Vamos conversar sobre as possibilidades.",
-      area: "Atendimento online em Guarulhos, São Paulo e região",
+      area: "Atendimento 100% online, para empresas de qualquer lugar",
       whatsapp: "Conversar pelo WhatsApp",
     },
     footer: {
@@ -276,7 +276,7 @@ const TEXT: Dict<{
       label: "LET'S TALK",
       title: "Let's turn your challenge into a solution.",
       lead: "Tell us a little about your company and what you need to improve. Let's talk about the possibilities.",
-      area: "Online service in Guarulhos, São Paulo and nearby",
+      area: "100% online service, for businesses anywhere",
       whatsapp: "Chat on WhatsApp",
     },
     footer: {
@@ -324,7 +324,7 @@ const TEXT: Dict<{
       label: "HABLEMOS",
       title: "Convirtamos tu desafío en una solución.",
       lead: "Cuéntanos un poco sobre tu empresa y lo que necesitas mejorar. Hablemos de las posibilidades.",
-      area: "Atención online en Guarulhos, São Paulo y alrededores",
+      area: "Atención 100% online, para empresas de cualquier lugar",
       whatsapp: "Hablar por WhatsApp",
     },
     footer: {

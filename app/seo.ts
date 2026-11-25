@@ -84,7 +84,7 @@ const ORG_TOPICS: Dict<string[]> = {
   es: ["Creación de sitios web", "Landing pages", "SEO local", "Google Ads", "Meta Ads", "CRM", "Automatización de procesos", "Gestión de procesos", "Desarrollo de software"],
 };
 
-/** Empresa: serviço profissional com atendimento em Guarulhos, São Paulo e região. */
+/** Empresa: serviço profissional com atendimento online (sede em Guarulhos/SP). */
 export const organizationSchema = (lang: Locale): Json => ({
   "@context": "https://schema.org",
   "@type": "ProfessionalService",
@@ -101,11 +101,6 @@ export const organizationSchema = (lang: Locale): Json => ({
     addressRegion: "SP",
     addressCountry: "BR",
   },
-  areaServed: [
-    { "@type": "City", name: "Guarulhos" },
-    { "@type": "City", name: "São Paulo" },
-    { "@type": "State", name: "São Paulo" },
-  ],
   sameAs: [INSTAGRAM],
   knowsAbout: ORG_TOPICS[lang],
 });
@@ -141,10 +136,6 @@ export function serviceSchema({
     inLanguage: htmlLang[lang],
     serviceType: name,
     provider: { "@id": ORG_ID },
-    areaServed: [
-      { "@type": "City", name: "Guarulhos" },
-      { "@type": "City", name: "São Paulo" },
-    ],
   };
 }
 
