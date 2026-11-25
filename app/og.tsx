@@ -1,5 +1,7 @@
 import { ImageResponse } from "next/og";
 
+import { hasLocale, type Locale } from "./i18n";
+
 /** Tamanho padrão das prévias de compartilhamento (WhatsApp, LinkedIn, Facebook, X). */
 export const OG_SIZE = { width: 1200, height: 630 };
 export const OG_CONTENT_TYPE = "image/png";
@@ -98,4 +100,31 @@ export function renderOg({
     ),
     OG_SIZE
   );
+}
+
+type OgText = { alt: string; eyebrow: string; title: string; highlight?: string };
+type LangParams = { lang: string } | Promise<{ lang: string }>;
+
+/**
+ * Prévia de compartilhamento em cada idioma. Uso num opengraph-image.tsx:
+ *   const og = localizedOg({ pt: {...}, en: {...}, es: {...} });
+ *   export const generateImageMetadata = og.generateImageMetadata;
+ *   export default og.Image;
+ */
+export function localizedOg(text: Record<Locale, OgText>) {
+  const pick = async (params: LangParams) => {
+    const { lang } = await params;
+    return text[hasLocale(lang) ? lang : "pt"];
+  };
+
+  return {
+    async generateImageMetadata({ params }: { params: LangParams }) {
+      const { alt } = await pick(params);
+      return [{ id: "og", alt, size: OG_SIZE, contentType: OG_CONTENT_TYPE }];
+    },
+    async Image({ params }: { params: LangParams }) {
+      const { eyebrow, title, highlight } = await pick(params);
+      return renderOg({ eyebrow, title, highlight });
+    },
+  };
 }

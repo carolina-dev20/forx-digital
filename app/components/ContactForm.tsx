@@ -10,8 +10,8 @@ import {
   Send,
 } from "lucide-react";
 
-// WhatsApp comercial FORX Digital
-const WHATSAPP_NUMBER = "5511994880312";
+import { whatsappUrl, type Dict } from "../i18n";
+import { useT } from "./LangProvider";
 
 type FormData = {
   nome: string;
@@ -31,23 +31,166 @@ const initialForm: FormData = {
 
 
 
-const services = [
-  "Gestão e processos internos",
-  "CRM e relacionamento com clientes",
-  "Automação de processos",
-  "Desenvolvimento de software / plataforma",
-  "Criação de site institucional",
-  "Landing page",
-  "Marketing digital e tráfego pago",
-  "Presença no Google / SEO",
-  "Outro serviço",
-];
-
-
+const TEXT: Dict<{
+  services: string[];
+  errRequired: string;
+  errPhone: string;
+  msg: {
+    hello: string;
+    request: string;
+    data: string;
+    name: string;
+    company: string;
+    noCompany: string;
+    service: string;
+    details: string;
+    noDetails: string;
+    thanks: string;
+  };
+  badge: string;
+  title: string;
+  lead: string;
+  name: string;
+  namePh: string;
+  company: string;
+  companyPh: string;
+  phone: string;
+  service: string;
+  servicePh: string;
+  details: string;
+  detailsPh: string;
+  submit: string;
+  note: string;
+}> = {
+  pt: {
+    services: [
+      "Gestão e processos internos",
+      "CRM e relacionamento com clientes",
+      "Automação de processos",
+      "Desenvolvimento de software / plataforma",
+      "Criação de site institucional",
+      "Landing page",
+      "Marketing digital e tráfego pago",
+      "Presença no Google / SEO",
+      "Outro serviço",
+    ],
+    errRequired: "Preencha seu nome, WhatsApp e o serviço desejado.",
+    errPhone: "Informe um número de WhatsApp válido com DDD.",
+    msg: {
+      hello: "Olá, FORX Digital! 👋",
+      request: "Gostaria de solicitar um orçamento.",
+      data: "📋 *DADOS DO PROJETO*",
+      name: "Nome",
+      company: "Empresa",
+      noCompany: "Não informada",
+      service: "Serviço",
+      details: "Detalhes do projeto",
+      noDetails: "Gostaria de saber mais sobre os serviços.",
+      thanks: "Aguardo o contato. Obrigado!",
+    },
+    badge: "Vamos tirar sua ideia do papel",
+    title: "Conte sobre seu projeto.",
+    lead: "Preencha os dados abaixo e envie sua solicitação diretamente para nosso WhatsApp.",
+    name: "Seu nome *",
+    namePh: "Como podemos te chamar?",
+    company: "Empresa ou marca",
+    companyPh: "Nome da sua empresa",
+    phone: "Seu WhatsApp *",
+    service: "Qual serviço você procura? *",
+    servicePh: "Selecione um serviço",
+    details: "Fale um pouco sobre seu projeto",
+    detailsPh: "Conte sua ideia, objetivos e o que você gostaria de desenvolver...",
+    submit: "Enviar solicitação",
+    note: "Você será direcionado ao WhatsApp para revisar e confirmar o envio da mensagem.",
+  },
+  en: {
+    services: [
+      "Management and internal processes",
+      "CRM and customer relationships",
+      "Process automation",
+      "Software / platform development",
+      "Business website",
+      "Landing page",
+      "Digital marketing and paid ads",
+      "Google presence / SEO",
+      "Other service",
+    ],
+    errRequired: "Please fill in your name, WhatsApp number and the service you need.",
+    errPhone: "Please enter a valid WhatsApp number with area code.",
+    msg: {
+      hello: "Hi, FORX Digital! 👋",
+      request: "I would like to request a quote.",
+      data: "📋 *PROJECT DETAILS*",
+      name: "Name",
+      company: "Company",
+      noCompany: "Not provided",
+      service: "Service",
+      details: "Project details",
+      noDetails: "I would like to know more about your services.",
+      thanks: "Looking forward to hearing from you. Thank you!",
+    },
+    badge: "Let's get your idea off the ground",
+    title: "Tell us about your project.",
+    lead: "Fill in the details below and send your request straight to our WhatsApp.",
+    name: "Your name *",
+    namePh: "What should we call you?",
+    company: "Company or brand",
+    companyPh: "Your company's name",
+    phone: "Your WhatsApp *",
+    service: "Which service are you looking for? *",
+    servicePh: "Select a service",
+    details: "Tell us a little about your project",
+    detailsPh: "Share your idea, goals and what you would like to build...",
+    submit: "Send request",
+    note: "You will be taken to WhatsApp to review and confirm the message.",
+  },
+  es: {
+    services: [
+      "Gestión y procesos internos",
+      "CRM y relación con clientes",
+      "Automatización de procesos",
+      "Desarrollo de software / plataforma",
+      "Sitio web institucional",
+      "Landing page",
+      "Marketing digital y publicidad pagada",
+      "Presencia en Google / SEO",
+      "Otro servicio",
+    ],
+    errRequired: "Completa tu nombre, tu WhatsApp y el servicio que buscas.",
+    errPhone: "Ingresa un número de WhatsApp válido con código de área.",
+    msg: {
+      hello: "¡Hola, FORX Digital! 👋",
+      request: "Me gustaría solicitar un presupuesto.",
+      data: "📋 *DATOS DEL PROYECTO*",
+      name: "Nombre",
+      company: "Empresa",
+      noCompany: "No informada",
+      service: "Servicio",
+      details: "Detalles del proyecto",
+      noDetails: "Me gustaría saber más sobre los servicios.",
+      thanks: "Espero su contacto. ¡Gracias!",
+    },
+    badge: "Hagamos realidad tu idea",
+    title: "Cuéntanos sobre tu proyecto.",
+    lead: "Completa los datos y envía tu solicitud directamente a nuestro WhatsApp.",
+    name: "Tu nombre *",
+    namePh: "¿Cómo te llamamos?",
+    company: "Empresa o marca",
+    companyPh: "Nombre de tu empresa",
+    phone: "Tu WhatsApp *",
+    service: "¿Qué servicio buscas? *",
+    servicePh: "Selecciona un servicio",
+    details: "Cuéntanos un poco sobre tu proyecto",
+    detailsPh: "Comparte tu idea, tus objetivos y lo que te gustaría desarrollar...",
+    submit: "Enviar solicitud",
+    note: "Serás dirigido a WhatsApp para revisar y confirmar el envío del mensaje.",
+  },
+};
 
 export default function ContactForm() {
   const [form, setForm] = useState<FormData>(initialForm);
   const [error, setError] = useState("");
+  const t = useT(TEXT);
 
   function updateField(
     field: keyof FormData,
@@ -77,9 +220,7 @@ export default function ContactForm() {
 
     // Validação dos campos obrigatórios
     if (!nome || !whatsapp || !servico) {
-      setError(
-        "Preencha seu nome, WhatsApp e o serviço desejado."
-      );
+      setError(t.errRequired);
       return;
     }
 
@@ -90,35 +231,31 @@ export default function ContactForm() {
       telefoneLimpo.length < 10 ||
       telefoneLimpo.length > 13
     ) {
-      setError(
-        "Informe um número de WhatsApp válido com DDD."
-      );
+      setError(t.errPhone);
       return;
     }
 
     // Mensagem completa enviada ao WhatsApp da FORX
+    const m = t.msg;
     const texto = [
-      "Olá, FORX Digital! 👋",
+      m.hello,
       "",
-      "Gostaria de solicitar um orçamento.",
+      m.request,
       "",
-      "📋 *DADOS DO PROJETO*",
+      m.data,
       "",
-      `*Nome:* ${nome}`,
-      `*Empresa:* ${empresa || "Não informada"}`,
+      `*${m.name}:* ${nome}`,
+      `*${m.company}:* ${empresa || m.noCompany}`,
       `*WhatsApp:* ${whatsapp}`,
-      `*Serviço:* ${servico}`,
+      `*${m.service}:* ${servico}`,
       "",
-      "*Detalhes do projeto:*",
-      mensagem ||
-        "Gostaria de saber mais sobre os serviços.",
+      `*${m.details}:*`,
+      mensagem || m.noDetails,
       "",
-      "Aguardo o contato. Obrigado!",
+      m.thanks,
     ].join("\n");
 
-    const url = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(
-      texto
-    )}`;
+    const url = whatsappUrl(texto);
 
     // Abre o WhatsApp com os dados preenchidos
     window.open(
@@ -148,17 +285,16 @@ export default function ContactForm() {
         <div className="mb-4 inline-flex items-center gap-2 rounded-full border border-[#A879F5]/30 bg-[#7942E8]/10 px-4 py-2">
           <span className="h-2 w-2 animate-pulse rounded-full bg-[#A879F5]" />
           <span className="text-xs font-medium text-[#C8AAFF]">
-            Vamos tirar sua ideia do papel
+            {t.badge}
           </span>
         </div>
 
         <h3 className="text-2xl font-medium tracking-[-0.04em] text-white sm:text-[28px]">
-          Conte sobre seu projeto.
+          {t.title}
         </h3>
 
         <p className="mt-3 text-sm leading-7 text-white/45">
-          Preencha os dados abaixo e envie sua solicitação
-          diretamente para nosso WhatsApp.
+          {t.lead}
         </p>
       </div>
 
@@ -169,7 +305,7 @@ export default function ContactForm() {
             htmlFor="forx-nome"
             className={labelClass}
           >
-            Seu nome *
+            {t.name}
           </label>
 
           <input
@@ -179,7 +315,7 @@ export default function ContactForm() {
             autoComplete="name"
             required
             maxLength={100}
-            placeholder="Como podemos te chamar?"
+            placeholder={t.namePh}
             value={form.nome}
             onChange={(event) =>
               updateField("nome", event.target.value)
@@ -193,7 +329,7 @@ export default function ContactForm() {
             htmlFor="forx-empresa"
             className={labelClass}
           >
-            Empresa ou marca
+            {t.company}
           </label>
 
           <input
@@ -201,7 +337,7 @@ export default function ContactForm() {
             type="text"
             name="empresa"
             maxLength={120}
-            placeholder="Nome da sua empresa"
+            placeholder={t.companyPh}
             value={form.empresa}
             onChange={(event) =>
               updateField("empresa", event.target.value)
@@ -217,7 +353,7 @@ export default function ContactForm() {
           htmlFor="forx-whatsapp"
           className={labelClass}
         >
-          Seu WhatsApp *
+          {t.phone}
         </label>
 
         <input
@@ -242,7 +378,7 @@ export default function ContactForm() {
           htmlFor="forx-servico"
           className={labelClass}
         >
-          Qual serviço você procura? *
+          {t.service}
         </label>
 
         <div className="relative">
@@ -261,10 +397,10 @@ export default function ContactForm() {
               disabled
               className="bg-[#17121F]"
             >
-              Selecione um serviço
+              {t.servicePh}
             </option>
 
-            {services.map((service) => (
+            {t.services.map((service) => (
               <option
                 key={service}
                 value={service}
@@ -288,7 +424,7 @@ export default function ContactForm() {
           htmlFor="forx-mensagem"
           className={labelClass}
         >
-          Fale um pouco sobre seu projeto
+          {t.details}
         </label>
 
         <textarea
@@ -296,7 +432,7 @@ export default function ContactForm() {
           name="mensagem"
           rows={5}
           maxLength={2000}
-          placeholder="Conte sua ideia, objetivos e o que você gostaria de desenvolver..."
+          placeholder={t.detailsPh}
           value={form.mensagem}
           onChange={(event) =>
             updateField("mensagem", event.target.value)
@@ -326,7 +462,7 @@ export default function ContactForm() {
         className="group relative flex w-full items-center justify-center gap-3 overflow-hidden rounded-full bg-[#7942E8] px-6 py-5 text-sm font-semibold text-white shadow-[0_0_0_2px_rgba(168,121,245,0.7)] outline-none ring-4 ring-transparent transition-all duration-300 hover:bg-[#8F57F5] hover:shadow-[0_0_25px_rgba(121,66,232,0.35)] focus-visible:ring-[#A879F5]/40 sm:text-base"
       >
         <span className="relative z-10">
-          Enviar solicitação
+          {t.submit}
         </span>
 
         <Send
@@ -343,8 +479,7 @@ export default function ContactForm() {
         />
 
         <p className="max-w-md text-center text-xs leading-6 text-white/40">
-          Você será direcionado ao WhatsApp para revisar
-          e confirmar o envio da mensagem.
+          {t.note}
         </p>
       </div>
     </motion.form>

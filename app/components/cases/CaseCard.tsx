@@ -8,11 +8,105 @@ import { ArrowUpRight, Check, Clock, Play, Quote } from "lucide-react";
 import type { Case, CaseTestimonial } from "@/data/cases";
 import DeviceMockup from "../DeviceMockup";
 import { DotButton } from "../scenes/Scenes";
+import { useHref, useLang, useT } from "../LangProvider";
+import { planName } from "../PricingSection";
+import { whatsappUrl, type Dict } from "../../i18n";
 
-export const WHATSAPP_NUMBER = "5511994880312";
+export const whatsappLink = (message: string) => whatsappUrl(message);
 
-export const whatsappLink = (message: string) =>
-  `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`;
+export const CASE_TEXT: Dict<{
+  done: string;
+  ongoing: string;
+  watchVideo: (name: string) => string;
+  photoOf: (name: string) => string;
+  newTab: string;
+  scope: string;
+  before: string;
+  whatWeDid: string;
+  timeline: string;
+  readyIn: (time: string) => string;
+  after: string;
+  results: string;
+  source: string;
+  similar: string;
+  plan: string;
+  from: string;
+  perMonth: string;
+  seePlans: string;
+  cta: string;
+  ctaMsg: (client: string) => string;
+  live: string;
+}> = {
+  pt: {
+    done: "Projeto concluído",
+    ongoing: "Em andamento",
+    watchVideo: (name) => `Assistir ao depoimento em vídeo de ${name}`,
+    photoOf: (name) => `Foto de ${name}`,
+    newTab: "(abre em nova aba)",
+    scope: "Escopo do projeto",
+    before: "Antes",
+    whatWeDid: "O que fizemos",
+    timeline: "Prazo",
+    readyIn: (time) => `Pronto em ${time}.`,
+    after: "Depois",
+    results: "Resultados confirmados",
+    source: "Fonte",
+    similar: "Projeto parecido: plano",
+    plan: "plano",
+    from: "a partir de",
+    perMonth: "/mês",
+    seePlans: "Ver planos",
+    cta: "Quero um site assim no WhatsApp",
+    ctaMsg: (client) => `Olá! Vi o case da ${client} no site da FORX e quero um projeto parecido para o meu negócio.`,
+    live: "Ver site no ar",
+  },
+  en: {
+    done: "Project completed",
+    ongoing: "In progress",
+    watchVideo: (name) => `Watch ${name}'s video testimonial`,
+    photoOf: (name) => `Photo of ${name}`,
+    newTab: "(opens in a new tab)",
+    scope: "Project scope",
+    before: "Before",
+    whatWeDid: "What we did",
+    timeline: "Timeline",
+    readyIn: (time) => `Ready in ${time}.`,
+    after: "After",
+    results: "Confirmed results",
+    source: "Source",
+    similar: "Similar project: the",
+    plan: "plan",
+    from: "from",
+    perMonth: "/month",
+    seePlans: "See plans",
+    cta: "I want a website like this on WhatsApp",
+    ctaMsg: (client) => `Hi! I saw the ${client} case study on the FORX website and I want a similar project for my business.`,
+    live: "See the live website",
+  },
+  es: {
+    done: "Proyecto concluido",
+    ongoing: "En curso",
+    watchVideo: (name) => `Ver el testimonio en video de ${name}`,
+    photoOf: (name) => `Foto de ${name}`,
+    newTab: "(se abre en una nueva pestaña)",
+    scope: "Alcance del proyecto",
+    before: "Antes",
+    whatWeDid: "Lo que hicimos",
+    timeline: "Plazo",
+    readyIn: (time) => `Listo en ${time}.`,
+    after: "Después",
+    results: "Resultados confirmados",
+    source: "Fuente",
+    similar: "Proyecto similar: plan",
+    plan: "plan",
+    from: "desde",
+    perMonth: "/mes",
+    seePlans: "Ver planes",
+    cta: "Quiero un sitio así por WhatsApp",
+    ctaMsg: (client) => `¡Hola! Vi el caso de ${client} en el sitio de FORX y quiero un proyecto similar para mi negocio.`,
+    live: "Ver el sitio publicado",
+  },
+};
 
 /* ---------- peças pequenas ---------- */
 
@@ -49,12 +143,13 @@ export function CheckList({ items }: { items: string[] }) {
 }
 
 function StatusBadge({ status }: { status: Case["status"] }) {
+  const t = useT(CASE_TEXT);
   const done = status === "concluído";
   const Icon = done ? Check : Clock;
   return (
     <span className="inline-flex items-center gap-2 rounded-full border border-[var(--panel-line)] px-3 py-1.5 text-xs text-[var(--fg)]">
       <Icon size={14} className="text-[var(--hl)]" aria-hidden="true" />
-      {done ? "Projeto concluído" : "Em andamento"}
+      {done ? t.done : t.ongoing}
     </span>
   );
 }
@@ -63,6 +158,7 @@ export { ImagePlaceholder } from "../DeviceMockup";
 
 /** Vídeo só é carregado depois do clique (sem peso extra na página). */
 function VideoTestimonial({ src, poster, name }: { src: string; poster?: string; name: string }) {
+  const text = useT(CASE_TEXT);
   const [playing, setPlaying] = useState(false);
 
   if (playing) {
@@ -82,7 +178,7 @@ function VideoTestimonial({ src, poster, name }: { src: string; poster?: string;
     <button
       type="button"
       onClick={() => setPlaying(true)}
-      aria-label={`Assistir ao depoimento em vídeo de ${name}`}
+      aria-label={text.watchVideo(name)}
       className="group/video relative flex aspect-[9/16] w-full max-w-[220px] items-center justify-center overflow-hidden rounded-[14px] bg-[var(--card-2)]"
     >
       {poster && (
@@ -96,6 +192,7 @@ function VideoTestimonial({ src, poster, name }: { src: string; poster?: string;
 }
 
 function Testimonial({ t }: { t: CaseTestimonial }) {
+  const text = useT(CASE_TEXT);
   return (
     <figure className="rounded-[16px] border border-[var(--panel-line)] bg-[var(--card)] p-5 sm:p-6">
       {t.videoUrl && (
@@ -109,7 +206,7 @@ function Testimonial({ t }: { t: CaseTestimonial }) {
         {t.fotoUrl && (
           <Image
             src={t.fotoUrl}
-            alt={`Foto de ${t.nome}`}
+            alt={text.photoOf(t.nome)}
             width={44}
             height={44}
             className="h-11 w-11 rounded-full object-cover"
@@ -126,6 +223,7 @@ function Testimonial({ t }: { t: CaseTestimonial }) {
 
 /** Link discreto para o site da cliente, sempre em nova aba. */
 export function ExternalLink({ href, children }: { href: string; children: ReactNode }) {
+  const t = useT(CASE_TEXT);
   return (
     <a
       href={href}
@@ -135,7 +233,7 @@ export function ExternalLink({ href, children }: { href: string; children: React
     >
       {children}
       <ArrowUpRight size={16} aria-hidden="true" />
-      <span className="sr-only">(abre em nova aba)</span>
+      <span className="sr-only">{t.newTab}</span>
     </a>
   );
 }
@@ -146,6 +244,9 @@ export const CARD =
   "overflow-hidden rounded-[20px] border border-[var(--panel-line)] bg-[var(--card)] p-5 sm:p-8";
 
 export default function CaseCard({ item, index }: { item: Case; index: number }) {
+  const lang = useLang();
+  const href = useHref();
+  const t = CASE_TEXT[lang];
   const displayName = item.nomeComercial
     ? `${item.cliente} · ${item.nomeComercial}`
     : item.cliente;
@@ -170,7 +271,7 @@ export default function CaseCard({ item, index }: { item: Case; index: number })
         <p className="mt-1 text-sm text-[var(--fg-2)]">
           {[item.segmento, item.cidade].filter(Boolean).join(" · ")}
         </p>
-        <ul className="mt-4 flex flex-wrap gap-2" aria-label="Escopo do projeto">
+        <ul className="mt-4 flex flex-wrap gap-2" aria-label={t.scope}>
           {item.tags.map((tag) => (
             <Tag key={tag}>{tag}</Tag>
           ))}
@@ -186,34 +287,34 @@ export default function CaseCard({ item, index }: { item: Case; index: number })
         <div className="grid gap-7">
           {/* 3. ANTES */}
           <div>
-            <BlockLabel>Antes</BlockLabel>
+            <BlockLabel>{t.before}</BlockLabel>
             <p className="mt-3 text-[15px] leading-7 text-[var(--fg)]">{item.antes}</p>
           </div>
 
           {/* 4. O QUE FIZEMOS */}
           <div>
-            <BlockLabel>O que fizemos</BlockLabel>
+            <BlockLabel>{t.whatWeDid}</BlockLabel>
             <CheckList items={item.oQueFizemos} />
           </div>
 
           {/* 5. PRAZO */}
           {item.prazoEntrega && (
             <div>
-              <BlockLabel>Prazo</BlockLabel>
-              <p className="mt-3 text-[15px] text-[var(--fg)]">Pronto em {item.prazoEntrega}.</p>
+              <BlockLabel>{t.timeline}</BlockLabel>
+              <p className="mt-3 text-[15px] text-[var(--fg)]">{t.readyIn(item.prazoEntrega)}</p>
             </div>
           )}
 
           {/* 6. DEPOIS */}
           <div className="rounded-[16px] border border-[var(--panel-line)] bg-[var(--card)] p-5">
-            <BlockLabel>Depois</BlockLabel>
+            <BlockLabel>{t.after}</BlockLabel>
             <p className="mt-3 text-[15px] leading-7 text-[var(--fg)]">{item.depois}</p>
           </div>
 
           {/* 7. MÉTRICAS */}
           {item.metricas && item.metricas.length > 0 && (
             <div>
-              <BlockLabel>Resultados confirmados</BlockLabel>
+              <BlockLabel>{t.results}</BlockLabel>
               <dl className="mt-4 grid gap-4 sm:grid-cols-2">
                 {item.metricas.map((m) => (
                   <div
@@ -224,7 +325,7 @@ export default function CaseCard({ item, index }: { item: Case; index: number })
                     <dd className="order-1 text-[40px] font-normal leading-none tracking-[-0.04em] text-[var(--fg)]">
                       {m.valor}
                     </dd>
-                    <dd className="order-3 mt-2 text-[11px] text-[var(--fg-3)]">Fonte: {m.fonte}</dd>
+                    <dd className="order-3 mt-2 text-[11px] text-[var(--fg-3)]">{t.source}: {m.fonte}</dd>
                   </div>
                 ))}
               </dl>
@@ -237,18 +338,21 @@ export default function CaseCard({ item, index }: { item: Case; index: number })
           {/* 9. PREÇO */}
           {item.planoRelacionado && (
             <p className="text-sm leading-6 text-[var(--fg-2)]">
-              Projeto parecido: plano{" "}
-              <strong className="font-medium text-[var(--fg)]">{item.planoRelacionado.nome}</strong>, a
-              partir de{" "}
+              {t.similar}{" "}
               <strong className="font-medium text-[var(--fg)]">
-                R$ {item.planoRelacionado.precoAPartirDe}/mês
+                {planName(lang, item.planoRelacionado.nome)}
+              </strong>
+              {lang === "en" ? ` ${t.plan}` : ""}, {t.from}{" "}
+              <strong className="font-medium text-[var(--fg)]">
+                R$ {item.planoRelacionado.precoAPartirDe}
+                {t.perMonth}
               </strong>
               .{" "}
               <Link
-                href={item.planoRelacionado.link}
+                href={href(item.planoRelacionado.link)}
                 className="text-[var(--hl)] underline underline-offset-4 hover:text-[var(--fg)]"
               >
-                Ver planos
+                {t.seePlans}
               </Link>
             </p>
           )}
@@ -257,13 +361,11 @@ export default function CaseCard({ item, index }: { item: Case; index: number })
           <div className="flex flex-wrap items-center gap-x-6 gap-y-4 border-t border-[var(--panel-line)] pt-6">
             <DotButton
               external
-              href={whatsappLink(
-                `Olá! Vi o case da ${item.cliente} no site da FORX e quero um projeto parecido para o meu negócio.`
-              )}
+              href={whatsappLink(t.ctaMsg(item.cliente))}
             >
-              Quero um site assim no WhatsApp
+              {t.cta}
             </DotButton>
-            <ExternalLink href={item.url}>Ver site no ar</ExternalLink>
+            <ExternalLink href={item.url}>{t.live}</ExternalLink>
           </div>
         </div>
       </div>

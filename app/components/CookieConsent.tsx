@@ -3,6 +3,59 @@
 import { useState, useSyncExternalStore } from "react";
 import { GoogleAnalytics } from "@next/third-parties/google";
 
+import { useHref, useT } from "./LangProvider";
+
+const TEXT = {
+  pt: {
+    region: "Preferências de cookies",
+    title: "Sua privacidade importa.",
+    body: "Utilizamos cookies necessários para o funcionamento do site e, com sua permissão, cookies de análise para entender como você navega e melhorar nossos serviços.",
+    policy: "Política de Privacidade",
+    hide: "Ocultar preferências",
+    customize: "Personalizar cookies",
+    acceptAll: "Aceitar todos",
+    reject: "Recusar opcionais",
+    choose: "Escolha quais cookies opcionais você permite.",
+    necessary: "Cookies necessários",
+    necessaryText: "Essenciais para o funcionamento do site.",
+    always: "Sempre ativos",
+    analytics: "Cookies de análise",
+    save: "Salvar preferências",
+  },
+  en: {
+    region: "Cookie preferences",
+    title: "Your privacy matters.",
+    body: "We use cookies that are necessary for the website to work and, with your permission, analytics cookies to understand how you browse and improve our services.",
+    policy: "Privacy Policy",
+    hide: "Hide preferences",
+    customize: "Customize cookies",
+    acceptAll: "Accept all",
+    reject: "Reject optional",
+    choose: "Choose which optional cookies you allow.",
+    necessary: "Necessary cookies",
+    necessaryText: "Essential for the website to work.",
+    always: "Always on",
+    analytics: "Analytics cookies",
+    save: "Save preferences",
+  },
+  es: {
+    region: "Preferencias de cookies",
+    title: "Tu privacidad importa.",
+    body: "Utilizamos cookies necesarias para el funcionamiento del sitio y, con tu permiso, cookies de análisis para entender cómo navegas y mejorar nuestros servicios.",
+    policy: "Política de Privacidad",
+    hide: "Ocultar preferencias",
+    customize: "Personalizar cookies",
+    acceptAll: "Aceptar todas",
+    reject: "Rechazar opcionales",
+    choose: "Elige qué cookies opcionales permites.",
+    necessary: "Cookies necesarias",
+    necessaryText: "Esenciales para el funcionamiento del sitio.",
+    always: "Siempre activas",
+    analytics: "Cookies de análisis",
+    save: "Guardar preferencias",
+  },
+};
+
 type ConsentChoice = "accepted" | "rejected" | null;
 
 const CONSENT_KEY = "forx-cookie-consent";
@@ -56,6 +109,8 @@ export default function CookieConsent() {
   // No servidor ainda não há escolha conhecida (null): nada é exibido até o navegador carregar.
   const saved = useSyncExternalStore(subscribe, readConsent, () => null);
   const [showPreferences, setShowPreferences] = useState(false);
+  const t = useT(TEXT);
+  const href = useHref();
   const [analyticsEnabled, setAnalyticsEnabled] = useState(true);
   // Escolha feita nesta visita (vale mesmo se o armazenamento estiver bloqueado).
   const [sessionChoice, setSessionChoice] = useState<ConsentChoice>(null);
@@ -85,28 +140,26 @@ export default function CookieConsent() {
 
       {consent === null && (
         <section
-          aria-label="Preferências de cookies"
+          aria-label={t.region}
           aria-describedby="cookie-description"
           className="fixed bottom-4 left-4 right-4 z-[9999] mx-auto max-w-3xl rounded-2xl border border-white/15 bg-[#111111] p-5 text-white shadow-2xl sm:bottom-6 sm:p-6"
         >
           <div className="flex flex-col gap-5 sm:flex-row sm:items-center sm:justify-between">
             <div className="max-w-xl">
               <p className="mb-2 text-lg font-semibold tracking-tight">
-                Sua privacidade importa.
+                {t.title}
               </p>
 
               <p
                 id="cookie-description"
                 className="text-sm leading-6 text-white/70"
               >
-                Utilizamos cookies necessários para o funcionamento do site
-                e, com sua permissão, cookies de análise para entender como
-                você navega e melhorar nossos serviços.{" "}
+                {t.body}{" "}
                 <a
-                  href="/privacidade"
+                  href={href("/privacidade")}
                   className="text-white underline decoration-white/40 underline-offset-4 transition hover:decoration-white"
                 >
-                  Política de Privacidade
+                  {t.policy}
                 </a>
                 .
               </p>
@@ -116,7 +169,7 @@ export default function CookieConsent() {
                 onClick={() => setShowPreferences(!showPreferences)}
                 className="mt-3 text-sm text-white underline decoration-white/40 underline-offset-4 transition hover:decoration-white"
               >
-                {showPreferences ? "Ocultar preferências" : "Personalizar cookies"}
+                {showPreferences ? t.hide : t.customize}
               </button>
             </div>
 
@@ -126,7 +179,7 @@ export default function CookieConsent() {
                 onClick={() => saveConsent("accepted")}
                 className="rounded-lg bg-white px-5 py-3 text-sm font-semibold text-black transition hover:bg-white/85"
               >
-                Aceitar todos
+                {t.acceptAll}
               </button>
 
               <button
@@ -134,7 +187,7 @@ export default function CookieConsent() {
                 onClick={() => saveConsent("rejected")}
                 className="rounded-lg border border-white/20 px-5 py-3 text-sm font-medium text-white transition hover:bg-white/10"
               >
-                Recusar opcionais
+                {t.reject}
               </button>
             </div>
           </div>
@@ -142,17 +195,17 @@ export default function CookieConsent() {
           {showPreferences && (
             <div className="mt-5 border-t border-white/15 pt-4">
               <p className="mb-4 text-sm text-white/80">
-                Escolha quais cookies opcionais você permite.
+                {t.choose}
               </p>
 
               <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
                 <div>
-                  <p className="text-sm font-medium">Cookies necessários</p>
+                  <p className="text-sm font-medium">{t.necessary}</p>
                   <p className="text-xs leading-5 text-white/50">
-                    Essenciais para o funcionamento do site.
+                    {t.necessaryText}
                   </p>
                   <span className="mt-1 inline-block text-xs text-white/50">
-                    Sempre ativos
+                    {t.always}
                   </span>
                 </div>
 
@@ -165,7 +218,7 @@ export default function CookieConsent() {
                     }
                     className="h-4 w-4 accent-white"
                   />
-                  <span className="text-sm">Cookies de análise</span>
+                  <span className="text-sm">{t.analytics}</span>
                 </label>
               </div>
 
@@ -176,7 +229,7 @@ export default function CookieConsent() {
                 }
                 className="mt-5 w-full rounded-lg border border-white/25 px-5 py-3 text-sm font-semibold text-white transition hover:bg-white/10 sm:w-auto"
               >
-                Salvar preferências
+                {t.save}
               </button>
             </div>
           )}

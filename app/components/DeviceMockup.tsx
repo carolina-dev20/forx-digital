@@ -1,11 +1,17 @@
+"use client";
+
 import type { CSSProperties } from "react";
 import Image from "next/image";
 import { ImageOff } from "lucide-react";
 
 import type { CaseImage } from "@/data/cases";
+import { useT } from "./LangProvider";
+
+const SOON = { pt: "Imagem em breve", en: "Image coming soon", es: "Imagen próximamente" };
 
 /** Espaço neutro quando ainda não há print: mantém a proporção, nunca quebra o layout. */
 export function ImagePlaceholder({ label }: { label: string }) {
+  const soon = useT(SOON);
   return (
     <div
       role="img"
@@ -13,7 +19,7 @@ export function ImagePlaceholder({ label }: { label: string }) {
       className="flex h-full w-full flex-col items-center justify-center gap-2 bg-[var(--card-2,#f1ecfc)] text-center text-[var(--fg-3,#77708f)]"
     >
       <ImageOff size={22} aria-hidden="true" />
-      <span className="px-2 text-[11px] leading-4">Imagem em breve</span>
+      <span className="px-2 text-[11px] leading-4">{soon}</span>
     </div>
   );
 }
@@ -26,7 +32,8 @@ const ratioOf = (image: CaseImage, fallback: number) =>
   image.width && image.height ? image.width / image.height : fallback;
 
 function Shot({ image, sizes }: { image: CaseImage; sizes: string }) {
-  if (!image.src) return <ImagePlaceholder label={`${image.alt} (imagem em breve)`} />;
+  const soon = useT(SOON);
+  if (!image.src) return <ImagePlaceholder label={`${image.alt} (${soon.toLowerCase()})`} />;
   return (
     <Image src={image.src} alt={image.alt} fill sizes={sizes} className="object-cover object-top" />
   );

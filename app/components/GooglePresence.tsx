@@ -30,6 +30,78 @@ import {
 import { DotButton } from "./scenes/Scenes";
 import { BlockHead } from "./scenes/blocks";
 import sc from "./scenes/scenes.module.css";
+import { useT } from "./LangProvider";
+import type { Dict } from "../i18n";
+
+const TEXT: Dict<{
+  searching: string;
+  query: string;
+  label: string;
+  title: string;
+  lead: string;
+  card1: { label: string; title: string; description: string };
+  card2: { label: string; title: string; description: string };
+  closing: string;
+  cta: string;
+}> = {
+  pt: {
+    searching: "Alguém pesquisando sobre você...",
+    query: "serviços perto de mim",
+    label: "PRESENÇA DIGITAL",
+    title: "Quando alguém procura sua empresa, o que encontra?",
+    lead: "A jornada de um cliente pode começar com uma simples pesquisa. Sua empresa precisa estar preparada para ser encontrada e transmitir confiança.",
+    card1: {
+      label: "PESQUISA",
+      title: "Uma pessoa precisa exatamente do serviço que você oferece.",
+      description: "Ela pesquisa no Google. Sua empresa aparece?",
+    },
+    card2: {
+      label: "DESCOBERTA",
+      title: "Depois encontra seu Perfil da Empresa.",
+      description: "As informações estão completas e passam confiança?",
+    },
+    closing: "Não deixe que seu próximo cliente encontre apenas seus concorrentes.",
+    cta: "Quero melhorar minha presença digital",
+  },
+  en: {
+    searching: "Someone searching for you...",
+    query: "services near me",
+    label: "ONLINE PRESENCE",
+    title: "When someone looks for your business, what do they find?",
+    lead: "A customer's journey can start with a simple search. Your business needs to be ready to be found and to inspire trust.",
+    card1: {
+      label: "SEARCH",
+      title: "Someone needs exactly the service you offer.",
+      description: "They search on Google. Does your business show up?",
+    },
+    card2: {
+      label: "DISCOVERY",
+      title: "Then they find your Business Profile.",
+      description: "Is the information complete and trustworthy?",
+    },
+    closing: "Don't let your next customer find only your competitors.",
+    cta: "I want to improve my online presence",
+  },
+  es: {
+    searching: "Alguien buscándote...",
+    query: "servicios cerca de mí",
+    label: "PRESENCIA DIGITAL",
+    title: "Cuando alguien busca tu empresa, ¿qué encuentra?",
+    lead: "El recorrido de un cliente puede empezar con una simple búsqueda. Tu empresa necesita estar preparada para ser encontrada y transmitir confianza.",
+    card1: {
+      label: "BÚSQUEDA",
+      title: "Una persona necesita exactamente el servicio que ofreces.",
+      description: "Busca en Google. ¿Aparece tu empresa?",
+    },
+    card2: {
+      label: "DESCUBRIMIENTO",
+      title: "Después encuentra tu Perfil de Empresa.",
+      description: "¿La información está completa y transmite confianza?",
+    },
+    closing: "No dejes que tu próximo cliente encuentre solo a tus competidores.",
+    cta: "Quiero mejorar mi presencia digital",
+  },
+};
 
 // ==========================================
 // ANIMAÇÃO DE DIGITAÇÃO
@@ -167,6 +239,7 @@ function AnimatedSearchBar({
 }: {
   active: boolean;
 }) {
+  const t = useT(TEXT);
   return (
     <motion.div
       initial={{
@@ -188,7 +261,7 @@ function AnimatedSearchBar({
 
       <span className="min-w-0 flex-1 truncate text-sm text-[var(--fg-2)] sm:text-base">
         <Typewriter
-          text="Alguém pesquisando sobre você..."
+          text={t.searching}
           active={active}
           speed={70}
         />
@@ -209,6 +282,7 @@ function AnimatedSearchBar({
 // ==========================================
 
 function SearchScene() {
+  const t = useT(TEXT);
   const ref = useRef<HTMLDivElement>(null);
 
   const visible = useInView(ref, {
@@ -244,7 +318,7 @@ function SearchScene() {
 
             <span className="truncate text-xs text-[#777777] sm:text-sm">
               <Typewriter
-                text="serviços perto de mim"
+                text={t.query}
                 active={visible}
                 speed={85}
               />
@@ -466,6 +540,7 @@ function PresenceCard({
 // ==========================================
 
 export default function GooglePresence() {
+  const t = useT(TEXT);
   const sectionRef = useRef<HTMLElement>(null);
 
   const isVisible = useInView(sectionRef, {
@@ -484,9 +559,9 @@ export default function GooglePresence() {
 
         {/* CABEÇALHO */}
         <BlockHead
-          label="PRESENÇA DIGITAL"
-          title={[{ text: "Quando alguém procura sua empresa, o que encontra?" }]}
-          lead="A jornada de um cliente pode começar com uma simples pesquisa. Sua empresa precisa estar preparada para ser encontrada e transmitir confiança."
+          label={t.label}
+          title={[{ text: t.title }]}
+          lead={t.lead}
         />
 
         {/* BARRA COM LETRAS SENDO DIGITADAS */}
@@ -498,18 +573,18 @@ export default function GooglePresence() {
         <div className="grid items-stretch gap-6 lg:grid-cols-2">
           <PresenceCard
             number="01"
-            label="PESQUISA"
-            title="Uma pessoa precisa exatamente do serviço que você oferece."
-            description="Ela pesquisa no Google. Sua empresa aparece?"
+            label={t.card1.label}
+            title={t.card1.title}
+            description={t.card1.description}
           >
             <SearchScene />
           </PresenceCard>
 
           <PresenceCard
             number="02"
-            label="DESCOBERTA"
-            title="Depois encontra seu Perfil da Empresa."
-            description="As informações estão completas e passam confiança?"
+            label={t.card2.label}
+            title={t.card2.title}
+            description={t.card2.description}
             delay={0.1}
           >
             <MapScene />
@@ -525,12 +600,11 @@ export default function GooglePresence() {
           className="mt-10 flex flex-col justify-between gap-6 border-t border-[var(--panel-line)] pt-8 sm:flex-row sm:items-center"
         >
           <p className="max-w-xl text-base leading-7 text-[var(--fg-2)]">
-            Não deixe que seu próximo cliente encontre
-            apenas seus concorrentes.
+            {t.closing}
           </p>
 
           <DotButton href="#contato" large>
-            Quero melhorar minha presença digital
+            {t.cta}
           </DotButton>
         </motion.div>
       </div>

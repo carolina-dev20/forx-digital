@@ -6,6 +6,13 @@ import { ArrowRight, Check, type LucideIcon } from "lucide-react";
 
 import c from "./ServicesShowcase.module.css";
 import s from "./scenes/scenes.module.css";
+import { useHref, useT } from "./LangProvider";
+
+const TEXT = {
+  pt: { tabs: "Serviços FORX", talk: "Falar sobre isso", learn: "Conhecer o serviço" },
+  en: { tabs: "FORX services", talk: "Talk about this", learn: "Learn more" },
+  es: { tabs: "Servicios FORX", talk: "Hablar sobre esto", learn: "Conocer el servicio" },
+};
 
 export type ShowcaseService = {
   /** Âncora usada pelo menu (ex.: "desenvolvimento-software"). */
@@ -25,6 +32,7 @@ const CYCLE_MS = 4000;
 const delay = (step: number) => ({ "--d": `${step / 10}s` }) as CSSProperties;
 
 function CardLink({ href, children }: { href: string; children: React.ReactNode }) {
+  const localize = useHref();
   const cls =
     "mt-6 inline-flex items-center gap-2 rounded-full bg-black px-5 py-2.5 text-sm font-medium text-white transition-colors hover:bg-gray-800";
   return href.startsWith("#") ? (
@@ -32,7 +40,7 @@ function CardLink({ href, children }: { href: string; children: React.ReactNode 
       {children}
     </a>
   ) : (
-    <Link href={href} className={cls}>
+    <Link href={localize(href)} className={cls}>
       {children}
     </Link>
   );
@@ -49,6 +57,7 @@ export default function ServicesShowcase({
   title: [string, string];
   services: ShowcaseService[];
 }) {
+  const t = useT(TEXT);
   const sectionRef = useRef<HTMLElement>(null);
   const [on, setOn] = useState(false);
   const [active, setActive] = useState(0);
@@ -139,7 +148,7 @@ export default function ServicesShowcase({
           className={`${s.fade} flex justify-center`} style={delay(3)}>
           <div
             role="tablist"
-            aria-label="Serviços FORX"
+            aria-label={t.tabs}
             className="grid w-full max-w-md grid-cols-2 gap-1 rounded-lg bg-gray-100 p-1 md:flex md:w-auto md:max-w-none md:items-center"
           >
             {services.map((s, i) => {
@@ -226,7 +235,7 @@ export default function ServicesShowcase({
                   </ul>
 
                   <CardLink href={service.href}>
-                    {service.href.startsWith("#") ? "Falar sobre isso" : "Conhecer o serviço"}
+                    {service.href.startsWith("#") ? t.talk : t.learn}
                     <ArrowRight size={16} aria-hidden="true" />
                   </CardLink>
                 </div>

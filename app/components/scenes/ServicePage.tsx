@@ -18,6 +18,58 @@ import {
   useSceneEffects,
 } from "./blocks";
 import s from "./scenes.module.css";
+import SmallFooter from "./SmallFooter";
+import { useHref, useT } from "../LangProvider";
+import { whatsappUrl as waUrl } from "../../i18n";
+
+/** Textos padrão (quando a página não define os próprios). */
+const DEFAULTS = {
+  pt: {
+    primary: "Descubra os benefícios",
+    secondary: "Veja a diferença",
+    benefitsLabel: "02 / BENEFÍCIOS",
+    talk: "Falar com a FORX",
+    comparisonLabel: "03 / ANTES E DEPOIS",
+    comparisonTitle: ["Veja a diferença", "na rotina da sua empresa."] as [string, string],
+    comparisonLead: "Clique nos botões para comparar os dois cenários.",
+    solutionsLabel: "04 / SOLUÇÃO",
+    faqLabel: "05 / DÚVIDAS FREQUENTES",
+    faqTitle: ["Perguntas que", "merecem respostas."] as [string, string],
+    relatedLabel: "06 / GESTÃO FORX",
+    relatedTitle: ["Soluções que", "funcionam melhor juntas."] as [string, string],
+    ctaLabel: "VAMOS CONVERSAR?",
+  },
+  en: {
+    primary: "See the benefits",
+    secondary: "See the difference",
+    benefitsLabel: "02 / BENEFITS",
+    talk: "Talk to FORX",
+    comparisonLabel: "03 / BEFORE AND AFTER",
+    comparisonTitle: ["See the difference", "in your company's routine."] as [string, string],
+    comparisonLead: "Click the buttons to compare the two scenarios.",
+    solutionsLabel: "04 / SOLUTION",
+    faqLabel: "05 / FREQUENTLY ASKED QUESTIONS",
+    faqTitle: ["Questions that", "deserve answers."] as [string, string],
+    relatedLabel: "06 / FORX MANAGEMENT",
+    relatedTitle: ["Solutions that", "work better together."] as [string, string],
+    ctaLabel: "SHALL WE TALK?",
+  },
+  es: {
+    primary: "Descubre los beneficios",
+    secondary: "Mira la diferencia",
+    benefitsLabel: "02 / BENEFICIOS",
+    talk: "Hablar con FORX",
+    comparisonLabel: "03 / ANTES Y DESPUÉS",
+    comparisonTitle: ["Mira la diferencia", "en la rutina de tu empresa."] as [string, string],
+    comparisonLead: "Haz clic en los botones para comparar los dos escenarios.",
+    solutionsLabel: "04 / SOLUCIÓN",
+    faqLabel: "05 / PREGUNTAS FRECUENTES",
+    faqTitle: ["Preguntas que", "merecen respuestas."] as [string, string],
+    relatedLabel: "06 / GESTIÓN FORX",
+    relatedTitle: ["Soluciones que", "funcionan mejor juntas."] as [string, string],
+    ctaLabel: "¿HABLAMOS?",
+  },
+};
 
 type Item = { icon: LucideIcon; title: string; description: string };
 
@@ -79,10 +131,10 @@ export default function ServicePage({
   const [comparison, setComparison] = useState(false);
   const rootRef = useRef<HTMLDivElement>(null);
   useSceneEffects(rootRef);
+  const t = useT(DEFAULTS);
+  const href = useHref();
 
-  const whatsappUrl =
-    "https://wa.me/5511994880312?text=" +
-    encodeURIComponent(content.cta.whatsappMessage);
+  const whatsappUrl = waUrl(content.cta.whatsappMessage);
 
   const benefitsId = ui.benefitsId ?? "por-que";
   const side = comparison ? content.comparison.with : content.comparison.without;
@@ -103,10 +155,10 @@ export default function ServicePage({
         ]}
         description={content.hero.description}
         primary={{
-          label: ui.primary ?? "Descubra os benefícios",
+          label: ui.primary ?? t.primary,
           href: `#${benefitsId}`,
         }}
-        secondary={{ label: ui.secondary ?? "Veja a diferença", href: "#comparacao" }}
+        secondary={{ label: ui.secondary ?? t.secondary, href: "#comparacao" }}
         mock={content.mock}
         badge={content.badge}
         statement={{
@@ -119,12 +171,12 @@ export default function ServicePage({
         }}
         split={{
           id: benefitsId,
-          label: ui.benefitsLabel ?? "02 / BENEFÍCIOS",
+          label: ui.benefitsLabel ?? t.benefitsLabel,
           title: twoLines(content.benefitsTitle.before, content.benefitsTitle.highlight),
           items: content.benefits,
           icon: content.icon,
         }}
-        navCta={{ label: "Falar com a FORX", href: whatsappUrl, external: true }}
+        navCta={{ label: t.talk, href: whatsappUrl, external: true }}
       />
 
       <div ref={rootRef}>
@@ -132,12 +184,12 @@ export default function ServicePage({
           {/* COMPARAÇÃO */}
           <section id="comparacao" className={s.block} data-tone="light">
             <BlockHead
-              label={ui.comparisonLabel ?? "03 / ANTES E DEPOIS"}
+              label={ui.comparisonLabel ?? t.comparisonLabel}
               title={
                 ui.comparisonTitle ??
-                twoLines("Veja a diferença", "na rotina da sua empresa.")
+                twoLines(...t.comparisonTitle)
               }
-              lead={ui.comparisonLead ?? "Clique nos botões para comparar os dois cenários."}
+              lead={ui.comparisonLead ?? t.comparisonLead}
             />
 
             <div className={s.fade} data-fade style={d(0.15)}>
@@ -188,7 +240,7 @@ export default function ServicePage({
           {/* SOLUÇÕES / ENTREGAS */}
           <section id={ui.solutionsId} className={s.block} data-tone="violet">
             <BlockHead
-              label={ui.solutionsLabel ?? "04 / SOLUÇÃO"}
+              label={ui.solutionsLabel ?? t.solutionsLabel}
               title={twoLines(
                 content.deliverablesTitle.before,
                 content.deliverablesTitle.highlight
@@ -221,8 +273,8 @@ export default function ServicePage({
           {/* PERGUNTAS FREQUENTES (preto quando é a última seção, antes da chamada branca) */}
           <section className={s.block} data-tone={hasRelated ? "light" : "black"}>
             <BlockHead
-              label="05 / DÚVIDAS FREQUENTES"
-              title={twoLines("Perguntas que", "merecem respostas.")}
+              label={t.faqLabel}
+              title={twoLines(...t.faqTitle)}
             />
             <FaqList faqs={content.faqs} />
           </section>
@@ -231,8 +283,8 @@ export default function ServicePage({
           {hasRelated && (
             <section className={s.block} data-tone="black">
               <BlockHead
-                label="06 / GESTÃO FORX"
-                title={twoLines("Soluções que", "funcionam melhor juntas.")}
+                label={t.relatedLabel}
+                title={twoLines(...t.relatedTitle)}
               />
 
               <div className={s.related}>
@@ -241,7 +293,7 @@ export default function ServicePage({
                   return (
                     <Link
                       key={item.slug}
-                      href={item.href}
+                      href={href(item.href)}
                       className={`${s.relCard} ${s.fade}`}
                       data-fade
                       style={d(0.08 * index)}
@@ -263,24 +315,18 @@ export default function ServicePage({
 
         {/* CHAMADA FINAL */}
         <CtaGlow
-          label={ui.ctaLabel ?? "VAMOS CONVERSAR?"}
+          label={ui.ctaLabel ?? t.ctaLabel}
           title={ui.ctaTitle ?? [{ text: content.cta.title }]}
           text={content.cta.description}
           button={{
-            label: ui.ctaButton ?? "Falar com a FORX",
+            label: ui.ctaButton ?? t.talk,
             href: whatsappUrl,
             external: true,
           }}
         />
 
         {/* RODAPÉ */}
-        <footer className={`${s.scenes} ${s.foot}`}>
-          <Link href="/">FORX Digital.</Link>
-          <span className={s.footLinks}>
-          <span>© 2026 FORX Digital — Tecnologia, gestão e crescimento.</span>
-          <Link href="/privacidade">Política de Privacidade</Link>
-        </span>
-        </footer>
+        <SmallFooter />
       </div>
     </main>
   );

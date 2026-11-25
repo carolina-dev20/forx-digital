@@ -1,26 +1,75 @@
+"use client";
+
 import Image from "next/image";
 import Link from "next/link";
 import { ArrowUpRight, UserRound } from "lucide-react";
 
-import { cases } from "@/data/cases";
+import { getCases } from "@/data/cases";
 import { founder } from "@/data/founder";
 import DeviceMockup from "./DeviceMockup";
 import { BlockHead, d } from "./scenes/blocks";
 import s from "./scenes/scenes.module.css";
+import { useHref, useLang } from "./LangProvider";
+import type { Dict } from "../i18n";
 
-/** Frase curta de cada projeto na home. */
-const SUBTITLES: Record<string, string> = {
-  "cleide-beauty-salao": "Site para salão de beleza",
-  "larissa-barbosa": "Presença digital para profissional da beleza",
+const TEXT: Dict<{
+  label: string;
+  title: [string, string];
+  visit: string;
+  visitSr: (client: string) => string;
+  case: string;
+  caseSr: (client: string) => string;
+  photoOf: (name: string) => string;
+  photoFallback: string;
+  whoTitle: string;
+}> = {
+  pt: {
+    label: "PORTFÓLIO",
+    title: ["Projetos que já ", "colocamos no ar."],
+    visit: "Ver site",
+    visitSr: (client) => ` de ${client} (abre em nova aba)`,
+    case: "Ver o case",
+    caseSr: (client) => ` de ${client}`,
+    photoOf: (name) => `Foto de ${name}`,
+    photoFallback: "Foto de quem cuida dos projetos da FORX",
+    whoTitle: "Quem cuida do seu projeto sou eu",
+  },
+  en: {
+    label: "PORTFOLIO",
+    title: ["Projects we have ", "already launched."],
+    visit: "Visit website",
+    visitSr: (client) => ` of ${client} (opens in a new tab)`,
+    case: "See the case study",
+    caseSr: (client) => ` of ${client}`,
+    photoOf: (name) => `Photo of ${name}`,
+    photoFallback: "Photo of the person who runs FORX projects",
+    whoTitle: "I personally take care of your project",
+  },
+  es: {
+    label: "PORTAFOLIO",
+    title: ["Proyectos que ya ", "pusimos en línea."],
+    visit: "Ver sitio",
+    visitSr: (client) => ` de ${client} (se abre en una nueva pestaña)`,
+    case: "Ver el caso",
+    caseSr: (client) => ` de ${client}`,
+    photoOf: (name) => `Foto de ${name}`,
+    photoFallback: "Foto de quien cuida los proyectos de FORX",
+    whoTitle: "Quien cuida tu proyecto soy yo",
+  },
 };
 
 /** Portfólio da home: os projetos no ar + "Quem cuida do seu projeto". */
 export default function HomePortfolio() {
+  const lang = useLang();
+  const href = useHref();
+  const t = TEXT[lang];
+  const cases = getCases(lang);
+
   return (
     <section id="portfolio" className={`${s.block} scroll-mt-20`} data-tone="black">
       <BlockHead
-        label="PORTFÓLIO"
-        title={[{ text: "Projetos que já " }, { text: "colocamos no ar.", hl: true }]}
+        label={t.label}
+        title={[{ text: t.title[0] }, { text: t.title[1], hl: true }]}
       />
 
       <div className="mt-10 grid gap-6 lg:grid-cols-2">
@@ -43,7 +92,7 @@ export default function HomePortfolio() {
                   {item.cliente}
                 </h3>
                 <p className="mt-1 text-[15px] text-[var(--fg-2)]">
-                  {SUBTITLES[item.slug] ?? item.tipoProjeto}
+                  {item.subtitulo || item.tipoProjeto}
                 </p>
               </div>
 
@@ -54,15 +103,15 @@ export default function HomePortfolio() {
                   rel="noopener noreferrer"
                   className="inline-flex items-center gap-2 rounded-full bg-white px-5 py-3 text-sm font-semibold text-[#1a1238]! transition-colors hover:bg-[#e4d9ff]"
                 >
-                  Ver site
+                  {t.visit}
                   <ArrowUpRight size={16} aria-hidden="true" />
-                  <span className="sr-only"> de {item.cliente} (abre em nova aba)</span>
+                  <span className="sr-only">{t.visitSr(item.cliente)}</span>
                 </a>
                 <Link
-                  href={`/cases#${item.slug}`}
+                  href={href(`/cases#${item.slug}`)}
                   className="text-sm font-medium text-[var(--fg-2)]! underline-offset-4 hover:text-[var(--fg)]! hover:underline"
                 >
-                  Ver o case<span className="sr-only"> de {item.cliente}</span>
+                  {t.case}<span className="sr-only">{t.caseSr(item.cliente)}</span>
                 </Link>
               </div>
             </div>
@@ -78,7 +127,7 @@ export default function HomePortfolio() {
         {founder.photo ? (
           <Image
             src={founder.photo}
-            alt={founder.name ? `Foto de ${founder.name}` : "Foto de quem cuida dos projetos da FORX"}
+            alt={founder.name ? t.photoOf(founder.name) : t.photoFallback}
             width={88}
             height={88}
             className="h-[88px] w-[88px] shrink-0 rounded-full object-cover"
@@ -94,7 +143,7 @@ export default function HomePortfolio() {
 
         <div>
           <h3 className="text-[22px] font-medium tracking-[-0.02em] text-[var(--fg)]">
-            Quem cuida do seu projeto sou eu
+            {t.whoTitle}
           </h3>
           {(founder.name || founder.role) && (
             <p className="mt-1 text-[15px] font-medium text-[var(--hl)]">

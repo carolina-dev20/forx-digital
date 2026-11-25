@@ -12,6 +12,7 @@ import Link from "next/link";
 import { ArrowDown, MousePointer2, Sparkles, type LucideIcon } from "lucide-react";
 
 import s from "./scenes.module.css";
+import { useHref } from "../LangProvider";
 
 // ==========================================
 // CORES
@@ -269,9 +270,10 @@ export function DotButton({
   style?: CSSProperties;
   external?: boolean;
 }) {
+  const localize = useHref();
   return (
     <a
-      href={href}
+      href={localize(href)}
       className={`${s.btn} ${large ? s.lg : ""} ${className}`}
       style={style}
       {...(external ? { target: "_blank", rel: "noopener noreferrer" } : {})}
@@ -339,6 +341,7 @@ export default function Scenes({
   navCta,
 }: ScenesProps) {
   const [ready, setReady] = useState(false);
+  const localize = useHref();
 
   const wrapRef = useRef<HTMLDivElement>(null);
   const canvasRef = useRef<HTMLCanvasElement>(null);
@@ -572,7 +575,7 @@ export default function Scenes({
 
               {secondary && (
                 <a
-                  href={secondary.href}
+                  href={localize(secondary.href)}
                   className={s.secondary}
                   {...(secondary.external ? { target: "_blank", rel: "noopener noreferrer" } : {})}
                   onClick={
@@ -681,7 +684,7 @@ export default function Scenes({
                   <Link
                     key={item.title}
                     id={item.id}
-                    href={item.href}
+                    href={localize(item.href)}
                     className={`${s.item} ${s.itemLink}`}
                   >
                     {inner}
